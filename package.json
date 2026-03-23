@@ -1,0 +1,35 @@
+{
+  "name": "f8-alphablocks",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "generate-audio": "npx ts-node --project tsconfig.scripts.json scripts/generate-audio.ts",
+    "deploy": "npm run build && node deploy.mjs deploy"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^3.0.8",
+    "@sveltejs/kit": "^2.21.0",
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
+    "@types/node": "^25.5.0",
+    "svelte": "^5.0.0",
+    "svelte-check": "^4.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.0"
+  },
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "pixi.js": "^8.0.0",
+    "pinyin-pro": "^3.26.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brycejohnson/f8-alphablocks.git"
+  },
+  "license": "ISC"
+}

@@ -1,0 +1,7 @@
+name = "f8-alphablocks"
+compatibility_date = "2024-12-01"
+pages_build_output_dir = "build"
+
+[[r2_buckets]]
+binding = "AUDIO_BUCKET"
+bucket_name = "alphablocks-audio"
