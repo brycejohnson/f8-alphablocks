@@ -26,23 +26,6 @@ export const zhAnimalsCurriculum: CurriculumPhase[] = [
   },
   {
     phase: 2,
-    name: '更多动物',  // Listen & Match — More Animals
-    gameMode: 'listen-match',
-    newPhonemeIds: ['zh-shi1', 'zh-hou2', 'zh-xiong2', 'zh-tu4', 'zh-she2', 'zh-hu3', 'zh-xiang4', 'zh-e2', 'zh-ya1'],
-    words: [
-      { id: 'zh-shi1',   text: '狮', phonemeIds: ['zh-shi1'],   meaning: 'lion',     emoji: '🦁' },
-      { id: 'zh-hou2',   text: '猴', phonemeIds: ['zh-hou2'],   meaning: 'monkey',   emoji: '🐵' },
-      { id: 'zh-xiong2', text: '熊', phonemeIds: ['zh-xiong2'], meaning: 'bear',     emoji: '🐻' },
-      { id: 'zh-tu4',    text: '兔', phonemeIds: ['zh-tu4'],    meaning: 'rabbit',   emoji: '🐰' },
-      { id: 'zh-she2',   text: '蛇', phonemeIds: ['zh-she2'],   meaning: 'snake',    emoji: '🐍' },
-      { id: 'zh-hu3',    text: '虎', phonemeIds: ['zh-hu3'],    meaning: 'tiger',    emoji: '🐯' },
-      { id: 'zh-xiang4', text: '象', phonemeIds: ['zh-xiang4'], meaning: 'elephant', emoji: '🐘' },
-      { id: 'zh-e2',     text: '鹅', phonemeIds: ['zh-e2'],     meaning: 'goose',    emoji: '🪿' },
-      { id: 'zh-ya1',    text: '鸭', phonemeIds: ['zh-ya1'],    meaning: 'duck',     emoji: '🦆' },
-    ],
-  },
-  {
-    phase: 3,
     name: '动物记忆',  // Recall — All Animals
     gameMode: 'recall',
     newPhonemeIds: [],
@@ -62,7 +45,7 @@ export const zhAnimalsCurriculum: CurriculumPhase[] = [
     ],
   },
   {
-    phase: 4,
+    phase: 3,
     name: '看图识动物',  // Picture Match — All Animals
     gameMode: 'picture-match',
     newPhonemeIds: [],
@@ -82,7 +65,7 @@ export const zhAnimalsCurriculum: CurriculumPhase[] = [
     ],
   },
   {
-    phase: 5,
+    phase: 4,
     name: '组合动物词',  // Compound Animal Words
     gameMode: 'compound',
     newPhonemeIds: [],
@@ -97,6 +80,23 @@ export const zhAnimalsCurriculum: CurriculumPhase[] = [
       { id: 'zh-xiongmao', text: '熊猫', phonemeIds: ['zh-xiong2', 'zh-mao1'],  meaning: 'panda',          emoji: '🐼' },
       { id: 'zh-xiaotu',    text: '小兔', phonemeIds: ['zh-xiao3', 'zh-tu4'],   meaning: 'bunny',          emoji: '🐇' },
       { id: 'zh-konglong',  text: '恐龙', phonemeIds: ['zh-kong3', 'zh-long2'], meaning: 'dinosaur',       emoji: '🦕' },
+    ],
+  },
+  {
+    phase: 5,
+    name: '更多动物',  // Listen & Match — More Animals
+    gameMode: 'listen-match',
+    newPhonemeIds: ['zh-shi1', 'zh-hou2', 'zh-xiong2', 'zh-tu4', 'zh-she2', 'zh-hu3', 'zh-xiang4', 'zh-e2', 'zh-ya1'],
+    words: [
+      { id: 'zh-shi1',   text: '狮', phonemeIds: ['zh-shi1'],   meaning: 'lion',     emoji: '🦁' },
+      { id: 'zh-hou2',   text: '猴', phonemeIds: ['zh-hou2'],   meaning: 'monkey',   emoji: '🐵' },
+      { id: 'zh-xiong2', text: '熊', phonemeIds: ['zh-xiong2'], meaning: 'bear',     emoji: '🐻' },
+      { id: 'zh-tu4',    text: '兔', phonemeIds: ['zh-tu4'],    meaning: 'rabbit',   emoji: '🐰' },
+      { id: 'zh-she2',   text: '蛇', phonemeIds: ['zh-she2'],   meaning: 'snake',    emoji: '🐍' },
+      { id: 'zh-hu3',    text: '虎', phonemeIds: ['zh-hu3'],    meaning: 'tiger',    emoji: '🐯' },
+      { id: 'zh-xiang4', text: '象', phonemeIds: ['zh-xiang4'], meaning: 'elephant', emoji: '🐘' },
+      { id: 'zh-e2',     text: '鹅', phonemeIds: ['zh-e2'],     meaning: 'goose',    emoji: '🪿' },
+      { id: 'zh-ya1',    text: '鸭', phonemeIds: ['zh-ya1'],    meaning: 'duck',     emoji: '🦆' },
     ],
   },
 ]

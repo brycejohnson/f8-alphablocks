@@ -278,15 +278,15 @@ const ZH_COLOURS: ZhEntry[] = [
   { id: 'zh-hei1',   text: '黑', label: 'hēi black' },
   { id: 'zh-fen3',   text: '粉', label: 'fěn pink' },
   { id: 'zh-zi3',    text: '紫', label: 'zǐ purple' },
+  { id: 'zh-jin1',   text: '金', label: 'jīn gold' },
 ]
 
 // Compound colour words
 const ZH_COMPOUND_COLOURS: ZhEntry[] = [
-  { id: 'zh-hongshan', text: '红山', label: 'hóngshān red mountain' },
+  { id: 'zh-lvshan',   text: '绿山', label: 'lǜshān green mountain' },
   { id: 'zh-huangniu', text: '黄牛', label: 'huángniú yellow cow' },
   { id: 'zh-baima',    text: '白马', label: 'báimǎ white horse' },
-  { id: 'zh-heiyu',    text: '黑鱼', label: 'hēiyú black fish' },
-  { id: 'zh-lanshan',  text: '蓝山', label: 'lánshān blue mountain' },
+  { id: 'zh-jinyu',    text: '金鱼', label: 'jīnyú goldfish' },
   { id: 'zh-honglong', text: '红龙', label: 'hónglóng red dragon' },
 ]
 

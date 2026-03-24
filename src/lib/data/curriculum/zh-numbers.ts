@@ -23,19 +23,6 @@ export const zhNumbersCurriculum: CurriculumPhase[] = [
   },
   {
     phase: 2,
-    name: '听数辨字',  // Listen & Match Numbers
-    gameMode: 'listen-match',
-    newPhonemeIds: ['zh-liu4', 'zh-qi1', 'zh-ba1', 'zh-jiu3', 'zh-shi2'],
-    words: [
-      { id: 'zh-liu4', text: '六', phonemeIds: ['zh-liu4'], meaning: 'six',   emoji: '6️⃣' },
-      { id: 'zh-qi1',  text: '七', phonemeIds: ['zh-qi1'],  meaning: 'seven', emoji: '7️⃣' },
-      { id: 'zh-ba1',  text: '八', phonemeIds: ['zh-ba1'],  meaning: 'eight', emoji: '8️⃣' },
-      { id: 'zh-jiu3', text: '九', phonemeIds: ['zh-jiu3'], meaning: 'nine',  emoji: '9️⃣' },
-      { id: 'zh-shi2', text: '十', phonemeIds: ['zh-shi2'], meaning: 'ten',   emoji: '🔟' },
-    ],
-  },
-  {
-    phase: 3,
     name: '数字记忆',  // Recall Numbers
     gameMode: 'recall',
     newPhonemeIds: [],
@@ -53,7 +40,7 @@ export const zhNumbersCurriculum: CurriculumPhase[] = [
     ],
   },
   {
-    phase: 4,
+    phase: 3,
     name: '看数识字',  // Picture Match Numbers
     gameMode: 'picture-match',
     newPhonemeIds: [],
@@ -71,7 +58,7 @@ export const zhNumbersCurriculum: CurriculumPhase[] = [
     ],
   },
   {
-    phase: 5,
+    phase: 4,
     name: '组合数字',  // Compound Numbers
     gameMode: 'compound',
     newPhonemeIds: [],
@@ -82,6 +69,19 @@ export const zhNumbersCurriculum: CurriculumPhase[] = [
       { id: 'zh-shiwu',  text: '十五', phonemeIds: ['zh-shi2', 'zh-wu3'],  meaning: 'fifteen',  emoji: '1️⃣5️⃣' },
       { id: 'zh-ershi',  text: '二十', phonemeIds: ['zh-er4', 'zh-shi2'],  meaning: 'twenty',   emoji: '2️⃣0️⃣' },
       { id: 'zh-jiushi', text: '九十', phonemeIds: ['zh-jiu3', 'zh-shi2'], meaning: 'ninety',   emoji: '9️⃣0️⃣' },
+    ],
+  },
+  {
+    phase: 5,
+    name: '听数辨字',  // Listen & Match Numbers
+    gameMode: 'listen-match',
+    newPhonemeIds: ['zh-liu4', 'zh-qi1', 'zh-ba1', 'zh-jiu3', 'zh-shi2'],
+    words: [
+      { id: 'zh-liu4', text: '六', phonemeIds: ['zh-liu4'], meaning: 'six',   emoji: '6️⃣' },
+      { id: 'zh-qi1',  text: '七', phonemeIds: ['zh-qi1'],  meaning: 'seven', emoji: '7️⃣' },
+      { id: 'zh-ba1',  text: '八', phonemeIds: ['zh-ba1'],  meaning: 'eight', emoji: '8️⃣' },
+      { id: 'zh-jiu3', text: '九', phonemeIds: ['zh-jiu3'], meaning: 'nine',  emoji: '9️⃣' },
+      { id: 'zh-shi2', text: '十', phonemeIds: ['zh-shi2'], meaning: 'ten',   emoji: '🔟' },
     ],
   },
 ]
