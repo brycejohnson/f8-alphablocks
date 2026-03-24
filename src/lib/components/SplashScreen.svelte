@@ -4,8 +4,12 @@
    * Temporary placeholder until commissioned artwork is ready
    */
 
-  const eruptingChars = ['火', '山', '水', '人', '大', '小', '日', '月', '木', '果']
-  const charColours = ['#E53935', '#2E7D32', '#1565C0', '#6D4C41', '#B71C1C', '#42A5F5', '#F9A825', '#78909C', '#558B2F', '#E91E63']
+  const eruptingChars = ['火', '山', '水', '人', '大']
+  const charColours = ['#E53935', '#2E7D32', '#1565C0', '#6D4C41', '#B71C1C']
+
+  // Blocks that spill to the sides
+  const spillChars = ['小', '日', '月', '木', '果', '一', '二', '三']
+  const spillColours = ['#42A5F5', '#F9A825', '#78909C', '#558B2F', '#E91E63', '#1565C0', '#2E7D32', '#E65100']
 
   // Title characters in blocks
   const titleChars = [
@@ -30,6 +34,41 @@
       >
         {char}
       </div>
+    {/each}
+  </div>
+
+  <!-- Blocks spilling to the sides -->
+  <div class="spill-area">
+    {#each spillChars as char, i}
+      {@const delay = 0.5 + i * 0.35}
+      {@const drift = (i % 2 === 0 ? -1 : 1) * (80 + Math.random() * 70)}
+      {@const rise = 40 + Math.random() * 50}
+      <div
+        class="spill-block"
+        style="
+          --colour: {spillColours[i]};
+          --delay: {delay}s;
+          --drift: {drift}px;
+          --rise: {rise}px;
+        "
+      >
+        {char}
+      </div>
+      <!-- Fragment pieces that appear when block lands -->
+      {#each Array(8) as _, f}
+        <div
+          class="fragment"
+          style="
+            --colour: {spillColours[i]};
+            --delay: {delay}s;
+            --drift: {drift}px;
+            --rise: {rise}px;
+            --frag-x: {(Math.random() - 0.5) * 50}px;
+            --frag-y: {-5 + Math.random() * 35}px;
+            --frag-size: {2 + Math.random() * 4}px;
+          "
+        ></div>
+      {/each}
     {/each}
   </div>
 
@@ -158,6 +197,106 @@
     margin: 10px 0 4px;
     z-index: 4;
     letter-spacing: 0.05em;
+  }
+
+  /* Blocks spilling to sides */
+  .spill-area {
+    position: absolute;
+    top: calc(50% - 70px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    width: 300px;
+    height: 100px;
+    pointer-events: none;
+  }
+
+  .spill-block {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 14px);
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    background: #fff;
+    border: 2px solid var(--colour);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    font-weight: 900;
+    color: #1a1a1a;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+    opacity: 0;
+    animation: spill 3.5s ease-in-out infinite;
+    animation-delay: var(--delay);
+  }
+
+  @keyframes spill {
+    0% {
+      opacity: 0;
+      transform: translateY(0) translateX(0) rotate(0deg) scale(0.4);
+    }
+    8% {
+      opacity: 1;
+      transform: translateY(calc(-1 * var(--rise) - 40px)) translateX(calc(var(--drift) * 0.05)) rotate(0deg) scale(1);
+    }
+    20% {
+      opacity: 1;
+      transform: translateY(calc(-1 * var(--rise) - 35px)) translateX(calc(var(--drift) * 0.25)) rotate(5deg) scale(1);
+    }
+    40% {
+      opacity: 1;
+      transform: translateY(calc(-1 * var(--rise) - 10px)) translateX(calc(var(--drift) * 0.6)) rotate(12deg) scale(0.95);
+    }
+    65% {
+      opacity: 0.85;
+      transform: translateY(30px) translateX(calc(var(--drift) * 1.0)) rotate(22deg) scale(0.85);
+    }
+    83% {
+      opacity: 0.7;
+      transform: translateY(70px) translateX(calc(var(--drift) * 1.3)) rotate(30deg) scale(0.7);
+    }
+    84% {
+      opacity: 0;
+      transform: translateY(72px) translateX(calc(var(--drift) * 1.3)) rotate(30deg) scale(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(72px) translateX(calc(var(--drift) * 1.3)) rotate(30deg) scale(0);
+    }
+  }
+
+  .fragment {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 4px);
+    width: var(--frag-size);
+    height: var(--frag-size);
+    border-radius: 50%;
+    background: var(--colour);
+    opacity: 0;
+    animation: frag 3.5s ease-out infinite;
+    animation-delay: var(--delay);
+  }
+
+  @keyframes frag {
+    0%, 83% {
+      opacity: 0;
+      transform: translateY(70px) translateX(calc(var(--drift) * 1.3)) scale(0);
+    }
+    85% {
+      opacity: 1;
+      transform: translateY(70px) translateX(calc(var(--drift) * 1.3)) scale(1);
+    }
+    95% {
+      opacity: 0.6;
+      transform: translateY(calc(70px + var(--frag-y))) translateX(calc(var(--drift) * 1.3 + var(--frag-x))) scale(0.8);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(calc(70px + var(--frag-y) * 1.5)) translateX(calc(var(--drift) * 1.3 + var(--frag-x) * 1.5)) scale(0);
+    }
   }
 
   .title-blocks {
