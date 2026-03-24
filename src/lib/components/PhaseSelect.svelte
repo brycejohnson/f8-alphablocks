@@ -1,17 +1,15 @@
 <script lang="ts">
   import { zhCurriculum } from '$lib/data/curriculum/zh'
+  import { zhNumbersCurriculum } from '$lib/data/curriculum/zh-numbers'
   import { selectPhase } from '$lib/stores/game.svelte'
-  import type { ZhGameMode } from '$lib/data/curriculum/types'
+  import type { ZhGameMode, CurriculumTrack } from '$lib/data/curriculum/types'
 
-  const phaseLabels: Record<string, string> = {
-    'reveal': '认识汉字 — Reveal & Learn',
-    'listen-match': '听音辨字 — Listen & Match',
-    'recall': '记忆挑战 — Recall',
-    'picture-match': '看图识字 — Picture Match',
-    'compound': '组词造句 — Compound Words',
-  }
+  const tracks: CurriculumTrack[] = [
+    { id: 'zh-characters', name: '汉字 Characters', icon: '🀄', phases: zhCurriculum },
+    { id: 'zh-numbers',    name: '数字 Numbers',    icon: '🔢', phases: zhNumbersCurriculum },
+  ]
 
-  const phaseIcons: Record<string, string> = {
+  const modeIcons: Record<string, string> = {
     'reveal': '👁️',
     'listen-match': '👂',
     'recall': '🧠',
@@ -19,8 +17,16 @@
     'compound': '🧩',
   }
 
-  function handleSelect(phase: number, gameMode: ZhGameMode | undefined) {
-    selectPhase(phase, gameMode ?? null)
+  const modeLabels: Record<string, string> = {
+    'reveal': 'Reveal & Learn',
+    'listen-match': 'Listen & Match',
+    'recall': 'Recall',
+    'picture-match': 'Picture Match',
+    'compound': 'Compound Words',
+  }
+
+  function handleSelect(trackId: string, phase: number, gameMode: ZhGameMode | undefined) {
+    selectPhase(phase, gameMode ?? null, trackId)
   }
 </script>
 
@@ -28,24 +34,30 @@
   <h1 class="title">选择游戏</h1>
   <p class="subtitle">Choose a game</p>
 
-  <div class="phases">
-    {#each zhCurriculum as phase, i}
-      <button
-        class="phase-btn"
-        onclick={() => handleSelect(phase.phase, phase.gameMode)}
-      >
-        <span class="phase-icon">{phaseIcons[phase.gameMode ?? 'reveal']}</span>
-        <span class="phase-info">
-          <span class="phase-number">Phase {phase.phase}</span>
-          <span class="phase-name">{phaseLabels[phase.gameMode ?? 'reveal']}</span>
-        </span>
-        <span class="phase-arrow">›</span>
-      </button>
-      {#if i < zhCurriculum.length - 1}
-        <div class="connector"></div>
-      {/if}
-    {/each}
-  </div>
+  {#each tracks as track}
+    <div class="track">
+      <h2 class="track-title">{track.icon} {track.name}</h2>
+
+      <div class="phases">
+        {#each track.phases as phase, i}
+          <button
+            class="phase-btn"
+            onclick={() => handleSelect(track.id, phase.phase, phase.gameMode)}
+          >
+            <span class="phase-icon">{modeIcons[phase.gameMode ?? 'reveal']}</span>
+            <span class="phase-info">
+              <span class="phase-number">Phase {phase.phase}</span>
+              <span class="phase-name">{phase.name} — {modeLabels[phase.gameMode ?? 'reveal']}</span>
+            </span>
+            <span class="phase-arrow">›</span>
+          </button>
+          {#if i < track.phases.length - 1}
+            <div class="connector"></div>
+          {/if}
+        {/each}
+      </div>
+    </div>
+  {/each}
 </div>
 
 <style>
@@ -54,8 +66,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 20px;
+    padding: 40px 20px 60px;
     overflow-y: auto;
+    gap: 8px;
   }
 
   .title {
@@ -68,7 +81,22 @@
   .subtitle {
     font-size: 1rem;
     color: rgba(255,255,255,0.6);
-    margin: 4px 0 32px;
+    margin: 4px 0 16px;
+  }
+
+  .track {
+    width: 100%;
+    max-width: 360px;
+    margin-bottom: 24px;
+  }
+
+  .track-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.9);
+    margin: 0 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid rgba(255,255,255,0.15);
   }
 
   .phases {
@@ -77,7 +105,6 @@
     align-items: center;
     gap: 0;
     width: 100%;
-    max-width: 360px;
   }
 
   .phase-btn {
@@ -85,7 +112,7 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 16px 18px;
+    padding: 14px 16px;
     border: 2px solid rgba(255,255,255,0.2);
     border-radius: 16px;
     background: rgba(255,255,255,0.08);
@@ -106,7 +133,7 @@
   }
 
   .phase-icon {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     flex-shrink: 0;
   }
 
@@ -118,7 +145,7 @@
   }
 
   .phase-number {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     color: rgba(255,255,255,0.5);
     text-transform: uppercase;
@@ -126,7 +153,7 @@
   }
 
   .phase-name {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 700;
   }
 
@@ -138,7 +165,7 @@
 
   .connector {
     width: 2px;
-    height: 16px;
+    height: 12px;
     background: rgba(255,255,255,0.2);
   }
 </style>

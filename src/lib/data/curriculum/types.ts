@@ -16,3 +16,11 @@ export interface CurriculumPhase {
   words: CurriculumWord[]
   gameMode?: ZhGameMode   // Chinese-specific game mode (undefined = default sequential tap)
 }
+
+/** A curriculum track groups phases under a topic */
+export interface CurriculumTrack {
+  id: string              // 'zh-characters', 'zh-numbers'
+  name: string            // '汉字 Characters'
+  icon: string            // '🀄'
+  phases: CurriculumPhase[]
+}

@@ -217,6 +217,30 @@ const ZH_COMPOUNDS: ZhEntry[] = [
   { id: 'zh-riyue',    text: '日月', label: 'rìyuè sun and moon' },
 ]
 
+// Numbers 1-10
+const ZH_NUMBERS: ZhEntry[] = [
+  { id: 'zh-yi1',  text: '一', label: 'yī one' },
+  { id: 'zh-er4',  text: '二', label: 'èr two' },
+  { id: 'zh-san1', text: '三', label: 'sān three' },
+  { id: 'zh-si4',  text: '四', label: 'sì four' },
+  { id: 'zh-wu3',  text: '五', label: 'wǔ five' },
+  { id: 'zh-liu4', text: '六', label: 'liù six' },
+  { id: 'zh-qi1',  text: '七', label: 'qī seven' },
+  { id: 'zh-ba1',  text: '八', label: 'bā eight' },
+  { id: 'zh-jiu3', text: '九', label: 'jiǔ nine' },
+  { id: 'zh-shi2', text: '十', label: 'shí ten' },
+]
+
+// Compound numbers
+const ZH_COMPOUND_NUMBERS: ZhEntry[] = [
+  { id: 'zh-shiyi',  text: '十一', label: 'shíyī eleven' },
+  { id: 'zh-shier',  text: '十二', label: 'shíèr twelve' },
+  { id: 'zh-shisan', text: '十三', label: 'shísān thirteen' },
+  { id: 'zh-shiwu',  text: '十五', label: 'shíwǔ fifteen' },
+  { id: 'zh-ershi',  text: '二十', label: 'èrshí twenty' },
+  { id: 'zh-jiushi', text: '九十', label: 'jiǔshí ninety' },
+]
+
 // ---------------------------------------------------------------------------
 // Google Cloud TTS
 // ---------------------------------------------------------------------------
@@ -327,6 +351,26 @@ async function generateMandarin() {
 
   console.log('\n── Mandarin compound words ──')
   for (const w of ZH_COMPOUNDS) {
+    await generateFile({
+      outputPath: path.join(OUTPUT_ZH, `${w.id}.m4a`),
+      text: w.text,
+      languageCode: 'cmn-CN',
+      voiceName: 'cmn-CN-Chirp3-HD-Aoede',
+    })
+  }
+
+  console.log('\n── Mandarin numbers ──')
+  for (const p of ZH_NUMBERS) {
+    await generateFile({
+      outputPath: path.join(OUTPUT_ZH, `${p.id}.m4a`),
+      text: p.text,
+      languageCode: 'cmn-CN',
+      voiceName: 'cmn-CN-Chirp3-HD-Aoede',
+    })
+  }
+
+  console.log('\n── Mandarin compound numbers ──')
+  for (const w of ZH_COMPOUND_NUMBERS) {
     await generateFile({
       outputPath: path.join(OUTPUT_ZH, `${w.id}.m4a`),
       text: w.text,

@@ -13,6 +13,8 @@
   import CompoundGame from './games/CompoundGame.svelte'
   import { enCurriculum } from '$lib/data/curriculum/en'
   import { zhCurriculum } from '$lib/data/curriculum/zh'
+  import { zhNumbersCurriculum } from '$lib/data/curriculum/zh-numbers'
+  import { getActiveZhCurriculum } from '$lib/data/curriculum/zh-tracks'
   import { selectWords, isPhaseComplete, nextPhase } from '$lib/engine/wordSelector'
   import { progress, advancePhase } from '$lib/stores/progress.svelte'
   import type { CurriculumWord } from '$lib/data/curriculum/types'
@@ -75,7 +77,8 @@
     loading = true
     resetWord()
 
-    const phase = zhCurriculum.find(p => p.phase === game.activePhase)
+    const curriculum = getActiveZhCurriculum()
+    const phase = curriculum.find(p => p.phase === game.activePhase)
     if (!phase) { loading = false; return }
 
     wordQueue = [...phase.words].sort(() => Math.random() - 0.5)
@@ -115,7 +118,8 @@
     if (queueIndex >= wordQueue.length) {
       // For Chinese: reshuffle and continue
       if (lang === 'zh') {
-        const phase = zhCurriculum.find(p => p.phase === game.activePhase)
+        const curriculum = getActiveZhCurriculum()
+        const phase = curriculum.find(p => p.phase === game.activePhase)
         if (phase) {
           wordQueue = [...phase.words].sort(() => Math.random() - 0.5)
           queueIndex = 0

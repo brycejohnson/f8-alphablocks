@@ -3,7 +3,7 @@
   import { playPhoneme, speakFallback, playCelebration, ensureAudioContext, playTapClick } from '$lib/audio/phonemePlayer'
   import { recordPhonemeTap, recordWordComplete } from '$lib/stores/progress.svelte'
   import { zhPhonemeMap } from '$lib/data/zh/phonemes'
-  import { zhCurriculum } from '$lib/data/curriculum/zh'
+  import { getActiveZhCurriculum } from '$lib/data/curriculum/zh-tracks'
 
   let options: Array<{ id: string; text: string; phonemeId: string }> = $state([])
   let correctId = $state('')
@@ -27,7 +27,7 @@
     correctId = word.id
 
     // Get all words from this phase for distractors
-    const phase = zhCurriculum.find(p => p.phase === game.activePhase)
+    const phase = getActiveZhCurriculum().find(p => p.phase === game.activePhase)
     if (!phase) return
 
     const others = phase.words.filter(w => w.id !== word.id)

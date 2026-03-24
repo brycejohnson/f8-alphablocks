@@ -7,6 +7,7 @@ export const game = $state({
   screen: 'phase-select' as GameScreen,
   currentLevel: 1,
   activePhase: 1,
+  activeTrack: 'zh-characters' as string,  // which curriculum track
   zhGameMode: null as ZhGameMode | null,  // active Chinese game mode
   activeWord: null as CurriculumWord | null,
   phonemeIndex: 0,        // which block is currently "speaking" (-1 = none)
@@ -44,9 +45,10 @@ export function resetWord() {
   game.celebrating = false
 }
 
-export function selectPhase(phase: number, gameMode: ZhGameMode | null) {
+export function selectPhase(phase: number, gameMode: ZhGameMode | null, trackId?: string) {
   game.activePhase = phase
   game.zhGameMode = gameMode
+  if (trackId) game.activeTrack = trackId
   game.screen = 'playing'
   resetWord()
 }

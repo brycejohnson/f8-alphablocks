@@ -25,5 +25,19 @@ export const zhCharacters: Phoneme[] = [
   { id: 'zh-guo3',  symbol: '果', ipa: 'guǒ',   colour: '#E91E63', audioFile: 'zh-guo3.m4a',  meaning: 'fruit',    emoji: '🍎' },
 ]
 
-export const zhAllPhonemes = zhCharacters
+// Numbers 1-10
+export const zhNumbers: Phoneme[] = [
+  { id: 'zh-yi1',  symbol: '一', ipa: 'yī',   colour: '#1565C0', audioFile: 'zh-yi1.m4a',  meaning: 'one',   emoji: '1️⃣' },
+  { id: 'zh-er4',  symbol: '二', ipa: 'èr',   colour: '#2E7D32', audioFile: 'zh-er4.m4a',  meaning: 'two',   emoji: '2️⃣' },
+  { id: 'zh-san1', symbol: '三', ipa: 'sān',  colour: '#E65100', audioFile: 'zh-san1.m4a', meaning: 'three', emoji: '3️⃣' },
+  { id: 'zh-si4',  symbol: '四', ipa: 'sì',   colour: '#B71C1C', audioFile: 'zh-si4.m4a',  meaning: 'four',  emoji: '4️⃣' },
+  { id: 'zh-wu3',  symbol: '五', ipa: 'wǔ',   colour: '#6A1B9A', audioFile: 'zh-wu3.m4a',  meaning: 'five',  emoji: '5️⃣' },
+  { id: 'zh-liu4', symbol: '六', ipa: 'liù',  colour: '#00695C', audioFile: 'zh-liu4.m4a', meaning: 'six',   emoji: '6️⃣' },
+  { id: 'zh-qi1',  symbol: '七', ipa: 'qī',   colour: '#F57F17', audioFile: 'zh-qi1.m4a',  meaning: 'seven', emoji: '7️⃣' },
+  { id: 'zh-ba1',  symbol: '八', ipa: 'bā',   colour: '#0277BD', audioFile: 'zh-ba1.m4a',  meaning: 'eight', emoji: '8️⃣' },
+  { id: 'zh-jiu3', symbol: '九', ipa: 'jiǔ',  colour: '#AD1457', audioFile: 'zh-jiu3.m4a', meaning: 'nine',  emoji: '9️⃣' },
+  { id: 'zh-shi2', symbol: '十', ipa: 'shí',  colour: '#4E342E', audioFile: 'zh-shi2.m4a', meaning: 'ten',   emoji: '🔟' },
+]
+
+export const zhAllPhonemes = [...zhCharacters, ...zhNumbers]
 export const zhPhonemeMap = new Map(zhAllPhonemes.map(p => [p.id, p]))
