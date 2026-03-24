@@ -4,6 +4,7 @@
   import { recordPhonemeTap, recordWordComplete } from '$lib/stores/progress.svelte'
   import { zhPhonemeMap } from '$lib/data/zh/phonemes'
   import { getActiveZhCurriculum } from '$lib/data/curriculum/zh-tracks'
+  import CelebrationOverlay from '../CelebrationOverlay.svelte'
 
   let options: Array<{ id: string; text: string; phonemeId: string }> = $state([])
   let correctId = $state('')
@@ -84,7 +85,7 @@
   }
 </script>
 
-<div class="listen-stage">
+<div class="listen-stage" style="position:relative">
   <!-- Replay button -->
   <button class="play-btn" onclick={playTarget}>
     🔊
@@ -109,6 +110,7 @@
   </div>
 
   <p class="instruction">Which character did you hear?</p>
+  <CelebrationOverlay />
 </div>
 
 <style>

@@ -1,21 +1,10 @@
 <script lang="ts">
-  import { onDestroy } from 'svelte'
   import { game, nextPhoneme, celebrate, resetWord } from '$lib/stores/game.svelte'
   import { playPhoneme, speakFallback, playCelebration, ensureAudioContext, playTapClick } from '$lib/audio/phonemePlayer'
   import { recordPhonemeTap, recordWordComplete } from '$lib/stores/progress.svelte'
   import { zhPhonemeMap } from '$lib/data/zh/phonemes'
+  import CelebrationOverlay from '../CelebrationOverlay.svelte'
   import type { Phoneme } from '$lib/data/types'
-
-  // Particle system for celebration
-  let particles: Array<{
-    x: number; y: number; vx: number; vy: number;
-    colour: string; size: number; life: number; maxLife: number
-  }> = []
-  let canvas: HTMLCanvasElement | null = $state(null)
-  let animFrame = 0
-  let stageEl: HTMLElement | null = $state(null)
-
-  const PARTICLE_COLOURS = ['#FFD700', '#FF6B35', '#4CAF50', '#2196F3', '#E91E63', '#9C27B0']
 
   // Derived: phonemes for the active word (each is a whole character)
   let phonemes = $derived.by(() => {
@@ -40,12 +29,7 @@
     }
   })
 
-  $effect(() => {
-    if (game.celebrating) {
-      spawnParticles()
-      runParticles()
-    }
-  })
+  // Celebration handled by CelebrationOverlay component
 
   async function handleWordComplete() {
     // Pause to let the child see the characters slide together
@@ -78,75 +62,12 @@
     nextPhoneme()
   }
 
-  function spawnParticles() {
-    if (!stageEl) return
-    const rect = stageEl.getBoundingClientRect()
-    const cx = rect.width / 2
-    const count = 80
-    particles = Array.from({ length: count }, () => ({
-      x: cx + (Math.random() - 0.5) * 60,
-      y: rect.height * 0.3,
-      vx: (Math.random() - 0.5) * 8,
-      vy: -(Math.random() * 10 + 4),
-      colour: PARTICLE_COLOURS[Math.floor(Math.random() * PARTICLE_COLOURS.length)],
-      size: Math.random() * 10 + 6,
-      life: 0,
-      maxLife: 60 + Math.random() * 40,
-    }))
-  }
-
-  function runParticles() {
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    function tick() {
-      if (!canvas || !ctx) return
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      let alive = false
-      for (const p of particles) {
-        p.life++
-        p.x += p.vx
-        p.y += p.vy
-        p.vy += 0.35
-        p.vx *= 0.98
-        const alpha = Math.max(0, 1 - p.life / p.maxLife)
-        if (alpha > 0) {
-          alive = true
-          ctx.globalAlpha = alpha
-          ctx.fillStyle = p.colour
-          ctx.beginPath()
-          ctx.arc(p.x, p.y, p.size * alpha, 0, Math.PI * 2)
-          ctx.fill()
-        }
-      }
-      ctx.globalAlpha = 1
-      if (alive) {
-        animFrame = requestAnimationFrame(tick)
-      } else {
-        particles = []
-        setTimeout(() => resetWord(), 600)
-      }
-    }
-    animFrame = requestAnimationFrame(tick)
-  }
-
   function delay(ms: number) {
     return new Promise<void>(r => setTimeout(r, ms))
   }
-
-  onDestroy(() => {
-    if (animFrame) cancelAnimationFrame(animFrame)
-  })
 </script>
 
-<div class="compound-stage" bind:this={stageEl}>
-  <canvas
-    bind:this={canvas}
-    class="particles"
-    width={stageEl?.clientWidth ?? 400}
-    height={stageEl?.clientHeight ?? 300}
-  ></canvas>
+<div class="compound-stage" style="position:relative">
 
   {#if game.activeWord}
     <!-- Compound result — emoji above, component emojis to sides -->
@@ -194,6 +115,7 @@
   {:else}
     <p class="prompt">Loading…</p>
   {/if}
+  <CelebrationOverlay />
 </div>
 
 <style>
@@ -206,13 +128,6 @@
     justify-content: center;
     gap: 20px;
     overflow: hidden;
-  }
-
-  .particles {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 5;
   }
 
   .compound-reveal {

@@ -4,6 +4,7 @@
   import { recordPhonemeTap, recordWordComplete } from '$lib/stores/progress.svelte'
   import { zhPhonemeMap } from '$lib/data/zh/phonemes'
   import { getActiveZhCurriculum } from '$lib/data/curriculum/zh-tracks'
+  import CelebrationOverlay from '../CelebrationOverlay.svelte'
 
   let options: Array<{ id: string; text: string; phonemeId: string }> = $state([])
   let correctId = $state('')
@@ -73,7 +74,7 @@
   }
 </script>
 
-<div class="picture-stage">
+<div class="picture-stage" style="position:relative">
   <!-- Show the picture/emoji -->
   <div class="picture-card">
     <span class="emoji">{targetEmoji}</span>
@@ -97,6 +98,7 @@
       </button>
     {/each}
   </div>
+  <CelebrationOverlay />
 </div>
 
 <style>

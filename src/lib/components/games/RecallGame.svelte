@@ -4,6 +4,7 @@
   import { recordPhonemeTap, recordWordComplete } from '$lib/stores/progress.svelte'
   import { zhPhonemeMap } from '$lib/data/zh/phonemes'
   import { getActiveZhCurriculum } from '$lib/data/curriculum/zh-tracks'
+  import CelebrationOverlay from '../CelebrationOverlay.svelte'
 
   let showPhase: 'showing' | 'hidden' | 'found' = $state('showing')
   let options: Array<{ id: string; text: string; phonemeId: string }> = $state([])
@@ -82,7 +83,7 @@
   }
 </script>
 
-<div class="recall-stage">
+<div class="recall-stage" style="position:relative">
   {#if game.activeWord}
     <!-- Target character — shown briefly then hidden -->
     {#if showPhase === 'showing'}
@@ -113,6 +114,7 @@
   {:else}
     <p class="prompt">Loading…</p>
   {/if}
+  <CelebrationOverlay />
 </div>
 
 <style>

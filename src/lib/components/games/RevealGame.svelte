@@ -3,6 +3,7 @@
   import { playPhoneme, speakFallback, playCelebration, ensureAudioContext, playTapClick } from '$lib/audio/phonemePlayer'
   import { recordPhonemeTap, recordWordComplete } from '$lib/stores/progress.svelte'
   import { zhPhonemeMap } from '$lib/data/zh/phonemes'
+  import CelebrationOverlay from '../CelebrationOverlay.svelte'
 
   let revealed = $state(false)
   let showEmoji = $state(false)
@@ -54,7 +55,7 @@
   }
 </script>
 
-<div class="reveal-stage">
+<div class="reveal-stage" style="position:relative">
   {#if game.activeWord}
     {@const word = game.activeWord}
     {@const phoneme = zhPhonemeMap.get(word.phonemeIds[0])}
@@ -85,6 +86,7 @@
   {:else}
     <p class="prompt">Loading…</p>
   {/if}
+  <CelebrationOverlay />
 </div>
 
 <style>
