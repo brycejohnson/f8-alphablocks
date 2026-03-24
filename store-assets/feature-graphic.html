@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Feature Graphic 1024x500</title>
+<style>
+  body { margin: 0; background: #333; display: flex; align-items: center; justify-content: center; height: 100vh; }
+  .graphic {
+    width: 1024px;
+    height: 500px;
+    background: linear-gradient(160deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .block {
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    font-weight: 900;
+    font-family: Arial, sans-serif;
+    color: #1a1a1a;
+    box-shadow: 0 6px 0 rgba(0,0,0,0.3);
+  }
+  .block.huo { border: 6px solid #E53935; }
+  .block.shan { border: 6px solid #2E7D32; }
+  .block.wa { border: 6px solid #B7D019; }
+  .title-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .title-blocks {
+    display: flex;
+    gap: 16px;
+  }
+  .subtitle {
+    color: rgba(255,255,255,0.7);
+    font-size: 28px;
+    font-weight: 700;
+    font-family: Arial, sans-serif;
+  }
+  .tagline {
+    color: rgba(255,255,255,0.45);
+    font-size: 18px;
+    font-weight: 600;
+    font-family: Arial, sans-serif;
+  }
+  /* Decorative small blocks */
+  .mini-block {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 900;
+    font-family: Arial, sans-serif;
+    color: #1a1a1a;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.2);
+    opacity: 0.7;
+  }
+</style>
+</head>
+<body>
+<div class="graphic">
+  <!-- Decorative blocks scattered around -->
+  <div class="mini-block" style="border: 3px solid #1565C0; top: 40px; left: 60px; transform: rotate(-12deg);">水</div>
+  <div class="mini-block" style="border: 3px solid #F9A825; top: 60px; right: 80px; transform: rotate(8deg);">日</div>
+  <div class="mini-block" style="border: 3px solid #78909C; bottom: 50px; left: 100px; transform: rotate(15deg);">月</div>
+  <div class="mini-block" style="border: 3px solid #6D4C41; bottom: 40px; right: 120px; transform: rotate(-8deg);">人</div>
+  <div class="mini-block" style="border: 3px solid #E91E63; top: 140px; left: 140px; transform: rotate(5deg);">果</div>
+  <div class="mini-block" style="border: 3px solid #558B2F; bottom: 120px; right: 50px; transform: rotate(-15deg);">木</div>
+
+  <!-- Center content -->
+  <div class="title-area">
+    <div class="title-blocks">
+      <div class="block huo">火</div>
+      <div class="block shan">山</div>
+      <div class="block wa">蛙</div>
+    </div>
+    <div class="subtitle">Volcano Frog</div>
+    <div class="tagline">Mandarin Learning Game</div>
+  </div>
+</div>
+<p style="color:#999;margin-top:20px;position:fixed;bottom:10px;">Take a screenshot of the banner (1024x500)</p>
+</body>
+</html>
