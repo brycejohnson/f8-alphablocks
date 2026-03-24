@@ -796,7 +796,87 @@ Inspired directly by BBC Alphablocks — after the word is formed and the star b
 - [ ] Supports 9,000+ characters, loads data on demand (no backend needed)
 - [ ] Works on canvas or SVG, mobile/touch native
 
-### Phase 5 — Pictograph Tooltips & Character Etymology
+### Phase 5 — Art & Animation Pipeline
+
+The app currently uses placeholder Noto emoji SVGs. Production quality requires a proper art pipeline.
+
+**AI Art Generation Tools:**
+
+| Tool | Cost | API | Best for |
+|---|---|---|---|
+| **Leonardo.ai** | $12/month | REST API (programmable) | Game assets, character consistency across frogs/bugs |
+| **DALL-E 3** | $20/month (ChatGPT Plus) | OpenAI API (programmable) | Quick iteration, batch generation |
+| **Midjourney** | $10/month | Discord only (manual) | Highest quality illustrations |
+| **Stable Diffusion** | Free (local GPU) | Full API | Unlimited, full control |
+
+**Animation Tools:**
+
+| Tool | Cost | Integration | Best for |
+|---|---|---|---|
+| **Rive** | Free tier | JS runtime (~50KB), controllable from Svelte | Interactive frog animations, splash screen |
+| **Lottie** | Free + paid | lottie-web library | Pre-made vector animations |
+| **Spine** | $70 one-time | Desktop app (manual) | 2D skeletal animation (industry standard) |
+
+**Sound Effects:**
+
+| Tool | Cost | API | Best for |
+|---|---|---|---|
+| **ElevenLabs** | API pricing | Yes (programmable) | Generate frog sounds, crunches, farts |
+| **freesound.org** | Free (CC) | Yes | Source existing sound effects |
+
+**Recommended stack:** Leonardo.ai (character design) + Rive (interactive animation) + ElevenLabs or freesound (sounds)
+
+**Assets needed:**
+- Volcano Frog mascot (multiple poses/expressions)
+- Rival frog characters (3-4 different frogs with personalities)
+- Bug sprites (cockroach, cricket, moth, worm)
+- Volcano scene illustration
+- Pathway card illustrations (characters, numbers, animals, colours)
+- App icon (production quality)
+- Feature graphic (Play Store / App Store)
+
+---
+
+### Phase 5b — Frog Feeding Mini-Game (Reward Game)
+
+Reward mini-game inspired by viral frog feeding YouTube videos (13M+ views). Kids spend 50 stars earned from learning to play.
+
+**Gameplay:**
+- Multiple cute cartoon frogs sit on screen (volcano frog mascot + rival frogs)
+- Bugs crawl/fly across the screen
+- Kid taps/drags bugs to feed a frog
+- Frog's tongue shoots out to catch the bug
+- After eating ~3 bugs → frog farts or poops (comedy animation + sound effect)
+- If one frog steals a bug another was eyeing → the missed frog slaps the other with its tongue
+- Sound effects are critical: tongue snap/slurp, bug crunch, ribbit, fart, angry croak
+
+**Frog personalities:**
+- Volcano Frog (star character) — balanced, reliable
+- Other frogs have traits: greedy, slow, sneaky, lazy
+- Unlock new frogs as you progress through learning tracks
+
+**Currency system:**
+- Stars earned from correct answers in learning games (currently tracked in score)
+- 50 stars to play one round of frog feeding
+- Motivates continued learning → earn stars → spend on fun
+
+**Technical approach:**
+- Rive for frog character animations (interactive states: idle, hungry, tongue-out, eating, satisfied, angry, farting)
+- Canvas or PixiJS for bug movement and collision detection
+- Web Audio API for sound effects (same system as current phoneme audio)
+
+**Art requirements (for AI generation):**
+- Each frog: idle, eating, angry, satisfied, farting sprites/animations
+- 4-5 bug types with walk/fly animations
+- Tongue shooting animation
+- Poop/fart particle effects
+- Background scene (lily pad pond or volcano base)
+
+**Dependencies:** Requires Phase 5 art pipeline to be set up first.
+
+---
+
+### Phase 5c — Pictograph Tooltips & Character Etymology
 - [ ] Tooltips showing pictograph origin of each character (山 = mountain peaks, 火 = flames, etc.)
 - [ ] Future: animate pictograph morphing into modern character
 

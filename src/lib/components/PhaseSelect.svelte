@@ -49,8 +49,6 @@
     <SplashScreen />
   </div>
 
-  <h2 class="section-title">Choose a pathway</h2>
-
   <div class="pathways">
     {#each tracks as track}
       <button
