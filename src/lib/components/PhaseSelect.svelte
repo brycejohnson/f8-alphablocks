@@ -1,4 +1,5 @@
 <script lang="ts">
+  import SplashScreen from './SplashScreen.svelte'
   import { zhCurriculum } from '$lib/data/curriculum/zh'
   import { zhNumbersCurriculum } from '$lib/data/curriculum/zh-numbers'
   import { selectPhase } from '$lib/stores/game.svelte'
@@ -33,8 +34,11 @@
 </script>
 
 <div class="phase-select">
-  <h1 class="title">选择游戏</h1>
-  <p class="subtitle">Choose a game</p>
+  <div class="splash-area">
+    <SplashScreen />
+  </div>
+
+  <h2 class="section-title">选择游戏 — Choose a game</h2>
 
   {#each tracks as track}
     <div class="track">
@@ -73,17 +77,19 @@
     gap: 8px;
   }
 
-  .title {
-    font-size: 2rem;
-    font-weight: 900;
-    color: #fff;
-    margin: 0;
+  .splash-area {
+    width: 100%;
+    height: 380px;
+    display: flex;
+    margin-bottom: 16px;
+    flex-shrink: 0;
   }
 
-  .subtitle {
-    font-size: 1rem;
-    color: rgba(255,255,255,0.6);
-    margin: 4px 0 16px;
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.8);
+    margin: 0 0 16px;
   }
 
   .track {

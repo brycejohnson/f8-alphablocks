@@ -800,13 +800,68 @@ Inspired directly by BBC Alphablocks — after the word is formed and the star b
 - [ ] Tooltips showing pictograph origin of each character (山 = mountain peaks, 火 = flames, etc.)
 - [ ] Future: animate pictograph morphing into modern character
 
-### Phase 6 — Native iOS App (Swift)
-- Port game to SwiftUI + SpriteKit or SwiftUI + Metal
-- Replace Google Cloud TTS with **AVSpeechSynthesizer** (on-device, Siri-quality voice, free, offline)
-- App Store distribution — parents can install without browser
-- Push notifications for daily learning streaks
-- AVFoundation for audio (eliminates all iOS Web Audio API quirks entirely)
+### Phase 6 — App Store Distribution (Capacitor wrap)
+
+Wrap the existing SvelteKit web app as a native iOS + Android app using Capacitor. Fastest path to app stores with minimal code changes.
+
+**Approach: Capacitor (recommended first step)**
+- Capacitor wraps the web app in a native WebView — same code, native shell
+- Generates Xcode project (iOS) and Android Studio project (Android)
+- Access to native APIs: push notifications, haptics, offline storage
+- One codebase serves web, iOS, and Android
+
+**Developer Account Setup:**
+
+| Store | Account | Cost | Notes |
+|---|---|---|---|
+| **Apple App Store** | Apple Developer Program | **$99/year** | Required for iOS distribution. Enroll at developer.apple.com. Requires Apple ID. |
+| **Google Play Store** | Google Play Console | **$25 one-time** | Enroll at play.google.com/console. Requires Google account. |
+
+**Total upfront cost: ~$124** ($99 Apple + $25 Google)
+
+**Build & submission pipeline:**
+- [ ] Install Capacitor: `npm install @capacitor/core @capacitor/cli`
+- [ ] Generate native projects: `npx cap init` + `npx cap add ios` + `npx cap add android`
+- [ ] Configure app icon, splash screen, bundle ID
+- [ ] Build: `npx cap sync` → open in Xcode / Android Studio → archive & upload
+- [ ] Store listing: screenshots, description, age rating (kids category), privacy policy
+- [ ] Apple review: typically 1-3 days, stricter for kids category (COPPA compliance)
+- [ ] Google review: typically 1-2 days
+
+**Kids category requirements:**
+- Privacy policy required (no data collection makes this simple)
+- COPPA compliance — no ads, no tracking, no personal data collection
+- Apple: must be in "Kids" category if targeting under 12
+- Google: "Designed for Families" program, requires teacher-approved content
+
+**Revenue & Payments:**
+
+| Store | Commission | Payout | Method |
+|---|---|---|---|
+| **Apple** | 30% (15% if under $1M/year via Small Business Program) | Monthly, ~45 days after fiscal month end | Direct bank transfer (AUD to AU business account) |
+| **Google** | 15% on first $1M/year, 30% after | Monthly, ~15th of following month | Direct bank transfer (AUD to AU business account) |
+
+**Payment setup requirements:**
+- Australian business bank account (BSB + account number)
+- ABN
+- W-8BEN-E form (reduces US withholding tax via AU-US tax treaty)
+- Apple: configured in App Store Connect → Agreements, Tax, and Banking
+- Google: configured in Google Play Console → Payment settings
+
+**Pricing model options:**
+- **Free** — no payment, simplest
+- **Paid upfront** — user pays once (e.g. $2.99-$4.99, typical for kids' learning apps)
+- **Freemium** — free download, in-app purchase to unlock content (e.g. Phase 1 free, pay for all phases) ← **recommended, chosen**
+- **Subscription** — monthly/yearly recurring
+
+**Freemium strategy:** Basic character/number learning (Phase 1 of each track) is free. Advanced pathways, additional tracks, and future content are unlocked via one-time in-app purchase or subscription. More advanced pathways planned — freemium scales naturally as content grows.
+
+**Future: Full native rewrite (Phase 7)**
+- Port to SwiftUI + SpriteKit (iOS) / Kotlin + Compose (Android)
+- Replace Google Cloud TTS with **AVSpeechSynthesizer** (on-device, Siri-quality, free, offline)
 - Native haptics on letter block tap (UIImpactFeedbackGenerator)
+- Better performance, smaller binary, platform-native UX
+- Only justified after validating product-market fit via Capacitor version
 
 ### Phase 3 — Mandarin Character Learning (5-phase progression)
 
