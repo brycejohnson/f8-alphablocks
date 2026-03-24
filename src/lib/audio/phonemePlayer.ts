@@ -19,8 +19,7 @@ const rawCache = new Map<string, ArrayBuffer>()
 const bufferCache = new Map<string, AudioBuffer>()
 
 function getCtx(): AudioContext {
-  if (!ctx && AudioContextClass) ctx = new AudioContextClass()
-  if (!ctx) throw new Error('AudioContext unavailable')
+  if (!ctx) throw new Error('AudioContext not yet created — call ensureAudioContext() first')
   return ctx
 }
 
@@ -32,8 +31,23 @@ export function ensureAudioContext(): void {
   if (!ctx) {
     ctx = new AudioContextClass() // Created in gesture → running state
   } else if (ctx.state === 'suspended') {
-    ctx.resume() // fire-and-forget — kicks context back to running
+    ctx.resume() // fire-and-forget in gesture — iOS unlocks immediately
   }
+}
+
+// Ensure context is running before any playback — awaits resume if needed.
+// Used by playPhoneme which may be called outside a gesture (e.g. after a delay).
+async function ensureRunning(): Promise<AudioContext | null> {
+  if (!ctx) {
+    // No context yet — can't create one outside a gesture on iOS.
+    // Try anyway (works on desktop, Android).
+    if (!AudioContextClass) return null
+    ctx = new AudioContextClass()
+  }
+  if (ctx.state === 'suspended') {
+    try { await ctx.resume() } catch { /* silent */ }
+  }
+  return ctx.state === 'running' ? ctx : null
 }
 
 // Pre-fetch raw bytes for upcoming audio so first play has near-zero latency.
@@ -66,8 +80,10 @@ async function getOrDecode(id: string, language: string): Promise<AudioBuffer | 
     } catch (e) { console.warn('[audio] fetch error', id, e); return null }
   }
 
+  const c = await ensureRunning()
+  if (!c) return null
+
   try {
-    const c = getCtx()
     // decodeAudioData detaches the ArrayBuffer — remove from rawCache first
     rawCache.delete(id)
     const buffer = await c.decodeAudioData(raw)
@@ -82,9 +98,8 @@ export async function playPhoneme(id: string, language?: 'en' | 'zh'): Promise<b
   const buffer = await getOrDecode(id, language ?? '')
   if (!buffer) return false
   try {
-    const c = getCtx()
-    // Await resume — context may have auto-suspended after 30s inactivity (second-tap silence fix)
-    if (c.state === 'suspended') await c.resume()
+    const c = await ensureRunning()
+    if (!c) return false
     const source = c.createBufferSource()
     source.buffer = buffer
     source.connect(c.destination)
@@ -104,6 +119,7 @@ export function speakFallback(text: string, lang: 'en' | 'zh'): void {
 }
 
 // Synthesised tap click — zero files, zero latency
+// Uses getCtx() — only called from gesture handlers where ensureAudioContext() was already called
 export function playTapClick(): void {
   try {
     const c = getCtx()
@@ -116,6 +132,23 @@ export function playTapClick(): void {
     gain.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 0.07)
     osc.start()
     osc.stop(c.currentTime + 0.07)
+  } catch (_) { /* silent */ }
+}
+
+// Synthesised soft wobble/wrong-answer sound
+export function playWobble(): void {
+  try {
+    const c = getCtx()
+    const osc = c.createOscillator()
+    const gain = c.createGain()
+    osc.type = 'sine'
+    osc.frequency.value = 250
+    osc.connect(gain)
+    gain.connect(c.destination)
+    gain.gain.setValueAtTime(0.15, c.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 0.25)
+    osc.start()
+    osc.stop(c.currentTime + 0.25)
   } catch (_) { /* silent */ }
 }
 

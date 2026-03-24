@@ -45,7 +45,8 @@
   })
 
   async function handleWordComplete() {
-    await delay(300)
+    // Pause to let the child see/hear blocks slide together before the full word plays
+    await delay(800)
     if (game.activeWord) {
       recordWordComplete(game.activeWord.id)
       const played = await playPhoneme(game.activeWord.id, game.language)

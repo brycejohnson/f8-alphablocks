@@ -48,8 +48,11 @@
   })
 
   async function handleWordComplete() {
+    // Pause to let the child see the characters slide together
+    await delay(800)
     showCompound = true
-    await delay(300)
+    // Pause again to let the compound picture + meaning register visually
+    await delay(600)
     if (game.activeWord) {
       recordWordComplete(game.activeWord.id)
       // Play the compound word audio

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { game, celebrate, resetWord } from '$lib/stores/game.svelte'
-  import { playPhoneme, speakFallback, playCelebration, ensureAudioContext, playTapClick } from '$lib/audio/phonemePlayer'
+  import { playPhoneme, speakFallback, playCelebration, ensureAudioContext, playTapClick, playWobble } from '$lib/audio/phonemePlayer'
   import { recordPhonemeTap, recordWordComplete } from '$lib/stores/progress.svelte'
   import { zhPhonemeMap } from '$lib/data/zh/phonemes'
   import { getActiveZhCurriculum } from '$lib/data/curriculum/zh-tracks'
@@ -72,26 +72,9 @@
       resetWord()
     } else {
       wobbleId = opt.id
-      playWobbleSound()
+      playWobble()
       setTimeout(() => { wobbleId = '' }, 500)
     }
-  }
-
-  function playWobbleSound() {
-    try {
-      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext
-      const c = new AudioCtx()
-      const osc = c.createOscillator()
-      const gain = c.createGain()
-      osc.type = 'sine'
-      osc.frequency.value = 250
-      osc.connect(gain)
-      gain.connect(c.destination)
-      gain.gain.setValueAtTime(0.15, c.currentTime)
-      gain.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 0.25)
-      osc.start()
-      osc.stop(c.currentTime + 0.25)
-    } catch {}
   }
 
   function delay(ms: number) {
