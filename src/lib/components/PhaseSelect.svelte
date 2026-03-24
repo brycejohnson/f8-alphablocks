@@ -2,6 +2,8 @@
   import SplashScreen from './SplashScreen.svelte'
   import { zhCurriculum } from '$lib/data/curriculum/zh'
   import { zhNumbersCurriculum } from '$lib/data/curriculum/zh-numbers'
+  import { zhAnimalsCurriculum } from '$lib/data/curriculum/zh-animals'
+  import { zhColoursCurriculum } from '$lib/data/curriculum/zh-colours'
   import { selectPhase } from '$lib/stores/game.svelte'
   import { ensureAudioContext } from '$lib/audio/phonemePlayer'
   import type { ZhGameMode, CurriculumTrack } from '$lib/data/curriculum/types'
@@ -9,6 +11,8 @@
   const tracks: CurriculumTrack[] = [
     { id: 'zh-characters', name: '汉字 Characters', icon: '🀄', phases: zhCurriculum },
     { id: 'zh-numbers',    name: '数字 Numbers',    icon: '🔢', phases: zhNumbersCurriculum },
+    { id: 'zh-animals',    name: '动物 Animals',    icon: '🐾', phases: zhAnimalsCurriculum },
+    { id: 'zh-colours',    name: '颜色 Colours',    icon: '🎨', phases: zhColoursCurriculum },
   ]
 
   const modeIcons: Record<string, string> = {

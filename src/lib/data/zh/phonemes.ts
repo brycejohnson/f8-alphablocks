@@ -39,5 +39,31 @@ export const zhNumbers: Phoneme[] = [
   { id: 'zh-shi2', symbol: '十', ipa: 'shí',  colour: '#4E342E', audioFile: 'zh-shi2.m4a', meaning: 'ten',   emoji: '🔟' },
 ]
 
-export const zhAllPhonemes = [...zhCharacters, ...zhNumbers]
+// Animals
+export const zhAnimals: Phoneme[] = [
+  { id: 'zh-mao1',  symbol: '猫', ipa: 'māo',  colour: '#FF8F00', audioFile: 'zh-mao1.m4a',  meaning: 'cat',    emoji: '🐱' },
+  { id: 'zh-gou3',  symbol: '狗', ipa: 'gǒu',  colour: '#6D4C41', audioFile: 'zh-gou3.m4a',  meaning: 'dog',    emoji: '🐕' },
+  { id: 'zh-yu2',   symbol: '鱼', ipa: 'yú',   colour: '#0288D1', audioFile: 'zh-yu2.m4a',   meaning: 'fish',   emoji: '🐟' },
+  { id: 'zh-niao3', symbol: '鸟', ipa: 'niǎo', colour: '#43A047', audioFile: 'zh-niao3.m4a', meaning: 'bird',   emoji: '🐦' },
+  { id: 'zh-ma3',   symbol: '马', ipa: 'mǎ',   colour: '#5D4037', audioFile: 'zh-ma3.m4a',   meaning: 'horse',  emoji: '🐴' },
+  { id: 'zh-niu2',  symbol: '牛', ipa: 'niú',  colour: '#3E2723', audioFile: 'zh-niu2.m4a',  meaning: 'cow',    emoji: '🐄' },
+  { id: 'zh-zhu1',  symbol: '猪', ipa: 'zhū',  colour: '#F48FB1', audioFile: 'zh-zhu1.m4a',  meaning: 'pig',    emoji: '🐷' },
+  { id: 'zh-yang2', symbol: '羊', ipa: 'yáng', colour: '#BDBDBD', audioFile: 'zh-yang2.m4a', meaning: 'sheep',  emoji: '🐑' },
+  { id: 'zh-ji1',   symbol: '鸡', ipa: 'jī',   colour: '#E65100', audioFile: 'zh-ji1.m4a',   meaning: 'chicken', emoji: '🐔' },
+  { id: 'zh-long2', symbol: '龙', ipa: 'lóng', colour: '#C62828', audioFile: 'zh-long2.m4a', meaning: 'dragon', emoji: '🐉' },
+]
+
+// Colours
+export const zhColours: Phoneme[] = [
+  { id: 'zh-hong2', symbol: '红', ipa: 'hóng',  colour: '#E53935', audioFile: 'zh-hong2.m4a', meaning: 'red',    emoji: '🔴' },
+  { id: 'zh-lan2',  symbol: '蓝', ipa: 'lán',   colour: '#1565C0', audioFile: 'zh-lan2.m4a',  meaning: 'blue',   emoji: '🔵' },
+  { id: 'zh-lv4',   symbol: '绿', ipa: 'lǜ',    colour: '#2E7D32', audioFile: 'zh-lv4.m4a',   meaning: 'green',  emoji: '🟢' },
+  { id: 'zh-huang2',symbol: '黄', ipa: 'huáng', colour: '#F9A825', audioFile: 'zh-huang2.m4a',meaning: 'yellow', emoji: '🟡' },
+  { id: 'zh-bai2',  symbol: '白', ipa: 'bái',   colour: '#9E9E9E', audioFile: 'zh-bai2.m4a',  meaning: 'white',  emoji: '⬜' },
+  { id: 'zh-hei1',  symbol: '黑', ipa: 'hēi',   colour: '#212121', audioFile: 'zh-hei1.m4a',  meaning: 'black',  emoji: '⬛' },
+  { id: 'zh-fen3',  symbol: '粉', ipa: 'fěn',   colour: '#F06292', audioFile: 'zh-fen3.m4a',  meaning: 'pink',   emoji: '🩷' },
+  { id: 'zh-zi3',   symbol: '紫', ipa: 'zǐ',    colour: '#7B1FA2', audioFile: 'zh-zi3.m4a',   meaning: 'purple', emoji: '🟣' },
+]
+
+export const zhAllPhonemes = [...zhCharacters, ...zhNumbers, ...zhAnimals, ...zhColours]
 export const zhPhonemeMap = new Map(zhAllPhonemes.map(p => [p.id, p]))

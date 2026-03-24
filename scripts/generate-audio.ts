@@ -230,6 +230,52 @@ const ZH_NUMBERS: ZhEntry[] = [
   { id: 'zh-shi2', text: '十', label: 'shí ten' },
 ]
 
+// Animals
+const ZH_ANIMALS: ZhEntry[] = [
+  { id: 'zh-mao1',  text: '猫', label: 'māo cat' },
+  { id: 'zh-gou3',  text: '狗', label: 'gǒu dog' },
+  { id: 'zh-yu2',   text: '鱼', label: 'yú fish' },
+  { id: 'zh-niao3', text: '鸟', label: 'niǎo bird' },
+  { id: 'zh-ma3',   text: '马', label: 'mǎ horse' },
+  { id: 'zh-niu2',  text: '牛', label: 'niú cow' },
+  { id: 'zh-zhu1',  text: '猪', label: 'zhū pig' },
+  { id: 'zh-yang2', text: '羊', label: 'yáng sheep' },
+  { id: 'zh-ji1',   text: '鸡', label: 'jī chicken' },
+  { id: 'zh-long2', text: '龙', label: 'lóng dragon' },
+]
+
+// Compound animal words
+const ZH_COMPOUND_ANIMALS: ZhEntry[] = [
+  { id: 'zh-xiaogou',  text: '小狗', label: 'xiǎogǒu puppy' },
+  { id: 'zh-xiaomao',  text: '小猫', label: 'xiǎomāo kitten' },
+  { id: 'zh-xiaoniao', text: '小鸟', label: 'xiǎoniǎo little bird' },
+  { id: 'zh-dama',     text: '大马', label: 'dàmǎ big horse' },
+  { id: 'zh-shuiniu',  text: '水牛', label: 'shuǐniú water buffalo' },
+  { id: 'zh-huolong',  text: '火龙', label: 'huǒlóng fire dragon' },
+]
+
+// Colours
+const ZH_COLOURS: ZhEntry[] = [
+  { id: 'zh-hong2',  text: '红', label: 'hóng red' },
+  { id: 'zh-lan2',   text: '蓝', label: 'lán blue' },
+  { id: 'zh-lv4',    text: '绿', label: 'lǜ green' },
+  { id: 'zh-huang2', text: '黄', label: 'huáng yellow' },
+  { id: 'zh-bai2',   text: '白', label: 'bái white' },
+  { id: 'zh-hei1',   text: '黑', label: 'hēi black' },
+  { id: 'zh-fen3',   text: '粉', label: 'fěn pink' },
+  { id: 'zh-zi3',    text: '紫', label: 'zǐ purple' },
+]
+
+// Compound colour words
+const ZH_COMPOUND_COLOURS: ZhEntry[] = [
+  { id: 'zh-hongshan', text: '红山', label: 'hóngshān red mountain' },
+  { id: 'zh-huangniu', text: '黄牛', label: 'huángniú yellow cow' },
+  { id: 'zh-baima',    text: '白马', label: 'báimǎ white horse' },
+  { id: 'zh-heiyu',    text: '黑鱼', label: 'hēiyú black fish' },
+  { id: 'zh-lanshan',  text: '蓝山', label: 'lánshān blue mountain' },
+  { id: 'zh-honglong', text: '红龙', label: 'hónglóng red dragon' },
+]
+
 // Compound numbers
 const ZH_COMPOUND_NUMBERS: ZhEntry[] = [
   { id: 'zh-shiyi',  text: '十一', label: 'shíyī eleven' },
@@ -370,6 +416,46 @@ async function generateMandarin() {
 
   console.log('\n── Mandarin compound numbers ──')
   for (const w of ZH_COMPOUND_NUMBERS) {
+    await generateFile({
+      outputPath: path.join(OUTPUT_ZH, `${w.id}.m4a`),
+      text: w.text,
+      languageCode: 'cmn-CN',
+      voiceName: 'cmn-CN-Chirp3-HD-Aoede',
+    })
+  }
+
+  console.log('\n── Mandarin animals ──')
+  for (const p of ZH_ANIMALS) {
+    await generateFile({
+      outputPath: path.join(OUTPUT_ZH, `${p.id}.m4a`),
+      text: p.text,
+      languageCode: 'cmn-CN',
+      voiceName: 'cmn-CN-Chirp3-HD-Aoede',
+    })
+  }
+
+  console.log('\n── Mandarin compound animals ──')
+  for (const w of ZH_COMPOUND_ANIMALS) {
+    await generateFile({
+      outputPath: path.join(OUTPUT_ZH, `${w.id}.m4a`),
+      text: w.text,
+      languageCode: 'cmn-CN',
+      voiceName: 'cmn-CN-Chirp3-HD-Aoede',
+    })
+  }
+
+  console.log('\n── Mandarin colours ──')
+  for (const p of ZH_COLOURS) {
+    await generateFile({
+      outputPath: path.join(OUTPUT_ZH, `${p.id}.m4a`),
+      text: p.text,
+      languageCode: 'cmn-CN',
+      voiceName: 'cmn-CN-Chirp3-HD-Aoede',
+    })
+  }
+
+  console.log('\n── Mandarin compound colours ──')
+  for (const w of ZH_COMPOUND_COLOURS) {
     await generateFile({
       outputPath: path.join(OUTPUT_ZH, `${w.id}.m4a`),
       text: w.text,
