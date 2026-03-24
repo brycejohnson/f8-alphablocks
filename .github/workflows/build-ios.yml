@@ -1,0 +1,43 @@
+name: Build iOS App
+
+on:
+  workflow_dispatch:  # Manual trigger only — run when ready to build
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build web app (native mode)
+        run: NATIVE_BUILD=1 npm run build
+
+      - name: Sync Capacitor
+        run: npx cap sync ios
+
+      - name: Build iOS archive
+        working-directory: ios/App
+        run: |
+          xcodebuild -workspace App.xcworkspace \
+            -scheme App \
+            -configuration Release \
+            -archivePath $RUNNER_TEMP/VolcanoFrog.xcarchive \
+            -destination 'generic/platform=iOS' \
+            archive \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Upload archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: VolcanoFrog-ios-archive
+          path: ${{ runner.temp }}/VolcanoFrog.xcarchive
+          retention-days: 30

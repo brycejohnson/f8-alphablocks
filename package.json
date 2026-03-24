@@ -23,9 +23,13 @@
     "vite": "^6.0.0"
   },
   "dependencies": {
+    "@capacitor/android": "^8.2.0",
+    "@capacitor/cli": "^8.2.0",
+    "@capacitor/core": "^8.2.0",
+    "@capacitor/ios": "^8.2.0",
     "gsap": "^3.12.5",
-    "pixi.js": "^8.0.0",
-    "pinyin-pro": "^3.26.0"
+    "pinyin-pro": "^3.26.0",
+    "pixi.js": "^8.0.0"
   },
   "repository": {
     "type": "git",

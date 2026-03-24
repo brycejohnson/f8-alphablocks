@@ -12,7 +12,8 @@ const config = {
       precompress: false
     }),
     paths: {
-      base: '/alphablocks'
+      // Empty base for native app builds (Capacitor), '/alphablocks' for web deploy
+      base: process.env.NATIVE_BUILD ? '' : '/alphablocks'
     }
   }
 }

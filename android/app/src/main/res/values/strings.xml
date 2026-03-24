@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Volcano Frog</string>
+    <string name="title_activity_main">Volcano Frog</string>
+    <string name="package_name">com.volcanofrog.app</string>
+    <string name="custom_url_scheme">com.volcanofrog.app</string>
+</resources>
