@@ -242,6 +242,15 @@ const ZH_ANIMALS: ZhEntry[] = [
   { id: 'zh-yang2', text: '羊', label: 'yáng sheep' },
   { id: 'zh-ji1',   text: '鸡', label: 'jī chicken' },
   { id: 'zh-long2', text: '龙', label: 'lóng dragon' },
+  { id: 'zh-shi1',  text: '狮', label: 'shī lion' },
+  { id: 'zh-hou2',  text: '猴', label: 'hóu monkey' },
+  { id: 'zh-xiong2',text: '熊', label: 'xióng bear' },
+  { id: 'zh-tu4',   text: '兔', label: 'tù rabbit' },
+  { id: 'zh-she2',  text: '蛇', label: 'shé snake' },
+  { id: 'zh-hu3',   text: '虎', label: 'hǔ tiger' },
+  { id: 'zh-xiang4',text: '象', label: 'xiàng elephant' },
+  { id: 'zh-e2',    text: '鹅', label: 'é goose' },
+  { id: 'zh-ya1',   text: '鸭', label: 'yā duck' },
 ]
 
 // Compound animal words
@@ -252,6 +261,9 @@ const ZH_COMPOUND_ANIMALS: ZhEntry[] = [
   { id: 'zh-dama',     text: '大马', label: 'dàmǎ big horse' },
   { id: 'zh-shuiniu',  text: '水牛', label: 'shuǐniú water buffalo' },
   { id: 'zh-huolong',  text: '火龙', label: 'huǒlóng fire dragon' },
+  { id: 'zh-daxiang',  text: '大象', label: 'dàxiàng elephant' },
+  { id: 'zh-xiongmao', text: '熊猫', label: 'xióngmāo panda' },
+  { id: 'zh-xiaotu',   text: '小兔', label: 'xiǎotù bunny' },
 ]
 
 // Colours

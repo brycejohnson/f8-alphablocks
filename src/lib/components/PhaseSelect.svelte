@@ -11,7 +11,7 @@
   const tracks: CurriculumTrack[] = [
     { id: 'zh-characters', name: '汉字 Characters', icon: '🀄', phases: zhCurriculum },
     { id: 'zh-numbers',    name: '数字 Numbers',    icon: '🔢', phases: zhNumbersCurriculum },
-    { id: 'zh-animals',    name: '动物 Animals',    icon: '🐾', phases: zhAnimalsCurriculum },
+    { id: 'zh-animals',    name: '动物 Animals',    icon: '🐻', phases: zhAnimalsCurriculum },
     { id: 'zh-colours',    name: '颜色 Colours',    icon: '🎨', phases: zhColoursCurriculum },
   ]
 
@@ -31,8 +31,15 @@
     'compound': 'Compound Words',
   }
 
+  let openTrackId: string | null = $state(null)
+
+  function toggleTrack(trackId: string) {
+    ensureAudioContext()
+    openTrackId = openTrackId === trackId ? null : trackId
+  }
+
   function handleSelect(trackId: string, phase: number, gameMode: ZhGameMode | undefined) {
-    ensureAudioContext() // Unlock AudioContext on first user tap (critical for iOS)
+    ensureAudioContext()
     selectPhase(phase, gameMode ?? null, trackId)
   }
 </script>
@@ -42,32 +49,45 @@
     <SplashScreen />
   </div>
 
-  <h2 class="section-title">选择游戏 — Choose a game</h2>
+  <h2 class="section-title">Choose a pathway</h2>
 
-  {#each tracks as track}
-    <div class="track">
-      <h2 class="track-title">{track.icon} {track.name}</h2>
+  <div class="pathways">
+    {#each tracks as track}
+      <button
+        class="pathway-card"
+        class:open={openTrackId === track.id}
+        onclick={() => toggleTrack(track.id)}
+      >
+        <span class="pathway-icon">{track.icon}</span>
+        <span class="pathway-info">
+          <span class="pathway-name">{track.name}</span>
+          <span class="pathway-count">{track.phases.length} games</span>
+        </span>
+        <span class="pathway-chevron" class:open={openTrackId === track.id}>▸</span>
+      </button>
 
-      <div class="phases">
-        {#each track.phases as phase, i}
-          <button
-            class="phase-btn"
-            onclick={() => handleSelect(track.id, phase.phase, phase.gameMode)}
-          >
-            <span class="phase-icon">{modeIcons[phase.gameMode ?? 'reveal']}</span>
-            <span class="phase-info">
-              <span class="phase-number">Phase {phase.phase}</span>
-              <span class="phase-name">{phase.name} — {modeLabels[phase.gameMode ?? 'reveal']}</span>
-            </span>
-            <span class="phase-arrow">›</span>
-          </button>
-          {#if i < track.phases.length - 1}
-            <div class="connector"></div>
-          {/if}
-        {/each}
-      </div>
-    </div>
-  {/each}
+      {#if openTrackId === track.id}
+        <div class="phases">
+          {#each track.phases as phase, i}
+            <button
+              class="phase-btn"
+              onclick={() => handleSelect(track.id, phase.phase, phase.gameMode)}
+            >
+              <span class="phase-icon">{modeIcons[phase.gameMode ?? 'reveal']}</span>
+              <span class="phase-info">
+                <span class="phase-number">Phase {phase.phase}</span>
+                <span class="phase-name">{phase.name} — {modeLabels[phase.gameMode ?? 'reveal']}</span>
+              </span>
+              <span class="phase-arrow">›</span>
+            </button>
+            {#if i < track.phases.length - 1}
+              <div class="connector"></div>
+            {/if}
+          {/each}
+        </div>
+      {/if}
+    {/each}
+  </div>
 </div>
 
 <style>
@@ -90,43 +110,28 @@
   }
 
   .section-title {
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: rgba(255,255,255,0.8);
-    margin: 0 0 16px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.6);
+    margin: 0 0 12px;
   }
 
-  .track {
+  .pathways {
     width: 100%;
     max-width: 360px;
-    margin-bottom: 24px;
-  }
-
-  .track-title {
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: rgba(255,255,255,0.9);
-    margin: 0 0 12px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid rgba(255,255,255,0.15);
-  }
-
-  .phases {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0;
-    width: 100%;
+    gap: 8px;
   }
 
-  .phase-btn {
+  .pathway-card {
     width: 100%;
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 14px 16px;
+    gap: 16px;
+    padding: 18px 20px;
     border: 2px solid rgba(255,255,255,0.2);
-    border-radius: 16px;
+    border-radius: 20px;
     background: rgba(255,255,255,0.08);
     color: #fff;
     cursor: pointer;
@@ -135,9 +140,86 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  .phase-btn:hover {
+  .pathway-card:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.35);
+  }
+
+  .pathway-card:active {
+    transform: scale(0.98);
+  }
+
+  .pathway-card.open {
     background: rgba(255,255,255,0.15);
     border-color: rgba(255,255,255,0.4);
+  }
+
+  .pathway-icon {
+    font-size: 2.2rem;
+    flex-shrink: 0;
+  }
+
+  .pathway-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .pathway-name {
+    font-size: 1.15rem;
+    font-weight: 800;
+  }
+
+  .pathway-count {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .pathway-chevron {
+    font-size: 1.3rem;
+    color: rgba(255,255,255,0.4);
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .pathway-chevron.open {
+    transform: rotate(90deg);
+  }
+
+  .phases {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    width: 100%;
+    padding: 4px 0 8px 28px;
+    animation: slide-down 0.25s ease;
+  }
+
+  @keyframes slide-down {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .phase-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 2px solid rgba(255,255,255,0.15);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s, transform 0.1s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .phase-btn:hover {
+    background: rgba(255,255,255,0.12);
   }
 
   .phase-btn:active {
@@ -145,7 +227,7 @@
   }
 
   .phase-icon {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     flex-shrink: 0;
   }
 
@@ -157,27 +239,27 @@
   }
 
   .phase-number {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 600;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.45);
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
 
   .phase-name {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 700;
   }
 
   .phase-arrow {
-    font-size: 1.5rem;
-    color: rgba(255,255,255,0.4);
+    font-size: 1.3rem;
+    color: rgba(255,255,255,0.35);
     flex-shrink: 0;
   }
 
   .connector {
     width: 2px;
-    height: 12px;
-    background: rgba(255,255,255,0.2);
+    height: 10px;
+    background: rgba(255,255,255,0.15);
   }
 </style>

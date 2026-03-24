@@ -50,7 +50,16 @@ export const zhAnimals: Phoneme[] = [
   { id: 'zh-zhu1',  symbol: '猪', ipa: 'zhū',  colour: '#F48FB1', audioFile: 'zh-zhu1.m4a',  meaning: 'pig',    emoji: '🐷' },
   { id: 'zh-yang2', symbol: '羊', ipa: 'yáng', colour: '#BDBDBD', audioFile: 'zh-yang2.m4a', meaning: 'sheep',  emoji: '🐑' },
   { id: 'zh-ji1',   symbol: '鸡', ipa: 'jī',   colour: '#E65100', audioFile: 'zh-ji1.m4a',   meaning: 'chicken', emoji: '🐔' },
-  { id: 'zh-long2', symbol: '龙', ipa: 'lóng', colour: '#C62828', audioFile: 'zh-long2.m4a', meaning: 'dragon', emoji: '🐉' },
+  { id: 'zh-long2', symbol: '龙', ipa: 'lóng', colour: '#C62828', audioFile: 'zh-long2.m4a', meaning: 'dragon',   emoji: '🐉' },
+  { id: 'zh-shi1', symbol: '狮', ipa: 'shī',  colour: '#E65100', audioFile: 'zh-shi1.m4a',  meaning: 'lion',     emoji: '🦁' },
+  { id: 'zh-hou2', symbol: '猴', ipa: 'hóu',  colour: '#795548', audioFile: 'zh-hou2.m4a',  meaning: 'monkey',   emoji: '🐵' },
+  { id: 'zh-xiong2',symbol: '熊', ipa: 'xióng',colour: '#4E342E', audioFile: 'zh-xiong2.m4a',meaning: 'bear',     emoji: '🐻' },
+  { id: 'zh-tu4',  symbol: '兔', ipa: 'tù',   colour: '#F8BBD0', audioFile: 'zh-tu4.m4a',   meaning: 'rabbit',   emoji: '🐰' },
+  { id: 'zh-she2', symbol: '蛇', ipa: 'shé',  colour: '#558B2F', audioFile: 'zh-she2.m4a',  meaning: 'snake',    emoji: '🐍' },
+  { id: 'zh-hu3',  symbol: '虎', ipa: 'hǔ',   colour: '#E65100', audioFile: 'zh-hu3.m4a',   meaning: 'tiger',    emoji: '🐯' },
+  { id: 'zh-xiang4',symbol: '象', ipa: 'xiàng',colour: '#78909C', audioFile: 'zh-xiang4.m4a',meaning: 'elephant', emoji: '🐘' },
+  { id: 'zh-e2',   symbol: '鹅', ipa: 'é',    colour: '#EEEEEE', audioFile: 'zh-e2.m4a',    meaning: 'goose',    emoji: '🪿' },
+  { id: 'zh-ya1',  symbol: '鸭', ipa: 'yā',   colour: '#43A047', audioFile: 'zh-ya1.m4a',   meaning: 'duck',     emoji: '🦆' },
 ]
 
 // Colours
