@@ -89,7 +89,6 @@ export const zhCurriculum: CurriculumPhase[] = [
       { id: 'zh-shuiguo',  text: '水果', phonemeIds: ['zh-shui3', 'zh-guo3'],  meaning: 'fruit',        emoji: '🍉' },
       { id: 'zh-daren',    text: '大人', phonemeIds: ['zh-da4', 'zh-ren2'],    meaning: 'adult',        emoji: '🧑‍🦰' },
       { id: 'zh-dashan',   text: '大山', phonemeIds: ['zh-da4', 'zh-shan1'],   meaning: 'big mountain', emoji: '🏔️' },
-      { id: 'zh-riyue',    text: '日月', phonemeIds: ['zh-ri4', 'zh-yue4'],    meaning: 'sun & moon',   emoji: '🌓' },
     ],
   },
 ]

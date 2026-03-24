@@ -214,7 +214,6 @@ const ZH_COMPOUNDS: ZhEntry[] = [
   { id: 'zh-shuiguo',  text: '水果', label: 'shuǐguǒ fruit' },
   { id: 'zh-daren',    text: '大人', label: 'dàrén adult' },
   { id: 'zh-dashan',   text: '大山', label: 'dàshān big mountain' },
-  { id: 'zh-riyue',    text: '日月', label: 'rìyuè sun and moon' },
 ]
 
 // Numbers 1-10
