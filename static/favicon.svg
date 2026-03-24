@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Red-orange gradient background -->
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B35"/>
+      <stop offset="100%" stop-color="#E53935"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <!-- White block card -->
+  <rect x="18" y="18" width="92" height="92" rx="18" fill="#fff"/>
+  <!-- 火 character -->
+  <text x="64" y="88" text-anchor="middle" font-size="72" font-weight="900" fill="#1a1a1a">火</text>
+</svg>
