@@ -13,6 +13,9 @@ const AudioContextClass = (typeof window !== 'undefined')
 
 let ctx: AudioContext | null = null
 
+// Debug logging disabled — iOS audio confirmed working
+function dbg(_msg: string) { /* no-op */ }
+
 // Stage 1: raw fetch bytes — populated by preloadPhonemes, no AudioContext needed
 const rawCache = new Map<string, ArrayBuffer>()
 // Stage 2: decoded AudioBuffer — populated on first play, reused forever
@@ -27,11 +30,15 @@ function getCtx(): AudioContext {
 // Creates the AudioContext inside the gesture → starts RUNNING (not suspended).
 // On subsequent calls: resumes if somehow suspended, otherwise no-op.
 export function ensureAudioContext(): void {
-  if (!AudioContextClass) return
+  if (!AudioContextClass) { dbg('ensureAC: no AudioContextClass!'); return }
   if (!ctx) {
-    ctx = new AudioContextClass() // Created in gesture → running state
+    ctx = new AudioContextClass()
+    dbg(`ensureAC: CREATED ctx, state=${ctx.state}, sampleRate=${ctx.sampleRate}`)
   } else if (ctx.state === 'suspended') {
-    ctx.resume() // fire-and-forget in gesture — iOS unlocks immediately
+    dbg('ensureAC: resuming suspended ctx')
+    ctx.resume()
+  } else {
+    dbg(`ensureAC: ctx already ${ctx.state}`)
   }
 }
 
@@ -53,14 +60,20 @@ async function ensureRunning(): Promise<AudioContext | null> {
 // Pre-fetch raw bytes for upcoming audio so first play has near-zero latency.
 // Does NOT decode — no AudioContext required, works before first user gesture.
 export async function preloadPhonemes(language: 'en' | 'zh', ids: string[]) {
+  dbg(`preload: ${ids.length} ids, lang=${language}, base="${base}"`)
   await Promise.all(ids.map(async (id) => {
     if (bufferCache.has(id) || rawCache.has(id)) return
     try {
-      const res = await fetch(`${base}/audio/${language}/${id}.m4a?v=7`)
-      if (!res.ok) return
-      rawCache.set(id, await res.arrayBuffer())
-    } catch { /* silent */ }
+      const url = `${base}/audio/${language}/${id}.m4a?v=7`
+      dbg(`fetch: ${url}`)
+      const res = await fetch(url)
+      if (!res.ok) { dbg(`fetch FAIL: ${id} status=${res.status}`); return }
+      const buf = await res.arrayBuffer()
+      dbg(`fetched: ${id} size=${buf.byteLength}`)
+      rawCache.set(id, buf)
+    } catch (e) { dbg(`fetch ERR: ${id} ${e}`) }
   }))
+  dbg(`preload done: raw=${rawCache.size} cached`)
 }
 
 // Decode raw bytes → AudioBuffer. Called at play-time when ctx is running.
@@ -95,11 +108,13 @@ async function getOrDecode(id: string, language: string): Promise<AudioBuffer | 
 // Play a phoneme. Call after ensureAudioContext() has been called in the tap handler.
 // Returns true if audio played, false on any failure (caller may use speakFallback).
 export async function playPhoneme(id: string, language?: 'en' | 'zh'): Promise<boolean> {
+  dbg(`playPhoneme: ${id}, raw=${rawCache.has(id)}, buf=${bufferCache.has(id)}`)
   const buffer = await getOrDecode(id, language ?? '')
-  if (!buffer) return false
+  if (!buffer) { dbg(`playPhoneme: NO BUFFER for ${id}`); return false }
   try {
     const c = await ensureRunning()
-    if (!c) return false
+    if (!c) { dbg('playPhoneme: ensureRunning returned null'); return false }
+    dbg(`playPhoneme: playing ${id}, ctx.state=${c.state}`)
     const source = c.createBufferSource()
     source.buffer = buffer
     source.connect(c.destination)
@@ -123,6 +138,7 @@ export function speakFallback(text: string, lang: 'en' | 'zh'): void {
 export function playTapClick(): void {
   try {
     const c = getCtx()
+    dbg(`tapClick: ctx.state=${c.state}`)
     const osc = c.createOscillator()
     const gain = c.createGain()
     osc.connect(gain)

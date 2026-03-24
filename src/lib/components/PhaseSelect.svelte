@@ -2,6 +2,7 @@
   import { zhCurriculum } from '$lib/data/curriculum/zh'
   import { zhNumbersCurriculum } from '$lib/data/curriculum/zh-numbers'
   import { selectPhase } from '$lib/stores/game.svelte'
+  import { ensureAudioContext } from '$lib/audio/phonemePlayer'
   import type { ZhGameMode, CurriculumTrack } from '$lib/data/curriculum/types'
 
   const tracks: CurriculumTrack[] = [
@@ -26,6 +27,7 @@
   }
 
   function handleSelect(trackId: string, phase: number, gameMode: ZhGameMode | undefined) {
+    ensureAudioContext() // Unlock AudioContext on first user tap (critical for iOS)
     selectPhase(phase, gameMode ?? null, trackId)
   }
 </script>
