@@ -80,7 +80,7 @@
       </svg>
     </div>
   </div>
-  <p class="tagline">Chinese Language Learning Game</p>
+  <p class="tagline">Mandarin Learning Game</p>
 </div>
 
 <style>
