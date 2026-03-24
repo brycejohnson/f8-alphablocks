@@ -14,11 +14,13 @@
 
   let litUpTo = $derived(game.wordComplete ? phonemes.length : game.phonemeIndex)
   let showCompound = $state(false)
+  let revealedEmojis: Set<number> = $state(new Set())
 
-  // Reset compound display when word changes
+  // Reset state when word changes
   $effect(() => {
     if (game.activeWord) {
       showCompound = false
+      revealedEmojis = new Set()
     }
   })
 
@@ -58,6 +60,7 @@
     if (!played) console.warn('[audio] playPhoneme failed for', p.id)
 
     if (index !== game.phonemeIndex) return // out of order
+    revealedEmojis = new Set([...revealedEmojis, index])
     recordPhonemeTap(p.id)
     nextPhoneme()
   }
@@ -91,18 +94,23 @@
     <!-- Character blocks — tap in sequence to combine -->
     <div class="blocks" class:joined={game.wordComplete}>
       {#each phonemes as phoneme, i}
-        <button
-          class="char-block"
-          class:active={i === game.phonemeIndex && !game.wordComplete}
-          class:complete={i < litUpTo}
-          style="--colour: {phoneme.colour}"
-          onclick={() => handleBlockTap(i)}
-        >
-          <span class="char">{phoneme.symbol}</span>
-          {#if !game.wordComplete}
-            <span class="char-meaning">{phoneme.meaning ?? ''}</span>
-          {/if}
-        </button>
+        <div class="block-with-emoji">
+          <div class="block-emoji" class:visible={revealedEmojis.has(i) && !showCompound}>
+            {phoneme.emoji ?? ''}
+          </div>
+          <button
+            class="char-block"
+            class:active={i === game.phonemeIndex && !game.wordComplete}
+            class:complete={i < litUpTo}
+            style="--colour: {phoneme.colour}"
+            onclick={() => handleBlockTap(i)}
+          >
+            <span class="char">{phoneme.symbol}</span>
+            {#if !game.wordComplete}
+              <span class="char-meaning">{phoneme.meaning ?? ''}</span>
+            {/if}
+          </button>
+        </div>
         {#if i < phonemes.length - 1 && !game.wordComplete}
           <div class="plus">+</div>
         {/if}
@@ -128,6 +136,29 @@
     justify-content: center;
     gap: 20px;
     overflow: hidden;
+  }
+
+  .block-with-emoji {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .block-emoji {
+    font-size: 2.2rem;
+    opacity: 0;
+    transform: scale(0.3) translateY(10px);
+    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    min-height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .block-emoji.visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 
   .compound-reveal {
