@@ -1,13 +1,21 @@
 <script lang="ts">
-  import { game } from '$lib/stores/game.svelte'
+  import { game, backToPhases } from '$lib/stores/game.svelte'
   import { settings, toggleLanguage } from '$lib/stores/settings.svelte'
+
+  let showBack = $derived(settings.language === 'zh' && game.screen === 'playing')
 </script>
 
 <div class="hud">
-  <div class="score">⭐ {game.score}</div>
-  <button class="lang-toggle" onclick={toggleLanguage}>
+  <div class="hud-left">
+    {#if showBack}
+      <button class="back-btn" onclick={backToPhases}>← 返回</button>
+    {/if}
+    <div class="score">⭐ {game.score}</div>
+  </div>
+  <!-- Language toggle disabled — Chinese mode is primary, English is secondary/future -->
+  <!-- <button class="lang-toggle" onclick={toggleLanguage}>
     {settings.language === 'en' ? '中文' : 'English'}
-  </button>
+  </button> -->
 </div>
 
 <style>
@@ -24,11 +32,36 @@
     pointer-events: none;
   }
 
+  .hud-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
   .score {
     font-size: 1.5rem;
     font-weight: 700;
     color: #fff;
     text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  }
+
+  .back-btn {
+    pointer-events: all;
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 20px;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: background 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .back-btn:hover {
+    background: rgba(255,255,255,0.25);
   }
 
   .lang-toggle {

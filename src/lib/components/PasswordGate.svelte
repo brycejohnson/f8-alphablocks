@@ -6,7 +6,7 @@
 
   let { children }: { children: Snippet } = $props()
 
-  let authed = $state(sessionStorage.getItem(STORAGE_KEY) === 'true')
+  let authed = $state(typeof sessionStorage !== 'undefined' && sessionStorage.getItem(STORAGE_KEY) === 'true')
   let input = $state('')
   let error = $state(false)
   let checking = $state(false)

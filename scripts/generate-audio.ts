@@ -193,61 +193,28 @@ interface ZhEntry {
   label: string
 }
 
-// Initials (21 standard Mandarin initials)
-const ZH_INITIALS: ZhEntry[] = [
-  { id: 'zh-b',  text: 'bā',  label: 'b' },
-  { id: 'zh-p',  text: 'pā',  label: 'p' },
-  { id: 'zh-m',  text: 'mā',  label: 'm' },
-  { id: 'zh-f',  text: 'fā',  label: 'f' },
-  { id: 'zh-d',  text: 'dā',  label: 'd' },
-  { id: 'zh-t',  text: 'tā',  label: 't' },
-  { id: 'zh-n',  text: 'nā',  label: 'n' },
-  { id: 'zh-l',  text: 'lā',  label: 'l' },
-  { id: 'zh-g',  text: 'gā',  label: 'g' },
-  { id: 'zh-k',  text: 'kā',  label: 'k' },
-  { id: 'zh-h',  text: 'hā',  label: 'h' },
+// Single characters — each is one atomic phoneme (no initial/final breakdown)
+const ZH_CHARACTERS: ZhEntry[] = [
+  { id: 'zh-huo3',  text: '火',   label: 'huǒ fire' },
+  { id: 'zh-shan1', text: '山',   label: 'shān mountain' },
+  { id: 'zh-shui3', text: '水',   label: 'shuǐ water' },
+  { id: 'zh-da4',   text: '大',   label: 'dà big' },
+  { id: 'zh-xiao3', text: '小',   label: 'xiǎo small' },
+  { id: 'zh-ren2',  text: '人',   label: 'rén person' },
+  { id: 'zh-ri4',   text: '日',   label: 'rì sun' },
+  { id: 'zh-yue4',  text: '月',   label: 'yuè moon' },
+  { id: 'zh-mu4',   text: '木',   label: 'mù tree' },
+  { id: 'zh-guo3',  text: '果',   label: 'guǒ fruit' },
 ]
 
-// Finals × tones used by curriculum (zh-a-1, zh-o-1, zh-ma-1, zh-ni-3, zh-hao-3 etc.)
-const ZH_FINALS: ZhEntry[] = [
-  // Pure finals all 4 tones
-  { id: 'zh-a-1',   text: 'ā',   label: 'a tone1' },
-  { id: 'zh-a-2',   text: 'á',   label: 'a tone2' },
-  { id: 'zh-a-3',   text: 'ǎ',   label: 'a tone3' },
-  { id: 'zh-a-4',   text: 'à',   label: 'a tone4' },
-  { id: 'zh-o-1',   text: 'ō',   label: 'o tone1' },
-  { id: 'zh-o-2',   text: 'ó',   label: 'o tone2' },
-  { id: 'zh-o-3',   text: 'ǒ',   label: 'o tone3' },
-  { id: 'zh-o-4',   text: 'ò',   label: 'o tone4' },
-  // Compound finals used by curriculum
-  { id: 'zh-ma-1',  text: 'mā',  label: 'ma tone1' },
-  { id: 'zh-ni-3',  text: 'nǐ',  label: 'ni tone3' },
-  { id: 'zh-hao-3', text: 'hǎo', label: 'hao tone3' },
-]
-
-// All words from curriculum/zh.ts — IDs match exactly
-const ZH_WORDS: ZhEntry[] = [
-  // Phase 1
-  { id: 'zh-ma1',  text: '妈',  label: 'mā mother' },
-  { id: 'zh-bo1',  text: '波',  label: 'bō wave' },
-  { id: 'zh-mo1',  text: '摸',  label: 'mō touch' },
-  { id: 'zh-fo1',  text: '佛',  label: 'fó Buddha' },
-  { id: 'zh-ba1',  text: '巴',  label: 'bā eight' },
-  { id: 'zh-pa1',  text: '趴',  label: 'pā lie face down' },
-  // Phase 2
-  { id: 'zh-ni3',  text: '你',  label: 'nǐ you' },
-  { id: 'zh-da4',  text: '大',  label: 'dà big' },
-  { id: 'zh-na2',  text: '拿',  label: 'ná to hold' },
-  { id: 'zh-la1',  text: '啦',  label: 'lā particle' },
-  { id: 'zh-ta1',  text: '他',  label: 'tā he/she' },
-  { id: 'zh-lo',   text: '咯',  label: 'lǒ particle' },
-  // Phase 3
-  { id: 'zh-hao3', text: '好',  label: 'hǎo good' },
-  { id: 'zh-ba4',  text: '爸',  label: 'bà father' },
-  { id: 'zh-ma4',  text: '骂',  label: 'mà scold' },
-  { id: 'zh-ga1',  text: '噶',  label: 'gā' },
-  { id: 'zh-ka3',  text: '卡',  label: 'kǎ card' },
-  { id: 'zh-ha1',  text: '哈',  label: 'hā ha!' },
+// Compound words — combinations of known characters
+const ZH_COMPOUNDS: ZhEntry[] = [
+  { id: 'zh-huoshan',  text: '火山', label: 'huǒshān volcano' },
+  { id: 'zh-shanshui', text: '山水', label: 'shānshuǐ landscape' },
+  { id: 'zh-shuiguo',  text: '水果', label: 'shuǐguǒ fruit' },
+  { id: 'zh-daren',    text: '大人', label: 'dàrén adult' },
+  { id: 'zh-dashan',   text: '大山', label: 'dàshān big mountain' },
+  { id: 'zh-riyue',    text: '日月', label: 'rìyuè sun and moon' },
 ]
 
 // ---------------------------------------------------------------------------
@@ -348,8 +315,8 @@ async function generateEnglish() {
 }
 
 async function generateMandarin() {
-  console.log('\n── Mandarin initials ──')
-  for (const p of ZH_INITIALS) {
+  console.log('\n── Mandarin characters (single) ──')
+  for (const p of ZH_CHARACTERS) {
     await generateFile({
       outputPath: path.join(OUTPUT_ZH, `${p.id}.m4a`),
       text: p.text,
@@ -358,18 +325,8 @@ async function generateMandarin() {
     })
   }
 
-  console.log('\n── Mandarin finals ──')
-  for (const p of ZH_FINALS) {
-    await generateFile({
-      outputPath: path.join(OUTPUT_ZH, `${p.id}.m4a`),
-      text: p.text,
-      languageCode: 'cmn-CN',
-      voiceName: 'cmn-CN-Chirp3-HD-Aoede',
-    })
-  }
-
-  console.log('\n── Mandarin words ──')
-  for (const w of ZH_WORDS) {
+  console.log('\n── Mandarin compound words ──')
+  for (const w of ZH_COMPOUNDS) {
     await generateFile({
       outputPath: path.join(OUTPUT_ZH, `${w.id}.m4a`),
       text: w.text,

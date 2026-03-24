@@ -1,0 +1,352 @@
+<script lang="ts">
+  import { onDestroy } from 'svelte'
+  import { game, nextPhoneme, celebrate, resetWord } from '$lib/stores/game.svelte'
+  import { playPhoneme, speakFallback, playCelebration, ensureAudioContext, playTapClick } from '$lib/audio/phonemePlayer'
+  import { recordPhonemeTap, recordWordComplete } from '$lib/stores/progress.svelte'
+  import { zhPhonemeMap } from '$lib/data/zh/phonemes'
+  import type { Phoneme } from '$lib/data/types'
+
+  // Particle system for celebration
+  let particles: Array<{
+    x: number; y: number; vx: number; vy: number;
+    colour: string; size: number; life: number; maxLife: number
+  }> = []
+  let canvas: HTMLCanvasElement | null = $state(null)
+  let animFrame = 0
+  let stageEl: HTMLElement | null = $state(null)
+
+  const PARTICLE_COLOURS = ['#FFD700', '#FF6B35', '#4CAF50', '#2196F3', '#E91E63', '#9C27B0']
+
+  // Derived: phonemes for the active word (each is a whole character)
+  let phonemes = $derived.by(() => {
+    if (!game.activeWord) return []
+    return game.activeWord.phonemeIds.map(id => zhPhonemeMap.get(id)).filter(Boolean) as Phoneme[]
+  })
+
+  let litUpTo = $derived(game.wordComplete ? phonemes.length : game.phonemeIndex)
+  let showCompound = $state(false)
+
+  // Reset compound display when word changes
+  $effect(() => {
+    if (game.activeWord) {
+      showCompound = false
+    }
+  })
+
+  // Handle word complete — play compound pronunciation, show compound image
+  $effect(() => {
+    if (game.wordComplete) {
+      handleWordComplete()
+    }
+  })
+
+  $effect(() => {
+    if (game.celebrating) {
+      spawnParticles()
+      runParticles()
+    }
+  })
+
+  async function handleWordComplete() {
+    showCompound = true
+    await delay(300)
+    if (game.activeWord) {
+      recordWordComplete(game.activeWord.id)
+      // Play the compound word audio
+      const played = await playPhoneme(game.activeWord.id, 'zh')
+      if (!played) speakFallback(game.activeWord.text, 'zh')
+    }
+    await delay(800)
+    celebrate()
+    playCelebration()
+  }
+
+  async function handleBlockTap(index: number) {
+    if (game.wordComplete) return
+    ensureAudioContext()
+    playTapClick()
+
+    const p = phonemes[index]
+    const played = await playPhoneme(p.id, 'zh')
+    if (!played) console.warn('[audio] playPhoneme failed for', p.id)
+
+    if (index !== game.phonemeIndex) return // out of order
+    recordPhonemeTap(p.id)
+    nextPhoneme()
+  }
+
+  function spawnParticles() {
+    if (!stageEl) return
+    const rect = stageEl.getBoundingClientRect()
+    const cx = rect.width / 2
+    const count = 80
+    particles = Array.from({ length: count }, () => ({
+      x: cx + (Math.random() - 0.5) * 60,
+      y: rect.height * 0.3,
+      vx: (Math.random() - 0.5) * 8,
+      vy: -(Math.random() * 10 + 4),
+      colour: PARTICLE_COLOURS[Math.floor(Math.random() * PARTICLE_COLOURS.length)],
+      size: Math.random() * 10 + 6,
+      life: 0,
+      maxLife: 60 + Math.random() * 40,
+    }))
+  }
+
+  function runParticles() {
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    function tick() {
+      if (!canvas || !ctx) return
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      let alive = false
+      for (const p of particles) {
+        p.life++
+        p.x += p.vx
+        p.y += p.vy
+        p.vy += 0.35
+        p.vx *= 0.98
+        const alpha = Math.max(0, 1 - p.life / p.maxLife)
+        if (alpha > 0) {
+          alive = true
+          ctx.globalAlpha = alpha
+          ctx.fillStyle = p.colour
+          ctx.beginPath()
+          ctx.arc(p.x, p.y, p.size * alpha, 0, Math.PI * 2)
+          ctx.fill()
+        }
+      }
+      ctx.globalAlpha = 1
+      if (alive) {
+        animFrame = requestAnimationFrame(tick)
+      } else {
+        particles = []
+        setTimeout(() => resetWord(), 600)
+      }
+    }
+    animFrame = requestAnimationFrame(tick)
+  }
+
+  function delay(ms: number) {
+    return new Promise<void>(r => setTimeout(r, ms))
+  }
+
+  onDestroy(() => {
+    if (animFrame) cancelAnimationFrame(animFrame)
+  })
+</script>
+
+<div class="compound-stage" bind:this={stageEl}>
+  <canvas
+    bind:this={canvas}
+    class="particles"
+    width={stageEl?.clientWidth ?? 400}
+    height={stageEl?.clientHeight ?? 300}
+  ></canvas>
+
+  {#if game.activeWord}
+    <!-- Compound result — emoji above, component emojis to sides -->
+    {#if showCompound}
+      <div class="compound-reveal">
+        <div class="component-emojis">
+          {#each phonemes as p}
+            <span class="component-emoji">{p.emoji ?? ''}</span>
+          {/each}
+        </div>
+        <div class="compound-emoji">{game.activeWord.emoji ?? ''}</div>
+        <div class="compound-meaning">{game.activeWord.meaning ?? ''}</div>
+      </div>
+    {/if}
+
+    <!-- The combined word text -->
+    <div class="word-label" class:complete={game.wordComplete}>
+      {game.activeWord.text}
+    </div>
+
+    <!-- Character blocks — tap in sequence to combine -->
+    <div class="blocks" class:joined={game.wordComplete}>
+      {#each phonemes as phoneme, i}
+        <button
+          class="char-block"
+          class:active={i === game.phonemeIndex && !game.wordComplete}
+          class:complete={i < litUpTo}
+          style="--colour: {phoneme.colour}"
+          onclick={() => handleBlockTap(i)}
+        >
+          <span class="char">{phoneme.symbol}</span>
+          {#if !game.wordComplete}
+            <span class="char-meaning">{phoneme.meaning ?? ''}</span>
+          {/if}
+        </button>
+        {#if i < phonemes.length - 1 && !game.wordComplete}
+          <div class="plus">+</div>
+        {/if}
+      {/each}
+    </div>
+
+    {#if !game.wordComplete}
+      <p class="instruction">Tap each character in order!</p>
+    {/if}
+  {:else}
+    <p class="prompt">Loading…</p>
+  {/if}
+</div>
+
+<style>
+  .compound-stage {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    overflow: hidden;
+  }
+
+  .particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .compound-reveal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 2;
+  }
+
+  .component-emojis {
+    display: flex;
+    gap: 40px;
+  }
+
+  .component-emoji {
+    font-size: 2rem;
+    opacity: 0.7;
+  }
+
+  .compound-emoji {
+    font-size: 4rem;
+  }
+
+  .compound-meaning {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.8);
+    text-transform: capitalize;
+  }
+
+  .word-label {
+    font-size: clamp(2rem, 8vw, 4rem);
+    font-weight: 900;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.08em;
+    transition: color 0.4s ease, transform 0.4s ease;
+    z-index: 2;
+  }
+
+  .word-label.complete {
+    color: #fff;
+    transform: scale(1.15);
+    text-shadow: 0 0 30px rgba(255,215,0,0.8);
+  }
+
+  .blocks {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 2;
+    transition: gap 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .blocks.joined {
+    gap: 0;
+  }
+
+  .plus {
+    font-size: 2rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .char-block {
+    width: clamp(80px, 20vw, 130px);
+    height: clamp(90px, 22vw, 150px);
+    border-radius: 20px;
+    border: 5px solid var(--colour);
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    box-shadow: 0 6px 0 rgba(0,0,0,0.25), 0 2px 12px rgba(0,0,0,0.2);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  .char-block:active {
+    transform: scale(0.92) translateY(3px);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.25);
+  }
+
+  .char-block.active {
+    box-shadow: 0 6px 0 rgba(0,0,0,0.25), 0 0 0 3px var(--colour), 0 0 16px var(--colour);
+    animation: glow-pulse 1.2s ease-in-out infinite;
+  }
+
+  .char-block.complete {
+    animation: pulse 0.4s ease;
+  }
+
+  .char {
+    font-size: clamp(2.2rem, 8vw, 3.5rem);
+    font-weight: 900;
+    color: #1a1a1a;
+    pointer-events: none;
+  }
+
+  .char-meaning {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(0,0,0,0.4);
+    pointer-events: none;
+  }
+
+  .instruction {
+    color: rgba(255,255,255,0.5);
+    font-size: 1rem;
+    font-weight: 600;
+    z-index: 2;
+  }
+
+  .prompt {
+    color: rgba(255,255,255,0.6);
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 6px 0 rgba(0,0,0,0.25), 0 0 0 3px var(--colour), 0 0 16px var(--colour); }
+    50%       { box-shadow: 0 6px 0 rgba(0,0,0,0.25), 0 0 0 3px var(--colour), 0 0 28px var(--colour); }
+  }
+
+  @keyframes pulse {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.12); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes pop-in {
+    from { opacity: 0; transform: scale(0.5); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+</style>

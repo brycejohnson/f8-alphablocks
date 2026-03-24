@@ -1,5 +1,5 @@
 export const settings = $state({
-  language: 'en' as 'en' | 'zh',
+  language: 'zh' as 'en' | 'zh',
   volume: 1.0,
   reducedMotion: false
 })

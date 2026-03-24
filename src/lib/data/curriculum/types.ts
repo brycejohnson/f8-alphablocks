@@ -1,12 +1,18 @@
 export interface CurriculumWord {
-  id: string           // 'en-cat' — matches audio file stem
-  text: string         // 'cat'
-  phonemeIds: string[] // ['en-c', 'en-a', 'en-t']
+  id: string           // 'en-cat' or 'zh-huoshan' — matches audio file stem
+  text: string         // 'cat' or '火山'
+  phonemeIds: string[] // ['en-c', 'en-a', 'en-t'] or ['zh-huo3', 'zh-shan1']
+  meaning?: string     // human-readable meaning: 'volcano'
+  emoji?: string       // visual placeholder: '🌋'
 }
+
+/** Game mode for Chinese phases */
+export type ZhGameMode = 'reveal' | 'listen-match' | 'recall' | 'picture-match' | 'compound'
 
 export interface CurriculumPhase {
   phase: number
   name: string
   newPhonemeIds: string[]  // phonemes introduced this phase
   words: CurriculumWord[]
+  gameMode?: ZhGameMode   // Chinese-specific game mode (undefined = default sequential tap)
 }

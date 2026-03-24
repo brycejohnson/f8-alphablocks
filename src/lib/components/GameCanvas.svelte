@@ -5,6 +5,12 @@
   import { preloadPhonemes } from '$lib/audio/phonemePlayer'
   import { base } from '$app/paths'
   import WordStage from './WordStage.svelte'
+  import PhaseSelect from './PhaseSelect.svelte'
+  import RevealGame from './games/RevealGame.svelte'
+  import ListenMatchGame from './games/ListenMatchGame.svelte'
+  import RecallGame from './games/RecallGame.svelte'
+  import PictureMatchGame from './games/PictureMatchGame.svelte'
+  import CompoundGame from './games/CompoundGame.svelte'
   import { enCurriculum } from '$lib/data/curriculum/en'
   import { zhCurriculum } from '$lib/data/curriculum/zh'
   import { selectWords, isPhaseComplete, nextPhase } from '$lib/engine/wordSelector'
@@ -13,8 +19,8 @@
 
   let wordQueue: CurriculumWord[] = $state([])
   let queueIndex = $state(0)
-  let loading = $state(true)
-  let advanceTimer = 0 // plain var — deduplicate advance setTimeout
+  let loading = $state(false)
+  let advanceTimer = 0
 
   // Tell the SW to prefetch upcoming audio before it's needed
   function speculativePrefetch(lang: 'en' | 'zh', words: CurriculumWord[]) {
@@ -27,20 +33,27 @@
     navigator.serviceWorker.controller.postMessage({ type: 'PREFETCH', urls })
   }
 
-  // Re-init ONLY when language switches.
-  // untrack() prevents initLevel's reads (progress.completedWords, wordQueue, etc.)
-  // from becoming reactive deps of this effect — otherwise every word completion
-  // re-triggers initLevel and causes effect_update_depth_exceeded.
+  // For English mode: re-init when language switches
   $effect(() => {
     const lang = settings.language
-    untrack(() => initLevel(lang))
+    if (lang === 'en') {
+      untrack(() => initEnglishLevel(lang))
+    }
   })
 
-  async function initLevel(lang: 'en' | 'zh') {
+  // When a Chinese phase is selected, init that phase's words
+  $effect(() => {
+    if (game.screen === 'playing' && settings.language === 'zh' && game.zhGameMode) {
+      untrack(() => initChinesePhase())
+    }
+  })
+
+  async function initEnglishLevel(lang: 'en' | 'zh') {
     loading = true
     resetWord()
+    game.screen = 'playing'
 
-    const curriculum = lang === 'en' ? enCurriculum : zhCurriculum
+    const curriculum = enCurriculum
     const currentPhase = progress.unlockedPhase[lang] ?? 1
     wordQueue = selectWords(curriculum, currentPhase, progress.completedWords, 5)
     queueIndex = 0
@@ -49,7 +62,6 @@
     game.language = lang
     startWord(wordQueue[0])
 
-    // Load all audio in background — never blocks the UI
     const allIds = new Set<string>()
     for (const word of wordQueue) {
       for (const id of word.phonemeIds) allIds.add(id)
@@ -59,34 +71,70 @@
     speculativePrefetch(lang, wordQueue)
   }
 
+  async function initChinesePhase() {
+    loading = true
+    resetWord()
+
+    const phase = zhCurriculum.find(p => p.phase === game.activePhase)
+    if (!phase) { loading = false; return }
+
+    wordQueue = [...phase.words].sort(() => Math.random() - 0.5)
+    queueIndex = 0
+
+    loading = false
+    game.language = 'zh'
+    startWord(wordQueue[0])
+
+    // Preload all audio for this phase
+    const allIds = new Set<string>()
+    for (const word of wordQueue) {
+      for (const id of word.phonemeIds) allIds.add(id)
+      allIds.add(word.id)
+    }
+    preloadPhonemes('zh', [...allIds])
+    speculativePrefetch('zh', wordQueue)
+  }
+
   function advanceWord() {
     const lang = settings.language
-    const curriculum = lang === 'en' ? enCurriculum : zhCurriculum
-    const currentPhase = progress.unlockedPhase[lang] ?? 1
 
-    // Check if phase is complete — if so, advance
-    if (isPhaseComplete(curriculum, currentPhase, progress.phonemeTaps)) {
-      const next = nextPhase(curriculum, currentPhase)
-      if (next !== null) {
-        advancePhase(lang)
-        initLevel(lang)
-        return
+    if (lang === 'en') {
+      const curriculum = enCurriculum
+      const currentPhase = progress.unlockedPhase[lang] ?? 1
+      if (isPhaseComplete(curriculum, currentPhase, progress.phonemeTaps)) {
+        const next = nextPhase(curriculum, currentPhase)
+        if (next !== null) {
+          advancePhase(lang)
+          initEnglishLevel(lang)
+          return
+        }
       }
     }
 
     queueIndex++
-    // Refill queue when exhausted
     if (queueIndex >= wordQueue.length) {
-      wordQueue = selectWords(curriculum, currentPhase, progress.completedWords, 5)
-      queueIndex = 0
-      speculativePrefetch(lang, wordQueue)
+      // For Chinese: reshuffle and continue
+      if (lang === 'zh') {
+        const phase = zhCurriculum.find(p => p.phase === game.activePhase)
+        if (phase) {
+          wordQueue = [...phase.words].sort(() => Math.random() - 0.5)
+          queueIndex = 0
+          speculativePrefetch('zh', wordQueue)
+        }
+      } else {
+        const curriculum = enCurriculum
+        const currentPhase = progress.unlockedPhase[lang] ?? 1
+        wordQueue = selectWords(curriculum, currentPhase, progress.completedWords, 5)
+        queueIndex = 0
+        speculativePrefetch(lang, wordQueue)
+      }
     }
     startWord(wordQueue[queueIndex])
   }
 
   // Listen for resetWord signal (after celebration) to advance
   $effect(() => {
-    if (!game.activeWord && !loading && wordQueue.length > 0) {
+    if (!game.activeWord && !loading && wordQueue.length > 0 && game.screen === 'playing') {
       clearTimeout(advanceTimer)
       advanceTimer = setTimeout(advanceWord, 400)
     }
@@ -99,6 +147,18 @@
       <div class="spinner"></div>
       <p>Loading sounds…</p>
     </div>
+  {:else if settings.language === 'zh' && game.screen === 'phase-select'}
+    <PhaseSelect />
+  {:else if settings.language === 'zh' && game.zhGameMode === 'reveal'}
+    <RevealGame />
+  {:else if settings.language === 'zh' && game.zhGameMode === 'listen-match'}
+    <ListenMatchGame />
+  {:else if settings.language === 'zh' && game.zhGameMode === 'recall'}
+    <RecallGame />
+  {:else if settings.language === 'zh' && game.zhGameMode === 'picture-match'}
+    <PictureMatchGame />
+  {:else if settings.language === 'zh' && game.zhGameMode === 'compound'}
+    <CompoundGame />
   {:else}
     <WordStage />
   {/if}

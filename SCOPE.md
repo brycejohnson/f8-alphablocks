@@ -96,28 +96,90 @@
 
 ---
 
-### Mandarin Phonics
+### Mandarin Phonics — Character-Based Approach
+
+> **Key design decision:** Chinese characters are the atomic unit of sound and meaning. Unlike English (where phonemes blend into words), each Chinese character = one syllable = one indivisible sound. Breaking characters into pinyin initials/finals (m + ā) copies the English phonics model incorrectly — children learn whole syllables, not romanisation fragments. Pinyin is a display option (future scope: configurable toggle), not a game mechanic.
+
+**Structure:**
+- **Level 1 — Single Characters:** Each character is one tappable block. Tap → hear full syllable → see illustration of meaning
+- **Level 2 — Compound Words:** Characters learned in Level 1 become building blocks that combine (e.g. 火 + 山 → 火山 volcano)
+
+**Starter character set (10 characters):**
+
+| Character | Pinyin | Meaning | Tone | Compound potential |
+|---|---|---|---|---|
+| 火 | huǒ | fire | 3 | 火山, 火车 |
+| 山 | shān | mountain | 1 | 火山, 山水, 大山 |
+| 水 | shuǐ | water | 3 | 山水, 水果 |
+| 大 | dà | big | 4 | 大人, 大山 |
+| 小 | xiǎo | small | 3 | 小人, 小山 |
+| 人 | rén | person | 2 | 大人, 小人 |
+| 日 | rì | sun/day | 4 | 日出, 日月 |
+| 月 | yuè | moon/month | 4 | 月光, 日月 |
+| 木 | mù | wood/tree | 4 | 木头, 果木 |
+| 果 | guǒ | fruit | 3 | 水果, 果木 |
+
+Characters chosen for: visual simplicity (few strokes), concrete meaning (easy to picture), and compound word productivity.
+
+**Compound words from starter set:**
+
+| Word | Characters | Meaning | Components |
+|---|---|---|---|
+| 火山 | 火 + 山 | volcano | fire + mountain |
+| 山水 | 山 + 水 | landscape | mountain + water |
+| 水果 | 水 + 果 | fruit | water + fruit |
+| 大人 | 大 + 人 | adult | big + person |
+| 大山 | 大 + 山 | big mountain | big + mountain |
+| 日月 | 日 + 月 | sun & moon | sun + moon |
+
+**Audio:** One M4A per character (whole syllable), plus one M4A per compound word. ~16 files total for the starter set.
+
+**Pinyin display:** Future scope — configurable toggle to show pinyin annotation beneath characters. Not shown by default.
 
 | Purpose | Package | Notes |
 |---|---|---|
-| Characters → pinyin | `pinyin-pro` | Best-in-class, polyphonic chars, actively maintained |
-| Tone formatting | `pinyin-tone` | Converts `hao3` → `hǎo` |
-| Tone ↔ number | `pinyin-utils` | Tone number extraction, diacritic stripping |
-| Pinyin → IPA | `pinyin2ipa` (GitHub) | Links pinyin to actual phonetic sounds |
-| Vocabulary data | `cc-cedict` | Full CEDICT dictionary, simplified/traditional + pinyin |
-| Child-level words | HSK 2.0 vocab (GitHub: `complete-hsk-vocabulary`) | 11k words with pinyin — filter to HSK 1–2 for children |
+| Characters → pinyin | `pinyin-pro` | For future pinyin toggle feature |
+| Vocabulary data | `cc-cedict` | Full CEDICT dictionary, for expanding character/word sets |
+| Child-level words | HSK 2.0 vocab (GitHub: `complete-hsk-vocabulary`) | Filter to HSK 1–2 for children |
 
-**Install:**
-```bash
-npm install pinyin-pro pinyin-tone pinyin-utils cc-cedict
-```
+**Unicode:** CJK Unified Ideographs U+4E00–U+9FFF — full browser support.
 
-**Mandarin phoneme structure for MVP:**
-- Initials (声母): b, p, m, f, d, t, n, l, g, k, h, j, q, x, zh, ch, sh, r, z, c, s (21 total)
-- Finals (韵母): a, o, e, i, u, ü + compound finals (ai, ei, ao, ou, an, en, ang, eng, ong...)
-- Tones: 4 tones + neutral — colour coded: tone1=blue, tone2=green, tone3=orange, tone4=red
+---
 
-**Unicode:** CJK Unified Ideographs U+4E00–U+9FFF + pinyin diacritics via Latin Extended — full browser support.
+### Mandarin Character Visuals — Image Strategy
+
+Each Chinese character needs a visual illustration to teach meaning. This is especially important because many Chinese characters originated as pictographs — 山 literally looks like mountain peaks, 火 looks like flames.
+
+**Approach comparison:**
+
+| Approach | Cost | Quality | Licensing | Integration | Children's suitability |
+|---|---|---|---|---|---|
+| **Unicode emoji** (🔥⛰️💧) | Free | Inconsistent cross-platform | None | Trivial (text) | Familiar but not educational |
+| **Noto Emoji / Twemoji SVGs** | Free | Consistent, clean | Apache 2.0 / CC-BY 4.0 | Load as textures | Good — consistent art style |
+| **AI-generated illustrations** (DALL-E 3) | ~$3 for full set | Excellent with good prompting | Full ownership | Static PNG/WebP assets | Excellent — custom child-friendly style |
+| **Lottie animations** | $20-50 | High — animated vectors | Per-asset license | Complex with PixiJS | Engaging but integration overhead |
+| **Commissioned hand-drawn SVGs** | $50-200 | Highest | Full ownership | Native SVG/textures | Best — designed for this context |
+| **Pictograph overlay concept** | Custom work | Pedagogically the best | Own the illustrations | SVG animation | Gold standard for Chinese teaching |
+
+**Pictograph overlay concept (recommended "wow" feature):**
+Many starter characters are pictographic — the character shape evolved from a drawing of the concept:
+- 山 = three peaks (mountain)
+- 火 = flames rising
+- 水 = flowing water
+- 木 = tree trunk with branches
+- 日 = circle (sun)
+- 月 = crescent (moon)
+- 人 = walking figure
+
+A powerful teaching approach: animate the pictograph morphing into the modern character. The child sees a drawing of mountains, which transforms into 山. This is how Chinese characters are taught to children in China (see: Chineasy concept — their specific artwork is copyrighted, but the pedagogical approach is freely usable).
+
+**Supplementary tool — Hanzi Writer** (hanziwriter.org, MIT license):
+Open-source library that renders animated stroke-order for any Chinese character in the browser. Could complement the image approach — after the pictograph reveal, show how to write the character stroke by stroke.
+
+**Recommended roadmap:**
+1. **MVP:** Noto Emoji SVGs as placeholders (free, consistent, instant)
+2. **v1:** AI-generate (DALL-E 3) a consistent set of ~20 child-friendly illustrations — unified style, white backgrounds, ~$3 total
+3. **Future:** Pictograph-to-character morph animations + Hanzi Writer stroke-order integration
 
 ---
 
@@ -591,56 +653,35 @@ Every phoneme needs: display label on block, IPA symbol, audio file, colour iden
 
 ---
 
-### Mandarin — Pinyin Initials & Finals
+### Mandarin — Character-Based Phoneme Data
 
-Every initial and final is its own block with its audio (per tone where applicable).
+> Characters are the atomic unit — not pinyin initials/finals. Each character is one block, one tap, one sound.
 
-**Initials (声母) — 21 total:**
-| Block | Pinyin | IPA approx | Audio files |
+**Single Characters (Level 1 blocks):**
+| Character | Pinyin | Meaning | Audio file | Colour |
+|---|---|---|---|---|
+| 火 | huǒ | fire | `zh-huo3.m4a` | red-orange |
+| 山 | shān | mountain | `zh-shan1.m4a` | green |
+| 水 | shuǐ | water | `zh-shui3.m4a` | blue |
+| 大 | dà | big | `zh-da4.m4a` | dark red |
+| 小 | xiǎo | small | `zh-xiao3.m4a` | light blue |
+| 人 | rén | person | `zh-ren2.m4a` | brown |
+| 日 | rì | sun/day | `zh-ri4.m4a` | gold |
+| 月 | yuè | moon/month | `zh-yue4.m4a` | silver |
+| 木 | mù | wood/tree | `zh-mu4.m4a` | olive |
+| 果 | guǒ | fruit | `zh-guo3.m4a` | pink |
+
+**Compound Words (Level 2 — characters combine):**
+| Word | Characters | Meaning | Audio file |
 |---|---|---|---|
-| b | b | /p/ | `zh-b.wav` |
-| p | p | /pʰ/ | `zh-p.wav` |
-| m | m | /m/ | `zh-m.wav` |
-| f | f | /f/ | `zh-f.wav` |
-| d | d | /t/ | `zh-d.wav` |
-| t | t | /tʰ/ | `zh-t.wav` |
-| n | n | /n/ | `zh-n.wav` |
-| l | l | /l/ | `zh-l.wav` |
-| g | g | /k/ | `zh-g.wav` |
-| k | k | /kʰ/ | `zh-k.wav` |
-| h | h | /x/ | `zh-h.wav` |
-| j | j | /tɕ/ | `zh-j.wav` |
-| q | q | /tɕʰ/ | `zh-q.wav` |
-| x | x | /ɕ/ | `zh-x.wav` |
-| zh | zh | /tʂ/ | `zh-zh.wav` |
-| ch | ch | /tʂʰ/ | `zh-ch.wav` |
-| sh | sh | /ʂ/ | `zh-sh.wav` |
-| r | r | /ɻ/ | `zh-r.wav` |
-| z | z | /ts/ | `zh-z.wav` |
-| c | c | /tsʰ/ | `zh-c.wav` |
-| s | s | /s/ | `zh-s.wav` |
+| 火山 | 火 + 山 | volcano | `zh-huoshan.m4a` |
+| 山水 | 山 + 水 | landscape | `zh-shanshui.m4a` |
+| 水果 | 水 + 果 | fruit | `zh-shuiguo.m4a` |
+| 大人 | 大 + 人 | adult | `zh-daren.m4a` |
+| 大山 | 大 + 山 | big mountain | `zh-dashan.m4a` |
+| 日月 | 日 + 月 | sun & moon | `zh-riyue.m4a` |
 
-**Simple Finals (韵母) — key set:**
-| Final | Example char | Pinyin | Audio (tone 1–4) |
-|---|---|---|---|
-| a | 啊 | ā á ǎ à | `zh-a-1.wav` … `zh-a-4.wav` |
-| o | 哦 | ō ó ǒ ò | `zh-o-1.wav` … |
-| e | 饿 | ē é ě è | `zh-e-1.wav` … |
-| i | 一 | yī yí yǐ yì | `zh-i-1.wav` … |
-| u | 五 | wū wú wǔ wù | `zh-u-1.wav` … |
-| ü | 鱼 | yū yú yǔ yù | `zh-v-1.wav` … |
-| ai | 爱 | āi ái ǎi ài | `zh-ai-1.wav` … |
-| ei | 诶 | — éi — èi | `zh-ei-1.wav` … |
-| ao | 好 | āo áo ǎo ào | `zh-ao-1.wav` … |
-| ou | 哦 | ōu óu ǒu òu | `zh-ou-1.wav` … |
-| an | 安 | ān án ǎn àn | `zh-an-1.wav` … |
-| en | 恩 | ēn én ěn èn | `zh-en-1.wav` … |
-| ang | 昂 | āng áng ǎng àng | `zh-ang-1.wav` … |
-| eng | 灯 | ēng éng ěng èng | `zh-eng-1.wav` … |
-| ong | 红 | — óng ǒng òng | `zh-ong-1.wav` … |
-| ing | 星 | īng íng ǐng ìng | `zh-ing-1.wav` … |
-
-**Tone colour system (consistent throughout game):**
+**Tone colour system (used for future pinyin display toggle):**
 | Tone | Mark | Colour | Hex |
 |---|---|---|---|
 | 1st (flat) | ā | Blue | `#3498DB` |
@@ -747,7 +788,19 @@ Inspired directly by BBC Alphablocks — after the word is formed and the star b
 ### Phase 4 — Word Illustrations & Animations
 *(see "Future: Word Illustrations" section below)*
 
-### Phase 5 — Native iOS App (Swift)
+### Phase 4b — Character Writing Practice (Hanzi Writer)
+- [ ] Integrate Hanzi Writer library (hanziwriter.org, MIT license, ~10 KB gzipped)
+- [ ] Stroke-order animation — child watches how each character is drawn
+- [ ] Quiz mode — child traces strokes on screen, graded with configurable leniency
+- [ ] Triggered after a character is learned in Phases 3a-3d ("now write the character you just learned")
+- [ ] Supports 9,000+ characters, loads data on demand (no backend needed)
+- [ ] Works on canvas or SVG, mobile/touch native
+
+### Phase 5 — Pictograph Tooltips & Character Etymology
+- [ ] Tooltips showing pictograph origin of each character (山 = mountain peaks, 火 = flames, etc.)
+- [ ] Future: animate pictograph morphing into modern character
+
+### Phase 6 — Native iOS App (Swift)
 - Port game to SwiftUI + SpriteKit or SwiftUI + Metal
 - Replace Google Cloud TTS with **AVSpeechSynthesizer** (on-device, Siri-quality voice, free, offline)
 - App Store distribution — parents can install without browser
@@ -755,13 +808,39 @@ Inspired directly by BBC Alphablocks — after the word is formed and the star b
 - AVFoundation for audio (eliminates all iOS Web Audio API quirks entirely)
 - Native haptics on letter block tap (UIImpactFeedbackGenerator)
 
-### Phase 3 — Mandarin Integration
-- [ ] Pinyin initial/final blocks (b, p, m, f, d, t, n, l... + an, en, in, un...)
-- [ ] Tone indicator system (colour or diacritic)
-- [ ] Tone audio recordings (4 per syllable)
-- [ ] Simplified Chinese character display
+### Phase 3 — Mandarin Character Learning (5-phase progression)
+
+Chinese mode uses a character-based approach (not pinyin initials/finals). All 5 phases are shown in linear progression and selectable by child/parent. Gamification (unlocking, stars, rewards) is future scope.
+
+**Phase 3a — Reveal & Learn** (introduce characters)
+- [ ] Character appears silhouetted/hidden
+- [ ] Child taps → reveal animation + full syllable pronunciation + picture of meaning
+- [ ] Tap, hear, see, celebrate
+- [ ] Characters: 火 山 水 人 大
+
+**Phase 3b — Listen & Match** (sound recognition)
+- [ ] Audio plays a syllable, 2-3 characters shown
+- [ ] Child taps the matching character
+- [ ] Reinforces sound→character mapping
+- [ ] Same 5 characters from Phase 3a, tested in randomised sets
+
+**Phase 3c — Recall** (memory)
+- [ ] Character shown briefly, then hidden among 2-3 others
+- [ ] Child must find it again from memory
+- [ ] Introduces 5 new characters: 小 日 月 木 果
+- [ ] All 10 characters in rotation
+
+**Phase 3d — Picture Match** (meaning)
+- [ ] Show a picture (e.g. flame illustration), child picks the correct character
+- [ ] Confirms character→meaning link
+- [ ] All 10 characters in rotation
+
+**Phase 3e — Compound Word Building**
+- [ ] Two known characters appear as blocks (e.g. 火 and 山)
+- [ ] Child taps each in sequence → blocks slide together → compound word pronounced → new picture shown (volcano)
+- [ ] Same blending mechanic as English mode, but characters are the building blocks
+- [ ] Words: 火山, 山水, 水果, 大人, 大山, 日月
 - [ ] Language toggle (EN ↔ ZH) — state persisted
-- [ ] 3 themed levels (numbers, colours, animals)
 
 ---
 
@@ -842,10 +921,13 @@ src/
 - No Flash / plugin dependency
 - Fallback to `<audio>` element if AudioContext unavailable
 
-### Mandarin phoneme strategy
-- Teach pinyin (romanisation) as the phoneme system — accessible to non-native parents
-- Display Chinese characters as the "word reward" — motivating for heritage learners
-- Tone colours: tone 1 = blue, tone 2 = green, tone 3 = orange, tone 4 = red (common mnemonic)
+### Mandarin character strategy
+- Characters are the atomic unit — each character = one block = one tap = one sound
+- No pinyin initial/final breakdown in the game mechanic (pinyin display is a future configurable toggle)
+- Level 1 teaches individual characters with picture association
+- Level 2 combines known characters into compound words (火 + 山 → 火山) — mirrors English phoneme blending at the character level
+- Tone colours retained for future pinyin display: tone 1 = blue, tone 2 = green, tone 3 = orange, tone 4 = red
+- Chinese mode is higher priority than English — no equivalent to BBC Alphablocks exists for Chinese phonics content
 
 ---
 
