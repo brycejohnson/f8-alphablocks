@@ -251,6 +251,7 @@ const ZH_ANIMALS: ZhEntry[] = [
   { id: 'zh-xiang4',text: '象', label: 'xiàng elephant' },
   { id: 'zh-e2',    text: '鹅', label: 'é goose' },
   { id: 'zh-ya1',   text: '鸭', label: 'yā duck' },
+  { id: 'zh-kong3', text: '恐', label: 'kǒng' },
 ]
 
 // Compound animal words
@@ -264,6 +265,7 @@ const ZH_COMPOUND_ANIMALS: ZhEntry[] = [
   { id: 'zh-daxiang',  text: '大象', label: 'dàxiàng elephant' },
   { id: 'zh-xiongmao', text: '熊猫', label: 'xióngmāo panda' },
   { id: 'zh-xiaotu',   text: '小兔', label: 'xiǎotù bunny' },
+  { id: 'zh-konglong', text: '恐龙', label: 'kǒnglóng dinosaur' },
 ]
 
 // Colours
