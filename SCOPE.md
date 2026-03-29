@@ -788,6 +788,39 @@ Inspired directly by BBC Alphablocks — after the word is formed and the star b
 ### Phase 4 — Word Illustrations & Animations
 *(see "Future: Word Illustrations" section below)*
 
+### Art Pipeline & Character System
+
+**AI Art Generation:** Leonardo.ai (Premium, API integrated)
+- Script: `scripts/generate-art.mjs` — batch generate assets by prompt name
+- Prompts: mascot, rival-frogs, bugs, volcano-scene, pathway-cards
+- Style: Pixar-style 3D render, children's illustration
+
+**Interactive Animation:** Rive (free tier, ~50KB runtime)
+- Frog mascot animations (idle, eating, celebrating, farting)
+- Layered sprite system for character customisation
+- Runs natively in browser/WebView
+
+**Volcano Frog Character Creator:**
+- Kids build their own superhero volcano frog
+- Layers: body colour + cape style + mask/accessories + expression
+- Customisation items unlocked through learning progression:
+  - Phase completion → basic cape colours
+  - 10 compound words → flame cape
+  - Animals track done → animal-themed costumes (tiger stripes, dragon wings)
+  - 100 words mastered → legendary skins (gold frog, volcano armour)
+- Custom frog appears on splash screen and in frog feeding game
+- Freemium angle: basic customisation free, full wardrobe via in-app purchase
+
+**Frog Feeding Mini-Game (50 stars to play):**
+- Inspired by viral frog feeding YouTube videos (13M+ views)
+- Multiple frogs sit on screen, bugs crawl across
+- Kid taps/drags bugs to feed frogs
+- Frog tongue shoots out to catch bug
+- After ~3 bugs → frog farts/poops (comedy animation + sound effects)
+- Frogs compete — if one steals a bug, the other slaps with tongue
+- Sound effects critical: tongue snap, bug crunch, ribbit, fart, angry croak
+- Uses Rive for all frog animations
+
 ### Phase 4b — Character Writing Practice (Hanzi Writer)
 - [ ] Integrate Hanzi Writer library (hanziwriter.org, MIT license, ~10 KB gzipped)
 - [ ] Stroke-order animation — child watches how each character is drawn
