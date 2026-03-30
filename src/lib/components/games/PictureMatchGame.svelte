@@ -3,6 +3,7 @@
   import { playPhoneme, playCelebration, ensureAudioContext, playTapClick, playWobble } from '$lib/audio/phonemePlayer'
   import { recordPhonemeTap, recordWordComplete } from '$lib/stores/progress.svelte'
   import { zhPhonemeMap } from '$lib/data/zh/phonemes'
+  import { base } from '$app/paths'
   import { getActiveZhCurriculum } from '$lib/data/curriculum/zh-tracks'
   import CelebrationOverlay from '../CelebrationOverlay.svelte'
 
@@ -11,6 +12,7 @@
   let wobbleId = $state('')
   let answered = $state(false)
   let targetEmoji = $state('')
+  let targetPhoneme = $derived(game.activeWord ? zhPhonemeMap.get(game.activeWord.phonemeIds[0]) : undefined)
 
   // Build options when word changes
   $effect(() => {
@@ -77,7 +79,11 @@
 <div class="picture-stage" style="position:relative">
   <!-- Show the picture/emoji -->
   <div class="picture-card">
-    <span class="emoji">{targetEmoji}</span>
+    {#if targetPhoneme?.image}
+      <img src="{base}{targetPhoneme.image}" alt="{targetPhoneme.meaning}" class="picture-image" />
+    {:else}
+      <span class="emoji">{targetEmoji}</span>
+    {/if}
   </div>
 
   <p class="instruction">Which character matches?</p>
@@ -124,6 +130,13 @@
 
   .emoji {
     font-size: clamp(3.5rem, 12vw, 6rem);
+  }
+
+  .picture-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 20px;
   }
 
   .instruction {

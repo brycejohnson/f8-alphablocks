@@ -3,6 +3,7 @@
   import { playPhoneme, speakFallback, playCelebration, ensureAudioContext, playTapClick } from '$lib/audio/phonemePlayer'
   import { recordPhonemeTap, recordWordComplete } from '$lib/stores/progress.svelte'
   import { zhPhonemeMap } from '$lib/data/zh/phonemes'
+  import { base } from '$app/paths'
   import CelebrationOverlay from '../CelebrationOverlay.svelte'
 
   let revealed = $state(false)
@@ -60,9 +61,13 @@
     {@const word = game.activeWord}
     {@const phoneme = zhPhonemeMap.get(word.phonemeIds[0])}
 
-    <!-- Emoji appears above after reveal -->
+    <!-- Image/emoji appears above after reveal -->
     <div class="emoji-area" class:visible={showEmoji}>
-      {word.emoji ?? phoneme?.emoji ?? ''}
+      {#if phoneme?.image}
+        <img src="{base}{phoneme.image}" alt="{phoneme.meaning}" class="char-image" />
+      {:else}
+        {word.emoji ?? phoneme?.emoji ?? ''}
+      {/if}
     </div>
 
     <!-- The character block — silhouette until tapped -->
@@ -113,6 +118,13 @@
   .emoji-area.visible {
     opacity: 1;
     transform: scale(1);
+  }
+
+  .char-image {
+    width: clamp(100px, 25vw, 160px);
+    height: clamp(100px, 25vw, 160px);
+    object-fit: contain;
+    border-radius: 16px;
   }
 
   .char-block {

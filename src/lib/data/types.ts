@@ -7,6 +7,7 @@ export interface Phoneme {
   isDigraph?: boolean // two letters, one sound (English only)
   meaning?: string    // human-readable meaning (Chinese characters): 'fire', 'mountain'
   emoji?: string      // Noto Emoji / visual placeholder: '🔥', '⛰️'
+  image?: string      // path to illustration: '/images/zh/animals/cat.jpg'
 }
 
 export interface Word {

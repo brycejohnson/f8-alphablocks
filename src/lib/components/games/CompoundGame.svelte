@@ -3,6 +3,7 @@
   import { playPhoneme, speakFallback, playCelebration, ensureAudioContext, playTapClick } from '$lib/audio/phonemePlayer'
   import { recordPhonemeTap, recordWordComplete } from '$lib/stores/progress.svelte'
   import { zhPhonemeMap } from '$lib/data/zh/phonemes'
+  import { base } from '$app/paths'
   import CelebrationOverlay from '../CelebrationOverlay.svelte'
   import type { Phoneme } from '$lib/data/types'
 
@@ -78,7 +79,11 @@
       <div class="compound-reveal">
         <div class="component-emojis">
           {#each phonemes as p}
-            <span class="component-emoji">{p.emoji ?? ''}</span>
+            {#if p.image}
+              <img src="{base}{p.image}" alt="{p.meaning}" class="component-image" />
+            {:else}
+              <span class="component-emoji">{p.emoji ?? ''}</span>
+            {/if}
           {/each}
         </div>
         <div class="compound-emoji">{game.activeWord.emoji ?? ''}</div>
@@ -96,7 +101,11 @@
       {#each phonemes as phoneme, i}
         <div class="block-with-emoji">
           <div class="block-emoji" class:visible={revealedEmojis.has(i) && !showCompound}>
-            {phoneme.emoji ?? ''}
+            {#if phoneme.image}
+              <img src="{base}{phoneme.image}" alt="{phoneme.meaning}" class="block-image" />
+            {:else}
+              {phoneme.emoji ?? ''}
+            {/if}
           </div>
           <button
             class="char-block"
@@ -136,29 +145,33 @@
     justify-content: center;
     gap: 20px;
     overflow: hidden;
+    padding-top: 0;
   }
 
   .block-with-emoji {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
   }
 
   .block-emoji {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) scale(0.3);
     font-size: 2.2rem;
     opacity: 0;
-    transform: scale(0.3) translateY(10px);
     transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-    min-height: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 8px;
   }
 
   .block-emoji.visible {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: translateX(-50%) scale(1);
   }
 
   .compound-reveal {
@@ -180,6 +193,21 @@
     opacity: 0.7;
   }
 
+  .component-image {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    border-radius: 16px;
+    opacity: 0.8;
+  }
+
+  .block-image {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
   .compound-emoji {
     font-size: 4rem;
   }
@@ -198,6 +226,8 @@
     letter-spacing: 0.08em;
     transition: color 0.4s ease, transform 0.4s ease;
     z-index: 2;
+    margin-top: 10px;
+    margin-bottom: 80px;
   }
 
   .word-label.complete {

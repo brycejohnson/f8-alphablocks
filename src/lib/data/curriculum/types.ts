@@ -4,6 +4,7 @@ export interface CurriculumWord {
   phonemeIds: string[] // ['en-c', 'en-a', 'en-t'] or ['zh-huo3', 'zh-shan1']
   meaning?: string     // human-readable meaning: 'volcano'
   emoji?: string       // visual placeholder: '🌋'
+  image?: string       // path to illustration: '/images/zh/animals/cat.jpg'
 }
 
 /** Game mode for Chinese phases */
