@@ -196,16 +196,20 @@
   .component-image {
     width: 120px;
     height: 120px;
-    object-fit: contain;
-    border-radius: 16px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.3);
+    box-shadow: 0 0 10px rgba(255,255,255,0.15);
     opacity: 0.8;
   }
 
   .block-image {
     width: 60px;
     height: 60px;
-    object-fit: contain;
-    border-radius: 8px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.3);
+    box-shadow: 0 0 8px rgba(255,255,255,0.15);
   }
 
   .compound-emoji {

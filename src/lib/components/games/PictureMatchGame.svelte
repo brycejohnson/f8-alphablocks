@@ -135,8 +135,10 @@
   .picture-image {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    border-radius: 20px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid rgba(255,255,255,0.3);
+    box-shadow: 0 0 12px rgba(255,255,255,0.15);
   }
 
   .instruction {
