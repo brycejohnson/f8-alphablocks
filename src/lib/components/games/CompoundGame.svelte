@@ -82,7 +82,7 @@
         {:else if game.activeWord.digits}
           <div class="component-emojis">
             {#each game.activeWord.digits as d}
-              <img src="{base}/images/zh/numbers/{d}.jpg" alt="{String(d)}" class="component-image" />
+              <img src="{base}/images/zh-transparent/numbers/{d}.png" alt="{String(d)}" class="component-image" />
             {/each}
           </div>
         {:else if game.activeWord.emoji}
@@ -197,29 +197,20 @@
   .component-image {
     width: 120px;
     height: 120px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 3px solid rgba(255,255,255,0.3);
-    box-shadow: 0 0 10px rgba(255,255,255,0.15);
+    object-fit: contain;
     opacity: 0.8;
   }
 
   .block-image {
     width: 60px;
     height: 60px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.3);
-    box-shadow: 0 0 8px rgba(255,255,255,0.15);
+    object-fit: contain;
   }
 
   .compound-image {
     width: 140px;
     height: 140px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid rgba(255,255,255,0.3);
-    box-shadow: 0 0 14px rgba(255,255,255,0.2);
+    object-fit: contain;
   }
 
   .compound-emoji {

@@ -77,9 +77,9 @@ export const zhAnimalsCurriculum: CurriculumPhase[] = [
       { id: 'zh-shuiniu',  text: '水牛', phonemeIds: ['zh-shui3', 'zh-niu2'],   meaning: 'water buffalo',  emoji: '🐃' },
       { id: 'zh-huolong',  text: '火龙', phonemeIds: ['zh-huo3', 'zh-long2'],   meaning: 'fire dragon',    emoji: '🐲' },
       { id: 'zh-daxiang',  text: '大象', phonemeIds: ['zh-da4', 'zh-xiang4'],   meaning: 'elephant',       emoji: '🐘' },
-      { id: 'zh-xiongmao', text: '熊猫', phonemeIds: ['zh-xiong2', 'zh-mao1'],  meaning: 'panda',          emoji: '🐼', image: '/images/zh/animals/panda.jpg' },
+      { id: 'zh-xiongmao', text: '熊猫', phonemeIds: ['zh-xiong2', 'zh-mao1'],  meaning: 'panda',          emoji: '🐼', image: '/images/zh-transparent/animals/panda.png' },
       { id: 'zh-xiaotu',    text: '小兔', phonemeIds: ['zh-xiao3', 'zh-tu4'],   meaning: 'bunny',          emoji: '🐇' },
-      { id: 'zh-konglong',  text: '恐龙', phonemeIds: ['zh-kong3', 'zh-long2'], meaning: 'dinosaur',       emoji: '🦕', image: '/images/zh/animals/dinosaur.jpg' },
+      { id: 'zh-konglong',  text: '恐龙', phonemeIds: ['zh-kong3', 'zh-long2'], meaning: 'dinosaur',       emoji: '🦕', image: '/images/zh-transparent/animals/dinosaur.png' },
     ],
   },
   {
