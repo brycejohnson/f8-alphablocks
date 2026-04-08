@@ -15,9 +15,11 @@
   let canvas: HTMLCanvasElement | null = $state(null)
   let wrap: HTMLElement | null = $state(null)
   let animFrame = 0
+  let running = false
 
   $effect(() => {
-    if (game.celebrating) {
+    if (game.celebrating && !running) {
+      running = true
       spawnStars()
       runAnimation()
     }
@@ -100,6 +102,8 @@
         animFrame = requestAnimationFrame(tick)
       } else {
         stars = []
+        running = false
+        game.celebrating = false
         setTimeout(() => resetWord(), 500)
       }
     }

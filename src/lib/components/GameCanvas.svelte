@@ -149,7 +149,7 @@
   {#if loading}
     <div class="loader">
       <div class="spinner"></div>
-      <p>Loading sounds…</p>
+      <p></p>
     </div>
   {:else if settings.language === 'zh' && game.screen === 'phase-select'}
     <PhaseSelect />

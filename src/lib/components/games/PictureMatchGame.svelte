@@ -63,8 +63,7 @@
       celebrate()
       playCelebration()
 
-      await delay(1500)
-      resetWord()
+      // CelebrationOverlay handles resetWord after stars finish
     } else {
       wobbleId = opt.id
       playWobble()

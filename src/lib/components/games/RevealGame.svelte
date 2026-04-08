@@ -45,10 +45,8 @@
     celebrate()
     playCelebration()
 
-    await delay(1500)
-    revealed = false
-    showEmoji = false
-    resetWord()
+    // CelebrationOverlay handles resetWord after stars finish
+    // Don't reset revealed/showEmoji here — let the content stay visible during celebration
   }
 
   function delay(ms: number) {
@@ -89,7 +87,7 @@
       <p class="hint">Tap to reveal!</p>
     {/if}
   {:else}
-    <p class="prompt">Loading…</p>
+    <p class="prompt"></p>
   {/if}
   <CelebrationOverlay />
 </div>
