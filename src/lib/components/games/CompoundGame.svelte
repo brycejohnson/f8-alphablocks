@@ -77,16 +77,17 @@
     <!-- Compound result — emoji above, component emojis to sides -->
     {#if showCompound}
       <div class="compound-reveal">
-        <div class="component-emojis">
-          {#each phonemes as p}
-            {#if p.image}
-              <img src="{base}{p.image}" alt="{p.meaning}" class="component-image" />
-            {:else}
-              <span class="component-emoji">{p.emoji ?? ''}</span>
-            {/if}
-          {/each}
-        </div>
-        <div class="compound-emoji">{game.activeWord.emoji ?? ''}</div>
+        {#if game.activeWord.image}
+          <img src="{base}{game.activeWord.image}" alt="{game.activeWord.meaning}" class="compound-image" />
+        {:else if game.activeWord.digits}
+          <div class="component-emojis">
+            {#each game.activeWord.digits as d}
+              <img src="{base}/images/zh/numbers/{d}.jpg" alt="{String(d)}" class="component-image" />
+            {/each}
+          </div>
+        {:else if game.activeWord.emoji}
+          <div class="compound-emoji">{game.activeWord.emoji}</div>
+        {/if}
         <div class="compound-meaning">{game.activeWord.meaning ?? ''}</div>
       </div>
     {/if}
@@ -100,7 +101,7 @@
     <div class="blocks" class:joined={game.wordComplete}>
       {#each phonemes as phoneme, i}
         <div class="block-with-emoji">
-          <div class="block-emoji" class:visible={revealedEmojis.has(i) && !showCompound}>
+          <div class="block-emoji" class:visible={revealedEmojis.has(i)}>
             {#if phoneme.image}
               <img src="{base}{phoneme.image}" alt="{phoneme.meaning}" class="block-image" />
             {:else}
@@ -210,6 +211,15 @@
     border-radius: 50%;
     border: 2px solid rgba(255,255,255,0.3);
     box-shadow: 0 0 8px rgba(255,255,255,0.15);
+  }
+
+  .compound-image {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid rgba(255,255,255,0.3);
+    box-shadow: 0 0 14px rgba(255,255,255,0.2);
   }
 
   .compound-emoji {

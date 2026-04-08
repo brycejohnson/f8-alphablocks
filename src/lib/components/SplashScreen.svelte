@@ -1,8 +1,8 @@
 <script lang="ts">
   /**
    * Splash screen — volcano erupting character blocks
-   * Temporary placeholder until commissioned artwork is ready
    */
+  import { base } from '$app/paths'
 
   const eruptingChars = ['火', '山', '水', '人', '大']
   const charColours = ['#E53935', '#2E7D32', '#1565C0', '#6D4C41', '#B71C1C']
@@ -260,6 +260,13 @@
   .volcano {
     position: relative;
     z-index: 1;
+  }
+
+  .volcano-img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    border-radius: 20px;
   }
 
   /* Erupting blocks shoot up from volcano top */

@@ -5,6 +5,7 @@ export interface CurriculumWord {
   meaning?: string     // human-readable meaning: 'volcano'
   emoji?: string       // visual placeholder: '🌋'
   image?: string       // path to illustration: '/images/zh/animals/cat.jpg'
+  digits?: number[]    // for compound numbers: [2, 0] for twenty
 }
 
 /** Game mode for Chinese phases */
