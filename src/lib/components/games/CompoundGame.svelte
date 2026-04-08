@@ -46,7 +46,7 @@
       const played = await playPhoneme(game.activeWord.id, 'zh')
       if (!played) speakFallback(game.activeWord.text, 'zh')
     }
-    await delay(800)
+    await delay(1800)
     celebrate()
     playCelebration()
   }
@@ -186,7 +186,7 @@
 
   .component-emojis {
     display: flex;
-    gap: 40px;
+    gap: 8px;
   }
 
   .component-emoji {

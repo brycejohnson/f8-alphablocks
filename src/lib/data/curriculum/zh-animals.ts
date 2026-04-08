@@ -71,9 +71,8 @@ export const zhAnimalsCurriculum: CurriculumPhase[] = [
     newPhonemeIds: [],
     words: [
       { id: 'zh-xiaogou',  text: '小狗', phonemeIds: ['zh-xiao3', 'zh-gou3'],   meaning: 'puppy',          emoji: '🐶' },
-      { id: 'zh-xiaomao',  text: '小猫', phonemeIds: ['zh-xiao3', 'zh-mao1'],   meaning: 'kitten',         emoji: '🐱' },
+      { id: 'zh-xiaomao',  text: '小猫', phonemeIds: ['zh-xiao3', 'zh-mao1'],   meaning: 'kitten',         emoji: '🐱', image: '/images/zh-transparent/animals/kitten.png' },
       { id: 'zh-xiaoniao', text: '小鸟', phonemeIds: ['zh-xiao3', 'zh-niao3'],  meaning: 'little bird',    emoji: '🐤' },
-      { id: 'zh-dama',     text: '大马', phonemeIds: ['zh-da4', 'zh-ma3'],      meaning: 'big horse',      emoji: '🐎' },
       { id: 'zh-shuiniu',  text: '水牛', phonemeIds: ['zh-shui3', 'zh-niu2'],   meaning: 'water buffalo',  emoji: '🐃' },
       { id: 'zh-huolong',  text: '火龙', phonemeIds: ['zh-huo3', 'zh-long2'],   meaning: 'fire dragon',    emoji: '🐲' },
       { id: 'zh-daxiang',  text: '大象', phonemeIds: ['zh-da4', 'zh-xiang4'],   meaning: 'elephant',       emoji: '🐘' },

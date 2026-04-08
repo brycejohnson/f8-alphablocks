@@ -6,13 +6,14 @@
   import { zhColoursCurriculum } from '$lib/data/curriculum/zh-colours'
   import { selectPhase } from '$lib/stores/game.svelte'
   import { ensureAudioContext } from '$lib/audio/phonemePlayer'
+  import { base } from '$app/paths'
   import type { ZhGameMode, CurriculumTrack } from '$lib/data/curriculum/types'
 
-  const tracks: CurriculumTrack[] = [
-    { id: 'zh-characters', name: '汉字 Characters', icon: '🀄', phases: zhCurriculum },
-    { id: 'zh-numbers',    name: '数字 Numbers',    icon: '🔢', phases: zhNumbersCurriculum },
-    { id: 'zh-animals',    name: '动物 Animals',    icon: '🐻', phases: zhAnimalsCurriculum },
-    { id: 'zh-colours',    name: '颜色 Colours',    icon: '🎨', phases: zhColoursCurriculum },
+  const tracks: (CurriculumTrack & { image?: string })[] = [
+    { id: 'zh-characters', name: '汉字 Characters', icon: '🀄', phases: zhCurriculum,          image: '/images/zh-transparent/objects/da-symbol.png' },
+    { id: 'zh-numbers',    name: '数字 Numbers',    icon: '🔢', phases: zhNumbersCurriculum,    image: '/images/zh-transparent/numbers/1.png' },
+    { id: 'zh-animals',    name: '动物 Animals',    icon: '🐻', phases: zhAnimalsCurriculum,    image: '/images/zh-transparent/animals/tiger.png' },
+    { id: 'zh-colours',    name: '颜色 Colours',    icon: '🎨', phases: zhColoursCurriculum,    image: '/images/zh-transparent/objects/colors.png' },
   ]
 
   const modeIcons: Record<string, string> = {
@@ -56,7 +57,13 @@
         class:open={openTrackId === track.id}
         onclick={() => toggleTrack(track.id)}
       >
-        <span class="pathway-icon">{track.icon}</span>
+        <span class="pathway-icon">
+          {#if track.image}
+            <img src="{base}{track.image}" alt="{track.name}" class="pathway-img" />
+          {:else}
+            {track.icon}
+          {/if}
+        </span>
         <span class="pathway-info">
           <span class="pathway-name">{track.name}</span>
           <span class="pathway-count">{track.phases.length} games</span>
@@ -155,6 +162,17 @@
   .pathway-icon {
     font-size: 2.2rem;
     flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pathway-img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
   }
 
   .pathway-info {

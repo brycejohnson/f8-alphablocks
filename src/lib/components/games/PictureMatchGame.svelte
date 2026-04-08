@@ -12,7 +12,7 @@
   let wobbleId = $state('')
   let answered = $state(false)
   let targetEmoji = $state('')
-  let targetPhoneme = $derived(game.activeWord ? zhPhonemeMap.get(game.activeWord.phonemeIds[0]) : undefined)
+  let targetImage = $state('')
 
   // Build options when word changes
   $effect(() => {
@@ -29,6 +29,7 @@
     correctId = word.id
     const phoneme = zhPhonemeMap.get(word.phonemeIds[0])
     targetEmoji = word.emoji ?? phoneme?.emoji ?? '❓'
+    targetImage = phoneme?.image ?? ''
 
     const phase = getActiveZhCurriculum().find(p => p.phase === game.activePhase)
     if (!phase) return
@@ -79,9 +80,9 @@
 <div class="picture-stage" style="position:relative">
   <!-- Show the picture/emoji -->
   <div class="picture-card">
-    {#if targetPhoneme?.image}
-      <img src="{base}{targetPhoneme.image}" alt="{targetPhoneme.meaning}" class="picture-image" />
-    {:else}
+    {#if targetImage}
+      <img src="{base}{targetImage}" alt="" class="picture-image" />
+    {:else if targetEmoji}
       <span class="emoji">{targetEmoji}</span>
     {/if}
   </div>
