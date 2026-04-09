@@ -239,7 +239,7 @@
     height: auto;
     object-fit: contain;
     z-index: 4;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 0;
   }
 
@@ -299,9 +299,10 @@
     font-size: 0.9rem;
     font-weight: 600;
     color: rgba(255,255,255,0.5);
-    margin: 10px 0 4px;
+    margin: 2px 0 4px;
     z-index: 4;
     letter-spacing: 0.05em;
+    flex-shrink: 0;
   }
 
   /* Blocks spilling to sides */
