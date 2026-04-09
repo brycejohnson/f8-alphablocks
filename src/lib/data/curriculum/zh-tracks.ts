@@ -3,6 +3,7 @@ import { zhNumbersCurriculum } from './zh-numbers'
 import { zhAnimalsCurriculum } from './zh-animals'
 import { zhColoursCurriculum } from './zh-colours'
 import { zhNounsCurriculum } from './zh-nouns'
+import { zhConversationCurriculum } from './zh-conversation'
 import { game } from '$lib/stores/game.svelte'
 import type { CurriculumPhase } from './types'
 
@@ -12,6 +13,7 @@ const trackMap: Record<string, CurriculumPhase[]> = {
   'zh-animals': zhAnimalsCurriculum,
   'zh-colours': zhColoursCurriculum,
   'zh-nouns': zhNounsCurriculum,
+  'zh-conversation': zhConversationCurriculum,
 }
 
 /** Returns the curriculum phases for the currently active Chinese track */

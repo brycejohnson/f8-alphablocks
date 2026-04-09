@@ -442,6 +442,42 @@ const ZH_COMPOUND_NOUNS: ZhEntry[] = [
   { id: 'zh-yuhangyuan',  text: '宇航员', label: 'yǔhángyuán astronaut' },
 ]
 
+// Conversation characters
+const ZH_CONVERSATION: ZhEntry[] = [
+  { id: 'zh-ni3',    text: '你', label: 'nǐ you' },
+  { id: 'zh-hao3',   text: '好', label: 'hǎo good' },
+  { id: 'zh-zai4',   text: '再', label: 'zài again' },
+  { id: 'zh-jian4',  text: '见', label: 'jiàn see' },
+  { id: 'zh-xie4',   text: '谢', label: 'xiè thanks' },
+  { id: 'zh-qing3',  text: '请', label: 'qǐng please' },
+  { id: 'zh-wo3',    text: '我', label: 'wǒ I' },
+  { id: 'zh-yao4',   text: '要', label: 'yào want' },
+  { id: 'zh-jiao4b', text: '叫', label: 'jiào called' },
+  { id: 'zh-bu4',    text: '不', label: 'bù no' },
+  { id: 'zh-ma0',    text: '吗', label: 'ma' },
+  { id: 'zh-dui4',   text: '对', label: 'duì correct' },
+  { id: 'zh-qi3',    text: '起', label: 'qǐ' },
+  { id: 'zh-mei2',   text: '没', label: 'méi not' },
+  { id: 'zh-guan1',  text: '关', label: 'guān' },
+  { id: 'zh-ke4',    text: '客', label: 'kè guest' },
+  { id: 'zh-ai4',    text: '爱', label: 'ài love' },
+]
+
+// Compound conversation phrases
+const ZH_COMPOUND_CONVERSATION: ZhEntry[] = [
+  { id: 'zh-nihao',     text: '你好',   label: 'nǐhǎo hello' },
+  { id: 'zh-zaijian',   text: '再见',   label: 'zàijiàn goodbye' },
+  { id: 'zh-xiexie',    text: '谢谢',   label: 'xièxie thank you' },
+  { id: 'zh-woyao',     text: '我要',   label: 'wǒyào I want' },
+  { id: 'zh-wojiao',    text: '我叫',   label: 'wǒjiào my name is' },
+  { id: 'zh-bushi',     text: '不是',   label: 'búshì no' },
+  { id: 'zh-nihaoma',   text: '你好吗', label: 'nǐhǎoma how are you' },
+  { id: 'zh-duibuqi',   text: '对不起', label: 'duìbuqǐ sorry' },
+  { id: 'zh-meiguanxi', text: '没关系', label: 'méiguānxi it is okay' },
+  { id: 'zh-bukeqi',    text: '不客气', label: 'búkèqi you are welcome' },
+  { id: 'zh-woaini',    text: '我爱你', label: 'wǒàinǐ I love you' },
+]
+
 // ---------------------------------------------------------------------------
 // Google Cloud TTS
 // ---------------------------------------------------------------------------
@@ -632,6 +668,26 @@ async function generateMandarin() {
 
   console.log('\n── Mandarin compound nouns ──')
   for (const w of ZH_COMPOUND_NOUNS) {
+    await generateFile({
+      outputPath: path.join(OUTPUT_ZH, `${w.id}.m4a`),
+      text: w.text,
+      languageCode: 'cmn-CN',
+      voiceName: 'cmn-CN-Chirp3-HD-Aoede',
+    })
+  }
+
+  console.log('\n── Mandarin conversation ──')
+  for (const p of ZH_CONVERSATION) {
+    await generateFile({
+      outputPath: path.join(OUTPUT_ZH, `${p.id}.m4a`),
+      text: p.text,
+      languageCode: 'cmn-CN',
+      voiceName: 'cmn-CN-Chirp3-HD-Aoede',
+    })
+  }
+
+  console.log('\n── Mandarin compound conversation ──')
+  for (const w of ZH_COMPOUND_CONVERSATION) {
     await generateFile({
       outputPath: path.join(OUTPUT_ZH, `${w.id}.m4a`),
       text: w.text,
