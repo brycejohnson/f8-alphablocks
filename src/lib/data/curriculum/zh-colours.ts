@@ -1,7 +1,7 @@
 import type { CurriculumPhase } from './types'
 
 /**
- * Mandarin Colours curriculum — separate track
+ * Mandarin Colours & Shapes curriculum — separate track
  */
 
 export const zhColoursCurriculum: CurriculumPhase[] = [
@@ -51,14 +51,23 @@ export const zhColoursCurriculum: CurriculumPhase[] = [
   },
   {
     phase: 4,
-    name: '组合颜色词',  // Compound Colour Words
+    name: '组合颜色形状',  // Compound Colour & Shape Words
     gameMode: 'compound',
-    newPhonemeIds: [],
+    newPhonemeIds: ['zh-yuan2', 'zh-xing2', 'zh-zheng4', 'zh-fang1', 'zh-jiao3', 'zh-chang2', 'zh-bian1', 'zh-ling2', 'zh-xin1'],
     words: [
-
+      // Colour compounds
       { id: 'zh-baima',    text: '白马', phonemeIds: ['zh-bai2', 'zh-ma3'],    meaning: 'white horse',   emoji: '🦄', image: '/images/zh-transparent/animals/whitehorse.png' },
       { id: 'zh-jinyu',    text: '金鱼', phonemeIds: ['zh-jin1', 'zh-yu2'],    meaning: 'goldfish',      emoji: '🐠', image: '/images/zh-transparent/animals/goldfish.png' },
       { id: 'zh-honglong', text: '红龙', phonemeIds: ['zh-hong2', 'zh-long2'], meaning: 'red dragon',    emoji: '🐲', image: '/images/zh-transparent/animals/reddragon.png' },
+      // Shape compounds
+      { id: 'zh-yuanxing',     text: '圆形',   phonemeIds: ['zh-yuan2', 'zh-xing2'],                meaning: 'circle',    emoji: '⭕', image: '/images/zh-transparent/objects/circle.png' },
+      { id: 'zh-zhengfangxing',text: '正方形', phonemeIds: ['zh-zheng4', 'zh-fang1', 'zh-xing2'],   meaning: 'square',    emoji: '🟧', image: '/images/zh-transparent/objects/square.png' },
+      { id: 'zh-sanjiaoxing',  text: '三角形', phonemeIds: ['zh-san1', 'zh-jiao3', 'zh-xing2'],     meaning: 'triangle',  emoji: '🔺', image: '/images/zh-transparent/objects/triangle.png' },
+      { id: 'zh-changfangxing',text: '长方形', phonemeIds: ['zh-chang2', 'zh-fang1', 'zh-xing2'],   meaning: 'rectangle', emoji: '🟦', image: '/images/zh-transparent/objects/rectangle.png' },
+      { id: 'zh-wubianxing',   text: '五边形', phonemeIds: ['zh-wu3', 'zh-bian1', 'zh-xing2'],      meaning: 'pentagon',  emoji: '⬠', image: '/images/zh-transparent/objects/pentagon.png' },
+      { id: 'zh-liubianxing',  text: '六边形', phonemeIds: ['zh-liu4', 'zh-bian1', 'zh-xing2'],     meaning: 'hexagon',   emoji: '⬡', image: '/images/zh-transparent/objects/hexagon.png' },
+      { id: 'zh-lingxing',     text: '菱形',   phonemeIds: ['zh-ling2', 'zh-xing2'],                meaning: 'diamond',   emoji: '💎', image: '/images/zh-transparent/objects/diamond.png' },
+      { id: 'zh-xinxing',      text: '心形',   phonemeIds: ['zh-xin1', 'zh-xing2'],                 meaning: 'heart',     emoji: '❤️', image: '/images/zh-transparent/objects/heart.png' },
     ],
   },
   {

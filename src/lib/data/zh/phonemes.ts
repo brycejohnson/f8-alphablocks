@@ -74,6 +74,16 @@ export const zhColours: Phoneme[] = [
   { id: 'zh-fen3',  symbol: '粉', ipa: 'fěn',   colour: '#F06292', audioFile: 'zh-fen3.m4a',  meaning: 'pink',   emoji: '🩷', image: '/images/zh-transparent/colours/pink.png' },
   { id: 'zh-zi3',   symbol: '紫', ipa: 'zǐ',    colour: '#7B1FA2', audioFile: 'zh-zi3.m4a',   meaning: 'purple', emoji: '🟣', image: '/images/zh-transparent/colours/purple.png' },
   { id: 'zh-jin1',  symbol: '金', ipa: 'jīn',   colour: '#FFB300', audioFile: 'zh-jin1.m4a',  meaning: 'gold',   emoji: '🥇', image: '/images/zh-transparent/colours/gold.png' },
+  // Shapes
+  { id: 'zh-yuan2', symbol: '圆', ipa: 'yuán',  colour: '#42A5F5', audioFile: 'zh-yuan2.m4a', meaning: 'round',   emoji: '' },
+  { id: 'zh-xing2', symbol: '形', ipa: 'xíng',  colour: '#78909C', audioFile: 'zh-xing2.m4a', meaning: 'shape',   emoji: '' },
+  { id: 'zh-zheng4',symbol: '正', ipa: 'zhèng', colour: '#455A64', audioFile: 'zh-zheng4.m4a',meaning: 'straight', emoji: '' },
+  { id: 'zh-fang1', symbol: '方', ipa: 'fāng',  colour: '#607D8B', audioFile: 'zh-fang1.m4a', meaning: 'square',  emoji: '', image: '/images/zh-transparent/objects/square.png' },
+  { id: 'zh-jiao3', symbol: '角', ipa: 'jiǎo',  colour: '#795548', audioFile: 'zh-jiao3.m4a', meaning: 'angle',   emoji: '' },
+  { id: 'zh-chang2',symbol: '长', ipa: 'cháng', colour: '#8D6E63', audioFile: 'zh-chang2.m4a',meaning: 'long',    emoji: '' },
+  { id: 'zh-bian1', symbol: '边', ipa: 'biān',  colour: '#90A4AE', audioFile: 'zh-bian1.m4a', meaning: 'side',    emoji: '' },
+  { id: 'zh-ling2', symbol: '菱', ipa: 'líng',  colour: '#AB47BC', audioFile: 'zh-ling2.m4a', meaning: 'diamond', emoji: '', image: '/images/zh-transparent/objects/diamond.png' },
+  { id: 'zh-xin1',  symbol: '心', ipa: 'xīn',   colour: '#E91E63', audioFile: 'zh-xin1.m4a',  meaning: 'heart',   emoji: '', image: '/images/zh-transparent/objects/heart.png' },
 ]
 
 // Nouns: People, Places, Things

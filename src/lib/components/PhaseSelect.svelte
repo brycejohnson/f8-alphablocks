@@ -14,7 +14,7 @@
     { id: 'zh-characters', name: '汉字 Characters', icon: '🀄', phases: zhCurriculum,          image: '/images/zh-transparent/objects/da-symbol.png' },
     { id: 'zh-numbers',    name: '数字 Numbers',    icon: '🔢', phases: zhNumbersCurriculum,    image: '/images/zh-transparent/numbers/1.png' },
     { id: 'zh-animals',    name: '动物 Animals',    icon: '🐻', phases: zhAnimalsCurriculum,    image: '/images/zh-transparent/animals/tiger.png' },
-    { id: 'zh-colours',    name: '颜色 Colours',    icon: '🎨', phases: zhColoursCurriculum,    image: '/images/zh-transparent/objects/colors.png' },
+    { id: 'zh-colours',    name: '颜色形状 Colours & Shapes', icon: '🎨', phases: zhColoursCurriculum, image: '/images/zh-transparent/objects/colors.png' },
     { id: 'zh-nouns',      name: '名词 Nouns',      icon: '🏠', phases: zhNounsCurriculum,     image: '/images/zh-transparent/objects/house.png' },
   ]
 

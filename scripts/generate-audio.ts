@@ -279,15 +279,31 @@ const ZH_COLOURS: ZhEntry[] = [
   { id: 'zh-fen3',   text: '粉', label: 'fěn pink' },
   { id: 'zh-zi3',    text: '紫', label: 'zǐ purple' },
   { id: 'zh-jin1',   text: '金', label: 'jīn gold' },
+  // Shapes
+  { id: 'zh-yuan2',  text: '圆', label: 'yuán round' },
+  { id: 'zh-xing2',  text: '形', label: 'xíng shape' },
+  { id: 'zh-zheng4', text: '正', label: 'zhèng straight' },
+  { id: 'zh-fang1',  text: '方', label: 'fāng square' },
+  { id: 'zh-jiao3',  text: '角', label: 'jiǎo angle' },
+  { id: 'zh-chang2', text: '长', label: 'cháng long' },
+  { id: 'zh-bian1',  text: '边', label: 'biān side' },
+  { id: 'zh-ling2',  text: '菱', label: 'líng diamond' },
+  { id: 'zh-xin1',   text: '心', label: 'xīn heart' },
 ]
 
-// Compound colour words
+// Compound colour & shape words
 const ZH_COMPOUND_COLOURS: ZhEntry[] = [
-  { id: 'zh-lvshan',   text: '绿山', label: 'lǜshān green mountain' },
-  { id: 'zh-huangniu', text: '黄牛', label: 'huángniú yellow cow' },
   { id: 'zh-baima',    text: '白马', label: 'báimǎ white horse' },
   { id: 'zh-jinyu',    text: '金鱼', label: 'jīnyú goldfish' },
   { id: 'zh-honglong', text: '红龙', label: 'hónglóng red dragon' },
+  { id: 'zh-yuanxing',      text: '圆形',   label: 'yuánxíng circle' },
+  { id: 'zh-zhengfangxing', text: '正方形', label: 'zhèngfāngxíng square' },
+  { id: 'zh-sanjiaoxing',   text: '三角形', label: 'sānjiǎoxíng triangle' },
+  { id: 'zh-changfangxing', text: '长方形', label: 'chángfāngxíng rectangle' },
+  { id: 'zh-wubianxing',    text: '五边形', label: 'wǔbiānxíng pentagon' },
+  { id: 'zh-liubianxing',   text: '六边形', label: 'liùbiānxíng hexagon' },
+  { id: 'zh-lingxing',      text: '菱形',   label: 'língxíng diamond' },
+  { id: 'zh-xinxing',       text: '心形',   label: 'xīnxíng heart' },
 ]
 
 // Compound numbers
