@@ -64,7 +64,7 @@ export const zhNounsCurriculum: CurriculumPhase[] = [
     phase: 4,
     name: '组合名词',  // Compound Nouns
     gameMode: 'compound',
-    newPhonemeIds: ['zh-bao3', 'zh-xue2', 'zh-xiao4', 'zh-ji1n', 'zh-shi4', 'zh-jing3', 'zh-ba1n', 'zh-shi4n', 'zh-jiu4', 'zh-hu4', 'zh-xiao1', 'zh-fang2', 'zh-chu1', 'zh-zu1', 'zh-qi4', 'zh-juan3', 'zh-feng1', 'zh-xuan2', 'zh-wo1'],
+    newPhonemeIds: ['zh-bao3', 'zh-xue2', 'zh-xiao4', 'zh-ji1n', 'zh-shi4', 'zh-jing3', 'zh-ba1n', 'zh-shi4n', 'zh-jiu4', 'zh-hu4', 'zh-xiao1', 'zh-fang2', 'zh-ji4', 'zh-cheng2', 'zh-qi4', 'zh-juan3', 'zh-feng1', 'zh-xuan2', 'zh-wo1'],
     words: [
       { id: 'zh-nanhai',  text: '男孩', phonemeIds: ['zh-nan2', 'zh-hai2'],  meaning: 'boy',        emoji: '👦', image: '/images/zh-transparent/objects/boy.png' },
       { id: 'zh-nvhai',   text: '女孩', phonemeIds: ['zh-nv3', 'zh-hai2'],   meaning: 'girl',       emoji: '👧', image: '/images/zh-transparent/objects/girl.png' },
@@ -79,7 +79,7 @@ export const zhNounsCurriculum: CurriculumPhase[] = [
       // 3-character compound words
       { id: 'zh-jiuhuche',  text: '救护车', phonemeIds: ['zh-jiu4', 'zh-hu4', 'zh-che1'],   meaning: 'ambulance',   emoji: '🚑', image: '/images/zh-transparent/objects/ambulance.png' },
       { id: 'zh-xiaofangche', text: '消防车', phonemeIds: ['zh-xiao1', 'zh-fang2', 'zh-che1'], meaning: 'fire truck', emoji: '🚒', image: '/images/zh-transparent/objects/firetruck.png' },
-      { id: 'zh-chuzuche', text: '出租车', phonemeIds: ['zh-chu1', 'zh-zu1', 'zh-che1'],    meaning: 'taxi',        emoji: '🚕', image: '/images/zh-transparent/objects/taxi.png' },
+      { id: 'zh-jichengche', text: '计程车', phonemeIds: ['zh-ji4', 'zh-cheng2', 'zh-che1'],  meaning: 'taxi',        emoji: '🚕', image: '/images/zh-transparent/objects/taxi.png' },
       { id: 'zh-longjuanfeng', text: '龙卷风', phonemeIds: ['zh-long2', 'zh-juan3', 'zh-feng1'], meaning: 'tornado',   emoji: '🌪️', image: '/images/zh-transparent/objects/tornado.png' },
       { id: 'zh-xuanwo',  text: '漩涡', phonemeIds: ['zh-xuan2', 'zh-wo1'],  meaning: 'whirlpool', emoji: '🌀', image: '/images/zh-transparent/objects/whirlpool.png' },
     ],
