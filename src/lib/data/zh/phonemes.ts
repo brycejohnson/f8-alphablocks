@@ -61,6 +61,15 @@ export const zhAnimals: Phoneme[] = [
   { id: 'zh-e2',   symbol: '鹅', ipa: 'é',    colour: '#EEEEEE', audioFile: 'zh-e2.m4a',    meaning: 'goose',    emoji: '🪿', image: '/images/zh-transparent/animals/goose.png' },
   { id: 'zh-ya1',  symbol: '鸭', ipa: 'yā',   colour: '#43A047', audioFile: 'zh-ya1.m4a',   meaning: 'duck',     emoji: '🦆', image: '/images/zh-transparent/animals/duck.png' },
   { id: 'zh-kong3',symbol: '恐', ipa: 'kǒng', colour: '#37474F', audioFile: 'zh-kong3.m4a', meaning: '',         emoji: '' },
+  { id: 'zh-hu2',  symbol: '蝴', ipa: 'hú',   colour: '#FF8F00', audioFile: 'zh-hu2.m4a',   meaning: '',         emoji: '' },
+  { id: 'zh-die2', symbol: '蝶', ipa: 'dié',  colour: '#FFB300', audioFile: 'zh-die2.m4a',  meaning: '',         emoji: '' },
+  { id: 'zh-piao2',symbol: '瓢', ipa: 'piáo', colour: '#E53935', audioFile: 'zh-piao2.m4a', meaning: 'gourd',    emoji: '' },
+  { id: 'zh-chong2',symbol:'虫', ipa: 'chóng',colour: '#4CAF50', audioFile: 'zh-chong2.m4a',meaning: 'bug',      emoji: '' },
+  { id: 'zh-mao2', symbol: '毛', ipa: 'máo',  colour: '#8D6E63', audioFile: 'zh-mao2.m4a',  meaning: 'hairy',    emoji: '' },
+  { id: 'zh-mi4',  symbol: '蜜', ipa: 'mì',   colour: '#FFA000', audioFile: 'zh-mi4.m4a',   meaning: 'honey',    emoji: '' },
+  { id: 'zh-feng1b',symbol:'蜂', ipa: 'fēng', colour: '#FFD54F', audioFile: 'zh-feng1b.m4a',meaning: 'bee',      emoji: '' },
+  { id: 'zh-zhi1', symbol: '蜘', ipa: 'zhī',  colour: '#424242', audioFile: 'zh-zhi1.m4a',  meaning: '',         emoji: '' },
+  { id: 'zh-zhu1b',symbol: '蛛', ipa: 'zhū',  colour: '#616161', audioFile: 'zh-zhu1b.m4a', meaning: '',         emoji: '' },
 ]
 
 // Colours
@@ -84,13 +93,15 @@ export const zhColours: Phoneme[] = [
   { id: 'zh-bian1', symbol: '边', ipa: 'biān',  colour: '#90A4AE', audioFile: 'zh-bian1.m4a', meaning: 'side',    emoji: '' },
   { id: 'zh-ling2', symbol: '菱', ipa: 'líng',  colour: '#AB47BC', audioFile: 'zh-ling2.m4a', meaning: 'diamond', emoji: '', image: '/images/zh-transparent/objects/diamond.png' },
   { id: 'zh-xin1',  symbol: '心', ipa: 'xīn',   colour: '#E91E63', audioFile: 'zh-xin1.m4a',  meaning: 'heart',   emoji: '', image: '/images/zh-transparent/objects/heart.png' },
+  { id: 'zh-cai3',  symbol: '彩', ipa: 'cǎi',   colour: '#FF7043', audioFile: 'zh-cai3.m4a',  meaning: 'colour',  emoji: '', image: '/images/zh-transparent/objects/rainbow.png' },
+  { id: 'zh-hong2b',symbol: '虹', ipa: 'hóng',  colour: '#EF5350', audioFile: 'zh-hong2b.m4a',meaning: 'rainbow', emoji: '' },
 ]
 
 // Nouns: People, Places, Things
 export const zhNouns: Phoneme[] = [
   // People
-  { id: 'zh-nan2',  symbol: '男', ipa: 'nán',  colour: '#1565C0', audioFile: 'zh-nan2.m4a',  meaning: 'male',      emoji: '', image: '/images/zh-transparent/objects/boy.png' },
-  { id: 'zh-nv3',   symbol: '女', ipa: 'nǚ',   colour: '#E91E63', audioFile: 'zh-nv3.m4a',   meaning: 'female',    emoji: '', image: '/images/zh-transparent/objects/girl.png' },
+  { id: 'zh-nan2',  symbol: '男', ipa: 'nán',  colour: '#1565C0', audioFile: 'zh-nan2.m4a',  meaning: 'boy',       emoji: '', image: '/images/zh-transparent/objects/boy.png' },
+  { id: 'zh-nv3',   symbol: '女', ipa: 'nǚ',   colour: '#E91E63', audioFile: 'zh-nv3.m4a',   meaning: 'girl',      emoji: '', image: '/images/zh-transparent/objects/girl.png' },
   { id: 'zh-hai2',  symbol: '孩', ipa: 'hái',  colour: '#FF8F00', audioFile: 'zh-hai2.m4a',  meaning: 'child',     emoji: '' },
   { id: 'zh-bao3',  symbol: '宝', ipa: 'bǎo',  colour: '#FFD54F', audioFile: 'zh-bao3.m4a',  meaning: 'treasure',  emoji: '' },
   // Places
@@ -126,6 +137,21 @@ export const zhNouns: Phoneme[] = [
   { id: 'zh-tai4',  symbol: '太', ipa: 'tài',  colour: '#F9A825', audioFile: 'zh-tai4.m4a',  meaning: 'great',     emoji: '' },
   { id: 'zh-yang2n',symbol: '阳', ipa: 'yáng', colour: '#FF6F00', audioFile: 'zh-yang2n.m4a',meaning: 'sun',       emoji: '', image: '/images/zh-transparent/objects/sun.png' },
   { id: 'zh-xi4',   symbol: '系', ipa: 'xì',   colour: '#5C6BC0', audioFile: 'zh-xi4.m4a',   meaning: 'system',    emoji: '' },
+  { id: 'zh-lun2',  symbol: '轮', ipa: 'lún',  colour: '#455A64', audioFile: 'zh-lun2.m4a',  meaning: 'wheel',     emoji: '' },
+  { id: 'zh-chuan2',symbol: '船', ipa: 'chuán',colour: '#0277BD', audioFile: 'zh-chuan2.m4a',meaning: 'boat',      emoji: '', image: '/images/zh-transparent/objects/ship.png' },
+  { id: 'zh-dan4',  symbol: '蛋', ipa: 'dàn',  colour: '#FFA726', audioFile: 'zh-dan4.m4a',  meaning: 'egg',       emoji: '' },
+  { id: 'zh-gao1',  symbol: '糕', ipa: 'gāo',  colour: '#F48FB1', audioFile: 'zh-gao1.m4a',  meaning: 'cake',      emoji: '', image: '/images/zh-transparent/objects/cake.png' },
+  { id: 'zh-bo1',   symbol: '菠', ipa: 'bō',   colour: '#2E7D32', audioFile: 'zh-bo1.m4a',   meaning: '',          emoji: '' },
+  { id: 'zh-luo2',  symbol: '萝', ipa: 'luó',  colour: '#F9A825', audioFile: 'zh-luo2.m4a',  meaning: '',          emoji: '' },
+  { id: 'zh-xi1',   symbol: '西', ipa: 'xī',   colour: '#43A047', audioFile: 'zh-xi1.m4a',   meaning: 'west',     emoji: '' },
+  { id: 'zh-gua1',  symbol: '瓜', ipa: 'guā',  colour: '#388E3C', audioFile: 'zh-gua1.m4a',  meaning: 'melon',    emoji: '', image: '/images/zh-transparent/objects/watermelon.png' },
+  { id: 'zh-nan2b', symbol: '南', ipa: 'nán',  colour: '#E65100', audioFile: 'zh-nan2b.m4a', meaning: 'south',    emoji: '' },
+  { id: 'zh-xiang1',symbol:'香', ipa: 'xiāng',colour: '#F9A825', audioFile: 'zh-xiang1.m4a',meaning: 'fragrant', emoji: '' },
+  { id: 'zh-jiao1', symbol: '蕉', ipa: 'jiāo', colour: '#FFD54F', audioFile: 'zh-jiao1.m4a', meaning: 'banana',   emoji: '', image: '/images/zh-transparent/objects/bananas.png' },
+  { id: 'zh-shu1',  symbol: '蔬', ipa: 'shū',  colour: '#2E7D32', audioFile: 'zh-shu1.m4a',  meaning: 'vegetable',emoji: '' },
+  { id: 'zh-cai4',  symbol: '菜', ipa: 'cài',  colour: '#43A047', audioFile: 'zh-cai4.m4a',  meaning: 'dish',     emoji: '', image: '/images/zh-transparent/objects/vegetables.png' },
+  { id: 'zh-qie2',  symbol: '茄', ipa: 'qié',  colour: '#7B1FA2', audioFile: 'zh-qie2.m4a',  meaning: 'eggplant', emoji: '', image: '/images/zh-transparent/objects/eggplant.png' },
+  { id: 'zh-zi3b',  symbol: '子', ipa: 'zi',   colour: '#9E9E9E', audioFile: 'zh-zi3b.m4a',  meaning: 'suffix',   emoji: '' },
 ]
 
 export const zhAllPhonemes = [...zhCharacters, ...zhNumbers, ...zhAnimals, ...zhColours, ...zhNouns]
