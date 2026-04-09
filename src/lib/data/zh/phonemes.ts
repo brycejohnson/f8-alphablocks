@@ -70,6 +70,8 @@ export const zhAnimals: Phoneme[] = [
   { id: 'zh-feng1b',symbol:'蜂', ipa: 'fēng', colour: '#FFD54F', audioFile: 'zh-feng1b.m4a',meaning: 'bee',      emoji: '' },
   { id: 'zh-zhi1', symbol: '蜘', ipa: 'zhī',  colour: '#424242', audioFile: 'zh-zhi1.m4a',  meaning: '',         emoji: '' },
   { id: 'zh-zhu1b',symbol: '蛛', ipa: 'zhū',  colour: '#616161', audioFile: 'zh-zhu1b.m4a', meaning: '',         emoji: '' },
+  { id: 'zh-wu1',  symbol: '乌', ipa: 'wū',   colour: '#37474F', audioFile: 'zh-wu1.m4a',   meaning: 'black',    emoji: '' },
+  { id: 'zh-gui1', symbol: '龟', ipa: 'guī',  colour: '#4CAF50', audioFile: 'zh-gui1.m4a',  meaning: 'turtle',   emoji: '', image: '/images/zh-transparent/animals/turtle.png' },
 ]
 
 // Colours
@@ -93,7 +95,7 @@ export const zhColours: Phoneme[] = [
   { id: 'zh-bian1', symbol: '边', ipa: 'biān',  colour: '#90A4AE', audioFile: 'zh-bian1.m4a', meaning: 'side',    emoji: '' },
   { id: 'zh-ling2', symbol: '菱', ipa: 'líng',  colour: '#AB47BC', audioFile: 'zh-ling2.m4a', meaning: 'diamond', emoji: '', image: '/images/zh-transparent/objects/diamond.png' },
   { id: 'zh-xin1',  symbol: '心', ipa: 'xīn',   colour: '#E91E63', audioFile: 'zh-xin1.m4a',  meaning: 'heart',   emoji: '', image: '/images/zh-transparent/objects/heart.png' },
-  { id: 'zh-cai3',  symbol: '彩', ipa: 'cǎi',   colour: '#FF7043', audioFile: 'zh-cai3.m4a',  meaning: 'colour',  emoji: '', image: '/images/zh-transparent/objects/rainbow.png' },
+  { id: 'zh-cai3',  symbol: '彩', ipa: 'cǎi',   colour: '#FF7043', audioFile: 'zh-cai3.m4a',  meaning: 'colour',  emoji: '' },
   { id: 'zh-hong2b',symbol: '虹', ipa: 'hóng',  colour: '#EF5350', audioFile: 'zh-hong2b.m4a',meaning: 'rainbow', emoji: '' },
 ]
 
@@ -112,7 +114,7 @@ export const zhNouns: Phoneme[] = [
   { id: 'zh-di4',   symbol: '地', ipa: 'dì',   colour: '#6D4C41', audioFile: 'zh-di4.m4a',   meaning: 'earth',    emoji: '', image: '/images/zh-transparent/objects/planet-earth.png' },
   // Things
   { id: 'zh-che1',  symbol: '车', ipa: 'chē',  colour: '#F44336', audioFile: 'zh-che1.m4a',  meaning: 'car',       emoji: '', image: '/images/zh-transparent/objects/car.png' },
-  { id: 'zh-fei1',  symbol: '飞', ipa: 'fēi',  colour: '#0288D1', audioFile: 'zh-fei1.m4a',  meaning: 'airplane',  emoji: '', image: '/images/zh-transparent/objects/plane.png' },
+  { id: 'zh-fei1',  symbol: '飞', ipa: 'fēi',  colour: '#0288D1', audioFile: 'zh-fei1.m4a',  meaning: 'fly',       emoji: '', image: '/images/zh-transparent/objects/plane.png' },
   { id: 'zh-ji1n',  symbol: '机', ipa: 'jī',   colour: '#78909C', audioFile: 'zh-ji1n.m4a',  meaning: 'machine',   emoji: '' },
   { id: 'zh-dian4', symbol: '电', ipa: 'diàn', colour: '#FFC107', audioFile: 'zh-dian4.m4a', meaning: 'lightning', emoji: '', image: '/images/zh-transparent/objects/lightning.png' },
   { id: 'zh-shi4',  symbol: '视', ipa: 'shì',  colour: '#607D8B', audioFile: 'zh-shi4.m4a',  meaning: 'vision',    emoji: '' },
@@ -132,7 +134,7 @@ export const zhNouns: Phoneme[] = [
   { id: 'zh-feng1', symbol: '风', ipa: 'fēng', colour: '#90A4AE', audioFile: 'zh-feng1.m4a', meaning: 'wind',      emoji: '' },
   { id: 'zh-xuan2', symbol: '漩', ipa: 'xuán', colour: '#0277BD', audioFile: 'zh-xuan2.m4a', meaning: 'swirl',     emoji: '' },
   { id: 'zh-wo1',   symbol: '涡', ipa: 'wō',   colour: '#01579B', audioFile: 'zh-wo1.m4a',   meaning: 'vortex',    emoji: '' },
-  { id: 'zh-zu2',   symbol: '足', ipa: 'zú',   colour: '#4CAF50', audioFile: 'zh-zu2.m4a',   meaning: 'foot',      emoji: '', image: '/images/zh-transparent/objects/soccerball.png' },
+  { id: 'zh-zu2',   symbol: '足', ipa: 'zú',   colour: '#4CAF50', audioFile: 'zh-zu2.m4a',   meaning: 'foot',      emoji: '' },
   { id: 'zh-qiu2',  symbol: '球', ipa: 'qiú',  colour: '#FF9800', audioFile: 'zh-qiu2.m4a',  meaning: 'ball',      emoji: '' },
   { id: 'zh-tai4',  symbol: '太', ipa: 'tài',  colour: '#F9A825', audioFile: 'zh-tai4.m4a',  meaning: 'great',     emoji: '' },
   { id: 'zh-yang2n',symbol: '阳', ipa: 'yáng', colour: '#FF6F00', audioFile: 'zh-yang2n.m4a',meaning: 'sun',       emoji: '', image: '/images/zh-transparent/objects/sun.png' },
@@ -146,12 +148,15 @@ export const zhNouns: Phoneme[] = [
   { id: 'zh-xi1',   symbol: '西', ipa: 'xī',   colour: '#43A047', audioFile: 'zh-xi1.m4a',   meaning: 'west',     emoji: '' },
   { id: 'zh-gua1',  symbol: '瓜', ipa: 'guā',  colour: '#388E3C', audioFile: 'zh-gua1.m4a',  meaning: 'melon',    emoji: '', image: '/images/zh-transparent/objects/watermelon.png' },
   { id: 'zh-nan2b', symbol: '南', ipa: 'nán',  colour: '#E65100', audioFile: 'zh-nan2b.m4a', meaning: 'south',    emoji: '' },
-  { id: 'zh-xiang1',symbol:'香', ipa: 'xiāng',colour: '#F9A825', audioFile: 'zh-xiang1.m4a',meaning: 'fragrant', emoji: '' },
+  { id: 'zh-xiang1',symbol:'香', ipa: 'xiāng',colour: '#F9A825', audioFile: 'zh-xiang1.m4a',meaning: '',         emoji: '' },
   { id: 'zh-jiao1', symbol: '蕉', ipa: 'jiāo', colour: '#FFD54F', audioFile: 'zh-jiao1.m4a', meaning: 'banana',   emoji: '', image: '/images/zh-transparent/objects/bananas.png' },
   { id: 'zh-shu1',  symbol: '蔬', ipa: 'shū',  colour: '#2E7D32', audioFile: 'zh-shu1.m4a',  meaning: 'vegetable',emoji: '' },
   { id: 'zh-cai4',  symbol: '菜', ipa: 'cài',  colour: '#43A047', audioFile: 'zh-cai4.m4a',  meaning: 'dish',     emoji: '', image: '/images/zh-transparent/objects/vegetables.png' },
   { id: 'zh-qie2',  symbol: '茄', ipa: 'qié',  colour: '#7B1FA2', audioFile: 'zh-qie2.m4a',  meaning: 'eggplant', emoji: '', image: '/images/zh-transparent/objects/eggplant.png' },
-  { id: 'zh-zi3b',  symbol: '子', ipa: 'zi',   colour: '#9E9E9E', audioFile: 'zh-zi3b.m4a',  meaning: 'suffix',   emoji: '' },
+  { id: 'zh-zi3b',  symbol: '子', ipa: 'zi',   colour: '#9E9E9E', audioFile: 'zh-zi3b.m4a',  meaning: '',         emoji: '' },
+  { id: 'zh-yu3',   symbol: '宇', ipa: 'yǔ',   colour: '#1A237E', audioFile: 'zh-yu3.m4a',   meaning: 'space',    emoji: '' },
+  { id: 'zh-hang2', symbol: '航', ipa: 'háng', colour: '#283593', audioFile: 'zh-hang2.m4a', meaning: 'travel',   emoji: '' },
+  { id: 'zh-yuan2b',symbol: '员', ipa: 'yuán', colour: '#3949AB', audioFile: 'zh-yuan2b.m4a',meaning: 'person',   emoji: '' },
 ]
 
 export const zhAllPhonemes = [...zhCharacters, ...zhNumbers, ...zhAnimals, ...zhColours, ...zhNouns]

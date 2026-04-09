@@ -68,7 +68,7 @@ export const zhAnimalsCurriculum: CurriculumPhase[] = [
     phase: 4,
     name: '组合动物词',  // Compound Animal Words
     gameMode: 'compound',
-    newPhonemeIds: [],
+    newPhonemeIds: ['zh-hu2', 'zh-die2', 'zh-piao2', 'zh-chong2', 'zh-mao2', 'zh-mi4', 'zh-feng1b', 'zh-zhi1', 'zh-zhu1b', 'zh-wu1', 'zh-gui1'],
     words: [
       { id: 'zh-xiaogou',  text: '小狗', phonemeIds: ['zh-xiao3', 'zh-gou3'],   meaning: 'puppy',          emoji: '🐶', image: '/images/zh-transparent/animals/dog.png' },
       { id: 'zh-xiaomao',  text: '小猫', phonemeIds: ['zh-xiao3', 'zh-mao1'],   meaning: 'kitten',         emoji: '🐱', image: '/images/zh-transparent/animals/kitten.png' },
@@ -79,6 +79,12 @@ export const zhAnimalsCurriculum: CurriculumPhase[] = [
       { id: 'zh-xiongmao', text: '熊猫', phonemeIds: ['zh-xiong2', 'zh-mao1'],  meaning: 'panda',          emoji: '🐼', image: '/images/zh-transparent/animals/panda.png' },
       { id: 'zh-xiaotu',    text: '小兔', phonemeIds: ['zh-xiao3', 'zh-tu4'],   meaning: 'bunny',          emoji: '🐇', image: '/images/zh-transparent/animals/rabbit.png' },
       { id: 'zh-konglong',  text: '恐龙', phonemeIds: ['zh-kong3', 'zh-long2'], meaning: 'dinosaur',       emoji: '🦕', image: '/images/zh-transparent/animals/dinosaur.png' },
+      { id: 'zh-hudie',    text: '蝴蝶', phonemeIds: ['zh-hu2', 'zh-die2'],  meaning: 'butterfly',      emoji: '🦋', image: '/images/zh-transparent/animals/butterfly.png' },
+      { id: 'zh-piaochong', text: '瓢虫', phonemeIds: ['zh-piao2', 'zh-chong2'], meaning: 'ladybug',    emoji: '🐞', image: '/images/zh-transparent/animals/ladybug.png' },
+      { id: 'zh-maomaochong', text: '毛毛虫', phonemeIds: ['zh-mao2', 'zh-mao2', 'zh-chong2'], meaning: 'caterpillar', emoji: '🐛', image: '/images/zh-transparent/animals/caterpillar.png' },
+      { id: 'zh-mifeng',  text: '蜜蜂', phonemeIds: ['zh-mi4', 'zh-feng1b'],  meaning: 'bee',         emoji: '🐝', image: '/images/zh-transparent/animals/bumblebee.png' },
+      { id: 'zh-zhizhu',  text: '蜘蛛', phonemeIds: ['zh-zhi1', 'zh-zhu1b'],  meaning: 'spider',      emoji: '🕷️', image: '/images/zh-transparent/animals/spider.png' },
+      { id: 'zh-wugui',   text: '乌龟', phonemeIds: ['zh-wu1', 'zh-gui1'],   meaning: 'turtle',      emoji: '🐢', image: '/images/zh-transparent/animals/turtle.png' },
     ],
   },
   {

@@ -53,7 +53,7 @@ export const zhColoursCurriculum: CurriculumPhase[] = [
     phase: 4,
     name: '组合颜色形状',  // Compound Colour & Shape Words
     gameMode: 'compound',
-    newPhonemeIds: ['zh-yuan2', 'zh-xing2', 'zh-zheng4', 'zh-fang1', 'zh-jiao3', 'zh-chang2', 'zh-bian1', 'zh-ling2', 'zh-xin1'],
+    newPhonemeIds: ['zh-yuan2', 'zh-xing2', 'zh-zheng4', 'zh-fang1', 'zh-jiao3', 'zh-chang2', 'zh-bian1', 'zh-ling2', 'zh-xin1', 'zh-cai3', 'zh-hong2b'],
     words: [
       // Colour compounds
       { id: 'zh-baima',    text: '白马', phonemeIds: ['zh-bai2', 'zh-ma3'],    meaning: 'white horse',   emoji: '🦄', image: '/images/zh-transparent/animals/whitehorse.png' },
@@ -68,6 +68,7 @@ export const zhColoursCurriculum: CurriculumPhase[] = [
       { id: 'zh-liubianxing',  text: '六边形', phonemeIds: ['zh-liu4', 'zh-bian1', 'zh-xing2'],     meaning: 'hexagon',   emoji: '⬡', image: '/images/zh-transparent/objects/hexagon.png' },
       { id: 'zh-lingxing',     text: '菱形',   phonemeIds: ['zh-ling2', 'zh-xing2'],                meaning: 'diamond',   emoji: '💎', image: '/images/zh-transparent/objects/diamond.png' },
       { id: 'zh-xinxing',      text: '心形',   phonemeIds: ['zh-xin1', 'zh-xing2'],                 meaning: 'heart',     emoji: '❤️', image: '/images/zh-transparent/objects/heart.png' },
+      { id: 'zh-caihong',     text: '彩虹',   phonemeIds: ['zh-cai3', 'zh-hong2b'],                meaning: 'rainbow',   emoji: '🌈', image: '/images/zh-transparent/objects/rainbow.png' },
     ],
   },
   {

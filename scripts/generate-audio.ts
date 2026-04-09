@@ -252,6 +252,17 @@ const ZH_ANIMALS: ZhEntry[] = [
   { id: 'zh-e2',    text: '鹅', label: 'é goose' },
   { id: 'zh-ya1',   text: '鸭', label: 'yā duck' },
   { id: 'zh-kong3', text: '恐', label: 'kǒng' },
+  { id: 'zh-hu2',   text: '蝴', label: 'hú' },
+  { id: 'zh-die2',  text: '蝶', label: 'dié' },
+  { id: 'zh-piao2', text: '瓢', label: 'piáo gourd' },
+  { id: 'zh-chong2',text: '虫', label: 'chóng bug' },
+  { id: 'zh-mao2',  text: '毛', label: 'máo hairy' },
+  { id: 'zh-mi4',   text: '蜜', label: 'mì honey' },
+  { id: 'zh-feng1b',text: '蜂', label: 'fēng bee' },
+  { id: 'zh-zhi1',  text: '蜘', label: 'zhī' },
+  { id: 'zh-zhu1b', text: '蛛', label: 'zhū' },
+  { id: 'zh-wu1',   text: '乌', label: 'wū black' },
+  { id: 'zh-gui1',  text: '龟', label: 'guī turtle' },
 ]
 
 // Compound animal words
@@ -266,6 +277,12 @@ const ZH_COMPOUND_ANIMALS: ZhEntry[] = [
   { id: 'zh-xiongmao', text: '熊猫', label: 'xióngmāo panda' },
   { id: 'zh-xiaotu',   text: '小兔', label: 'xiǎotù bunny' },
   { id: 'zh-konglong', text: '恐龙', label: 'kǒnglóng dinosaur' },
+  { id: 'zh-hudie',   text: '蝴蝶', label: 'húdié butterfly' },
+  { id: 'zh-piaochong', text: '瓢虫', label: 'piáochóng ladybug' },
+  { id: 'zh-maomaochong', text: '毛毛虫', label: 'máomaochóng caterpillar' },
+  { id: 'zh-mifeng',  text: '蜜蜂', label: 'mìfēng bee' },
+  { id: 'zh-zhizhu',  text: '蜘蛛', label: 'zhīzhū spider' },
+  { id: 'zh-wugui',   text: '乌龟', label: 'wūguī turtle' },
 ]
 
 // Colours
@@ -289,6 +306,8 @@ const ZH_COLOURS: ZhEntry[] = [
   { id: 'zh-bian1',  text: '边', label: 'biān side' },
   { id: 'zh-ling2',  text: '菱', label: 'líng diamond' },
   { id: 'zh-xin1',   text: '心', label: 'xīn heart' },
+  { id: 'zh-cai3',   text: '彩', label: 'cǎi colour' },
+  { id: 'zh-hong2b', text: '虹', label: 'hóng rainbow' },
 ]
 
 // Compound colour & shape words
@@ -304,6 +323,7 @@ const ZH_COMPOUND_COLOURS: ZhEntry[] = [
   { id: 'zh-liubianxing',   text: '六边形', label: 'liùbiānxíng hexagon' },
   { id: 'zh-lingxing',      text: '菱形',   label: 'língxíng diamond' },
   { id: 'zh-xinxing',       text: '心形',   label: 'xīnxíng heart' },
+  { id: 'zh-caihong',      text: '彩虹',   label: 'cǎihóng rainbow' },
 ]
 
 // Compound numbers
@@ -368,6 +388,24 @@ const ZH_NOUNS: ZhEntry[] = [
   { id: 'zh-tai4',  text: '太', label: 'tài great' },
   { id: 'zh-yang2n',text: '阳', label: 'yáng sun' },
   { id: 'zh-xi4',   text: '系', label: 'xì system' },
+  { id: 'zh-lun2',  text: '轮', label: 'lún wheel' },
+  { id: 'zh-chuan2',text: '船', label: 'chuán boat' },
+  { id: 'zh-dan4',  text: '蛋', label: 'dàn egg' },
+  { id: 'zh-gao1',  text: '糕', label: 'gāo cake' },
+  { id: 'zh-bo1',   text: '菠', label: 'bō' },
+  { id: 'zh-luo2',  text: '萝', label: 'luó' },
+  { id: 'zh-xi1',   text: '西', label: 'xī west' },
+  { id: 'zh-gua1',  text: '瓜', label: 'guā melon' },
+  { id: 'zh-nan2b', text: '南', label: 'nán south' },
+  { id: 'zh-xiang1',text: '香', label: 'xiāng fragrant' },
+  { id: 'zh-jiao1', text: '蕉', label: 'jiāo banana' },
+  { id: 'zh-shu1',  text: '蔬', label: 'shū vegetable' },
+  { id: 'zh-cai4',  text: '菜', label: 'cài dish' },
+  { id: 'zh-qie2',  text: '茄', label: 'qié eggplant' },
+  { id: 'zh-zi3b',  text: '子', label: 'zi suffix' },
+  { id: 'zh-yu3',   text: '宇', label: 'yǔ space' },
+  { id: 'zh-hang2', text: '航', label: 'háng travel' },
+  { id: 'zh-yuan2b',text: '员', label: 'yuán person' },
 ]
 
 // Compound nouns
@@ -393,6 +431,15 @@ const ZH_COMPOUND_NOUNS: ZhEntry[] = [
   { id: 'zh-xuanwo',      text: '漩涡',   label: 'xuánwō whirlpool' },
   { id: 'zh-zuqiu',       text: '足球',   label: 'zúqiú soccer ball' },
   { id: 'zh-taiyangxi',   text: '太阳系', label: 'tàiyángxì solar system' },
+  { id: 'zh-lunchuan',    text: '轮船',   label: 'lúnchuán ship' },
+  { id: 'zh-dangao',      text: '蛋糕',   label: 'dàngāo cake' },
+  { id: 'zh-boluo',       text: '菠萝',   label: 'bōluó pineapple' },
+  { id: 'zh-xigua',       text: '西瓜',   label: 'xīguā watermelon' },
+  { id: 'zh-nangua',      text: '南瓜',   label: 'nánguā pumpkin' },
+  { id: 'zh-xiangjiao',   text: '香蕉',   label: 'xiāngjiāo banana' },
+  { id: 'zh-shucai',      text: '蔬菜',   label: 'shūcài vegetables' },
+  { id: 'zh-qiezi',       text: '茄子',   label: 'qiézi eggplant' },
+  { id: 'zh-yuhangyuan',  text: '宇航员', label: 'yǔhángyuán astronaut' },
 ]
 
 // ---------------------------------------------------------------------------

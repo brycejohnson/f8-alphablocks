@@ -11,14 +11,13 @@ export const zhNounsCurriculum: CurriculumPhase[] = [
     phase: 1,
     name: '认识名词',  // Reveal & Learn Nouns
     gameMode: 'reveal',
-    newPhonemeIds: ['zh-nan2', 'zh-nv3', 'zh-hai2', 'zh-jia1', 'zh-che1', 'zh-fei1', 'zh-dian4', 'zh-hua1', 'zh-xing1', 'zh-tian1', 'zh-di4'],
+    newPhonemeIds: ['zh-nan2', 'zh-nv3', 'zh-hai2', 'zh-jia1', 'zh-che1', 'zh-dian4', 'zh-hua1', 'zh-xing1', 'zh-tian1', 'zh-di4'],
     words: [
       { id: 'zh-nan2',  text: '男', phonemeIds: ['zh-nan2'],  meaning: 'boy' },
       { id: 'zh-nv3',   text: '女', phonemeIds: ['zh-nv3'],   meaning: 'girl' },
       { id: 'zh-hai2',  text: '孩', phonemeIds: ['zh-hai2'],  meaning: 'child', image: '/images/zh-transparent/objects/baby.png' },
       { id: 'zh-jia1',  text: '家', phonemeIds: ['zh-jia1'],  meaning: 'house' },
       { id: 'zh-che1',  text: '车', phonemeIds: ['zh-che1'],  meaning: 'car' },
-      { id: 'zh-fei1',  text: '飞', phonemeIds: ['zh-fei1'],  meaning: 'airplane' },
       { id: 'zh-dian4', text: '电', phonemeIds: ['zh-dian4'], meaning: 'lightning' },
       { id: 'zh-hua1',  text: '花', phonemeIds: ['zh-hua1'],  meaning: 'flower' },
       { id: 'zh-xing1', text: '星', phonemeIds: ['zh-xing1'], meaning: 'star' },
@@ -37,7 +36,6 @@ export const zhNounsCurriculum: CurriculumPhase[] = [
       { id: 'zh-hai2',  text: '孩', phonemeIds: ['zh-hai2'],  meaning: 'child', image: '/images/zh-transparent/objects/baby.png' },
       { id: 'zh-jia1',  text: '家', phonemeIds: ['zh-jia1'],  meaning: 'house' },
       { id: 'zh-che1',  text: '车', phonemeIds: ['zh-che1'],  meaning: 'car' },
-      { id: 'zh-fei1',  text: '飞', phonemeIds: ['zh-fei1'],  meaning: 'airplane' },
       { id: 'zh-dian4', text: '电', phonemeIds: ['zh-dian4'], meaning: 'lightning' },
       { id: 'zh-hua1',  text: '花', phonemeIds: ['zh-hua1'],  meaning: 'flower' },
       { id: 'zh-xing1', text: '星', phonemeIds: ['zh-xing1'], meaning: 'star' },
@@ -64,7 +62,7 @@ export const zhNounsCurriculum: CurriculumPhase[] = [
     phase: 4,
     name: '组合名词',  // Compound Nouns
     gameMode: 'compound',
-    newPhonemeIds: ['zh-bao3', 'zh-xue2', 'zh-xiao4', 'zh-ji1n', 'zh-shi4', 'zh-jing3', 'zh-ba1n', 'zh-shi4n', 'zh-jiu4', 'zh-hu4', 'zh-xiao1', 'zh-fang2', 'zh-ji4', 'zh-cheng2', 'zh-qi4', 'zh-juan3', 'zh-feng1', 'zh-xuan2', 'zh-wo1', 'zh-zu2', 'zh-qiu2', 'zh-tai4', 'zh-yang2n', 'zh-xi4', 'zh-lun2', 'zh-chuan2', 'zh-dan4', 'zh-gao1', 'zh-bo1', 'zh-luo2', 'zh-xi1', 'zh-gua1', 'zh-nan2b', 'zh-xiang1', 'zh-jiao1', 'zh-shu1', 'zh-cai4', 'zh-qie2', 'zh-zi3b'],
+    newPhonemeIds: ['zh-bao3', 'zh-xue2', 'zh-xiao4', 'zh-ji1n', 'zh-shi4', 'zh-jing3', 'zh-ba1n', 'zh-shi4n', 'zh-jiu4', 'zh-hu4', 'zh-xiao1', 'zh-fang2', 'zh-ji4', 'zh-cheng2', 'zh-qi4', 'zh-juan3', 'zh-feng1', 'zh-xuan2', 'zh-wo1', 'zh-zu2', 'zh-qiu2', 'zh-tai4', 'zh-yang2n', 'zh-xi4', 'zh-lun2', 'zh-chuan2', 'zh-dan4', 'zh-gao1', 'zh-bo1', 'zh-luo2', 'zh-xi1', 'zh-gua1', 'zh-nan2b', 'zh-xiang1', 'zh-jiao1', 'zh-shu1', 'zh-cai4', 'zh-qie2', 'zh-zi3b', 'zh-yu3', 'zh-hang2', 'zh-yuan2b'],
     words: [
       { id: 'zh-nanhai',  text: '男孩', phonemeIds: ['zh-nan2', 'zh-hai2'],  meaning: 'boy',        emoji: '👦', image: '/images/zh-transparent/objects/boy.png' },
       { id: 'zh-nvhai',   text: '女孩', phonemeIds: ['zh-nv3', 'zh-hai2'],   meaning: 'girl',       emoji: '👧', image: '/images/zh-transparent/objects/girl.png' },
@@ -92,6 +90,7 @@ export const zhNounsCurriculum: CurriculumPhase[] = [
       { id: 'zh-xiangjiao', text: '香蕉', phonemeIds: ['zh-xiang1', 'zh-jiao1'], meaning: 'banana',    emoji: '🍌', image: '/images/zh-transparent/objects/bananas.png' },
       { id: 'zh-shucai',  text: '蔬菜', phonemeIds: ['zh-shu1', 'zh-cai4'],  meaning: 'vegetables',  emoji: '🥬', image: '/images/zh-transparent/objects/vegetables.png' },
       { id: 'zh-qiezi',   text: '茄子', phonemeIds: ['zh-qie2', 'zh-zi3b'], meaning: 'eggplant',    emoji: '🍆', image: '/images/zh-transparent/objects/eggplant.png' },
+      { id: 'zh-yuhangyuan', text: '宇航员', phonemeIds: ['zh-yu3', 'zh-hang2', 'zh-yuan2b'], meaning: 'astronaut', emoji: '🧑‍🚀', image: '/images/zh-transparent/objects/astronaut.png' },
     ],
   },
   {
@@ -105,7 +104,6 @@ export const zhNounsCurriculum: CurriculumPhase[] = [
       { id: 'zh-hai2',  text: '孩', phonemeIds: ['zh-hai2'],  meaning: 'child', image: '/images/zh-transparent/objects/baby.png' },
       { id: 'zh-jia1',  text: '家', phonemeIds: ['zh-jia1'],  meaning: 'house' },
       { id: 'zh-che1',  text: '车', phonemeIds: ['zh-che1'],  meaning: 'car' },
-      { id: 'zh-fei1',  text: '飞', phonemeIds: ['zh-fei1'],  meaning: 'airplane' },
       { id: 'zh-dian4', text: '电', phonemeIds: ['zh-dian4'], meaning: 'lightning' },
       { id: 'zh-hua1',  text: '花', phonemeIds: ['zh-hua1'],  meaning: 'flower' },
       { id: 'zh-xing1', text: '星', phonemeIds: ['zh-xing1'], meaning: 'star' },
