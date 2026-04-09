@@ -2,6 +2,11 @@
   import { onDestroy } from 'svelte'
   import { game, resetWord } from '$lib/stores/game.svelte'
 
+  interface Props {
+    onCelebrationEnd?: () => void
+  }
+  let { onCelebrationEnd }: Props = $props()
+
   const STAR_COLOURS = ['#FFD700', '#FF6B35', '#4CAF50', '#2196F3', '#E91E63', '#9C27B0', '#00BCD4', '#FF9800']
 
   interface Star {
@@ -104,7 +109,11 @@
         stars = []
         running = false
         game.celebrating = false
-        setTimeout(() => resetWord(), 500)
+        if (onCelebrationEnd) {
+          onCelebrationEnd()
+        } else {
+          setTimeout(() => resetWord(), 500)
+        }
       }
     }
     animFrame = requestAnimationFrame(tick)

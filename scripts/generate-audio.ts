@@ -343,6 +343,10 @@ const ZH_NOUNS: ZhEntry[] = [
   { id: 'zh-chu1',  text: '出', label: 'chū go out' },
   { id: 'zh-zu1',   text: '租', label: 'zū rent' },
   { id: 'zh-qi4',   text: '汽', label: 'qì steam' },
+  { id: 'zh-juan3', text: '卷', label: 'juǎn roll' },
+  { id: 'zh-feng1', text: '风', label: 'fēng wind' },
+  { id: 'zh-xuan2', text: '漩', label: 'xuán swirl' },
+  { id: 'zh-wo1',   text: '涡', label: 'wō vortex' },
 ]
 
 // Compound nouns
@@ -364,6 +368,8 @@ const ZH_COMPOUND_NOUNS: ZhEntry[] = [
   { id: 'zh-jiuhuche',    text: '救护车', label: 'jiùhùchē ambulance' },
   { id: 'zh-xiaofangche', text: '消防车', label: 'xiāofángchē fire truck' },
   { id: 'zh-chuzuche',    text: '出租车', label: 'chūzūchē taxi' },
+  { id: 'zh-longjuanfeng', text: '龙卷风', label: 'lóngjuǎnfēng tornado' },
+  { id: 'zh-xuanwo',      text: '漩涡',   label: 'xuánwō whirlpool' },
 ]
 
 // ---------------------------------------------------------------------------

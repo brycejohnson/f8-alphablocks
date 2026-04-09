@@ -15,12 +15,14 @@
 
   let litUpTo = $derived(game.wordComplete ? phonemes.length : game.phonemeIndex)
   let showCompound = $state(false)
+  let waitingForTap = $state(false)
   let revealedEmojis: Set<number> = $state(new Set())
 
   // Reset state when word changes
   $effect(() => {
     if (game.activeWord) {
       showCompound = false
+      waitingForTap = false
       revealedEmojis = new Set()
     }
   })
@@ -46,9 +48,19 @@
       const played = await playPhoneme(game.activeWord.id, 'zh')
       if (!played) speakFallback(game.activeWord.text, 'zh')
     }
-    await delay(1800)
+    await delay(1200)
     celebrate()
     playCelebration()
+  }
+
+  function handleCelebrationEnd() {
+    waitingForTap = true
+  }
+
+  function handleTapToContinue() {
+    if (!waitingForTap) return
+    waitingForTap = false
+    resetWord()
   }
 
   async function handleBlockTap(index: number) {
@@ -71,7 +83,8 @@
   }
 </script>
 
-<div class="compound-stage" style="position:relative">
+<!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
+<div class="compound-stage" style="position:relative" onclick={handleTapToContinue}>
 
   {#if game.activeWord}
     <!-- Compound result — emoji above, component emojis to sides -->
@@ -116,9 +129,7 @@
             onclick={() => handleBlockTap(i)}
           >
             <span class="char">{phoneme.symbol}</span>
-            {#if !game.wordComplete}
-              <span class="char-meaning">{phoneme.meaning ?? ''}</span>
-            {/if}
+            <span class="char-meaning">{phoneme.meaning ?? ''}</span>
           </button>
         </div>
         {#if i < phonemes.length - 1 && !game.wordComplete}
@@ -129,11 +140,13 @@
 
     {#if !game.wordComplete}
       <p class="instruction">Tap each character in order!</p>
+    {:else if waitingForTap}
+      <p class="instruction tap-continue">Tap to continue</p>
     {/if}
   {:else}
     <p class="prompt">Loading…</p>
   {/if}
-  <CelebrationOverlay />
+  <CelebrationOverlay onCelebrationEnd={handleCelebrationEnd} />
 </div>
 
 <style>
@@ -334,6 +347,15 @@
     font-size: 1rem;
     font-weight: 600;
     z-index: 2;
+  }
+
+  .tap-continue {
+    animation: fade-pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes fade-pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
   }
 
   .prompt {

@@ -8,29 +8,36 @@
 
   let revealed = $state(false)
   let showEmoji = $state(false)
+  let waitingForTap = $state(false)
 
-  // Reset state when word changes
+  // Reset state and auto-reveal when word changes
   $effect(() => {
     if (game.activeWord) {
       revealed = false
       showEmoji = false
+      waitingForTap = false
+      autoReveal()
     }
   })
 
-  async function handleTap() {
-    if (!game.activeWord || revealed) return
+  async function autoReveal() {
+    if (!game.activeWord) return
     ensureAudioContext()
-    playTapClick()
+
+    // "Get ready!" pause
+    await delay(1500)
+    if (!game.activeWord) return // word changed during pause
 
     // Reveal the character
     revealed = true
+    playTapClick()
 
     // Play pronunciation
     const phonemeId = game.activeWord.phonemeIds[0]
     const played = await playPhoneme(phonemeId, 'zh')
     if (!played) speakFallback(game.activeWord.text, 'zh')
 
-    // Show emoji after a beat
+    // Show image after a beat
     await delay(400)
     showEmoji = true
 
@@ -44,9 +51,16 @@
     game.wordComplete = true
     celebrate()
     playCelebration()
+  }
 
-    // CelebrationOverlay handles resetWord after stars finish
-    // Don't reset revealed/showEmoji here — let the content stay visible during celebration
+  function handleCelebrationEnd() {
+    waitingForTap = true
+  }
+
+  function handleTapToContinue() {
+    if (!waitingForTap) return
+    waitingForTap = false
+    resetWord()
   }
 
   function delay(ms: number) {
@@ -54,7 +68,8 @@
   }
 </script>
 
-<div class="reveal-stage" style="position:relative">
+<!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
+<div class="reveal-stage" style="position:relative" onclick={handleTapToContinue}>
   {#if game.activeWord}
     {@const word = game.activeWord}
     {@const phoneme = zhPhonemeMap.get(word.phonemeIds[0])}
@@ -73,23 +88,25 @@
       class="char-block"
       class:revealed
       style="--colour: {phoneme?.colour ?? '#fff'}"
-      onclick={handleTap}
+      onclick={handleTapToContinue}
     >
       <span class="char">{word.text}</span>
+      {#if revealed}
+        <span class="char-meaning">{word.meaning ?? phoneme?.meaning ?? ''}</span>
+      {/if}
     </button>
 
-    <!-- Meaning label after reveal -->
-    <div class="meaning" class:visible={showEmoji}>
-      {word.meaning ?? phoneme?.meaning ?? ''}
-    </div>
-
     {#if !revealed}
-      <p class="hint">Tap to reveal!</p>
+      <p class="hint">Get ready!</p>
+    {:else if waitingForTap}
+      <p class="hint">Tap to continue</p>
+    {:else}
+      <p class="hint">&nbsp;</p>
     {/if}
   {:else}
     <p class="prompt"></p>
   {/if}
-  <CelebrationOverlay />
+  <CelebrationOverlay onCelebrationEnd={handleCelebrationEnd} />
 </div>
 
 <style>
@@ -132,8 +149,10 @@
     background: #1a1a2e;
     cursor: pointer;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 4px;
     transition: background 0.4s ease, transform 0.15s ease, box-shadow 0.4s ease;
     box-shadow: 0 8px 0 rgba(0,0,0,0.3), 0 4px 20px rgba(0,0,0,0.3);
     -webkit-tap-highlight-color: transparent;
@@ -161,17 +180,11 @@
     color: #1a1a1a;
   }
 
-  .meaning {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: rgba(255,255,255,0.8);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    text-transform: capitalize;
-  }
-
-  .meaning.visible {
-    opacity: 1;
+  .char-meaning {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(0,0,0,0.4);
+    pointer-events: none;
   }
 
   .hint {

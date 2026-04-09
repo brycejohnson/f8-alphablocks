@@ -55,8 +55,7 @@ export const zhColoursCurriculum: CurriculumPhase[] = [
     gameMode: 'compound',
     newPhonemeIds: [],
     words: [
-      { id: 'zh-lvshan',   text: '绿山', phonemeIds: ['zh-lv4', 'zh-shan1'],   meaning: 'green mountain', emoji: '🌄' },
-      { id: 'zh-huangniu', text: '黄牛', phonemeIds: ['zh-huang2', 'zh-niu2'], meaning: 'yellow cow',    emoji: '' },
+
       { id: 'zh-baima',    text: '白马', phonemeIds: ['zh-bai2', 'zh-ma3'],    meaning: 'white horse',   emoji: '🦄', image: '/images/zh-transparent/animals/whitehorse.png' },
       { id: 'zh-jinyu',    text: '金鱼', phonemeIds: ['zh-jin1', 'zh-yu2'],    meaning: 'goldfish',      emoji: '🐠', image: '/images/zh-transparent/animals/goldfish.png' },
       { id: 'zh-honglong', text: '红龙', phonemeIds: ['zh-hong2', 'zh-long2'], meaning: 'red dragon',    emoji: '🐲', image: '/images/zh-transparent/animals/reddragon.png' },

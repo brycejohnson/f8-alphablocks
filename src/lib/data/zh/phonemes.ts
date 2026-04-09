@@ -79,8 +79,8 @@ export const zhColours: Phoneme[] = [
 // Nouns: People, Places, Things
 export const zhNouns: Phoneme[] = [
   // People
-  { id: 'zh-nan2',  symbol: '男', ipa: 'nán',  colour: '#1565C0', audioFile: 'zh-nan2.m4a',  meaning: 'boy',       emoji: '', image: '/images/zh-transparent/objects/boy.png' },
-  { id: 'zh-nv3',   symbol: '女', ipa: 'nǚ',   colour: '#E91E63', audioFile: 'zh-nv3.m4a',   meaning: 'girl',      emoji: '', image: '/images/zh-transparent/objects/girl.png' },
+  { id: 'zh-nan2',  symbol: '男', ipa: 'nán',  colour: '#1565C0', audioFile: 'zh-nan2.m4a',  meaning: 'male',      emoji: '', image: '/images/zh-transparent/objects/boy.png' },
+  { id: 'zh-nv3',   symbol: '女', ipa: 'nǚ',   colour: '#E91E63', audioFile: 'zh-nv3.m4a',   meaning: 'female',    emoji: '', image: '/images/zh-transparent/objects/girl.png' },
   { id: 'zh-hai2',  symbol: '孩', ipa: 'hái',  colour: '#FF8F00', audioFile: 'zh-hai2.m4a',  meaning: 'child',     emoji: '' },
   { id: 'zh-bao3',  symbol: '宝', ipa: 'bǎo',  colour: '#FFD54F', audioFile: 'zh-bao3.m4a',  meaning: 'treasure',  emoji: '' },
   // Places
@@ -107,6 +107,10 @@ export const zhNouns: Phoneme[] = [
   { id: 'zh-chu1',  symbol: '出', ipa: 'chū',  colour: '#0277BD', audioFile: 'zh-chu1.m4a',  meaning: 'go out',    emoji: '' },
   { id: 'zh-zu1',   symbol: '租', ipa: 'zū',   colour: '#F9A825', audioFile: 'zh-zu1.m4a',   meaning: 'rent',      emoji: '' },
   { id: 'zh-qi4',   symbol: '汽', ipa: 'qì',   colour: '#78909C', audioFile: 'zh-qi4.m4a',   meaning: 'steam',     emoji: '' },
+  { id: 'zh-juan3', symbol: '卷', ipa: 'juǎn', colour: '#607D8B', audioFile: 'zh-juan3.m4a', meaning: 'roll',      emoji: '' },
+  { id: 'zh-feng1', symbol: '风', ipa: 'fēng', colour: '#90A4AE', audioFile: 'zh-feng1.m4a', meaning: 'wind',      emoji: '' },
+  { id: 'zh-xuan2', symbol: '漩', ipa: 'xuán', colour: '#0277BD', audioFile: 'zh-xuan2.m4a', meaning: 'swirl',     emoji: '' },
+  { id: 'zh-wo1',   symbol: '涡', ipa: 'wō',   colour: '#01579B', audioFile: 'zh-wo1.m4a',   meaning: 'vortex',    emoji: '' },
 ]
 
 export const zhAllPhonemes = [...zhCharacters, ...zhNumbers, ...zhAnimals, ...zhColours, ...zhNouns]
