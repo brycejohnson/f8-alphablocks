@@ -309,6 +309,10 @@ const ZH_COMPOUND_NUMBERS: ZhEntry[] = [
   { id: 'zh-qishi',  text: '七十', label: 'qīshí seventy' },
   { id: 'zh-bashi',  text: '八十', label: 'bāshí eighty' },
   { id: 'zh-jiushi', text: '九十', label: 'jiǔshí ninety' },
+  { id: 'zh-ershiyi',   text: '二十一', label: 'èrshíyī twenty-one' },
+  { id: 'zh-sanshiwu',  text: '三十五', label: 'sānshíwǔ thirty-five' },
+  { id: 'zh-wushiba',   text: '五十八', label: 'wǔshíbā fifty-eight' },
+  { id: 'zh-jiushijiu', text: '九十九', label: 'jiǔshíjiǔ ninety-nine' },
 ]
 
 // Nouns: People, Places, Things
@@ -329,6 +333,16 @@ const ZH_NOUNS: ZhEntry[] = [
   { id: 'zh-shi4',  text: '视', label: 'shì vision' },
   { id: 'zh-hua1',  text: '花', label: 'huā flower' },
   { id: 'zh-xing1', text: '星', label: 'xīng star' },
+  { id: 'zh-jing3', text: '警', label: 'jǐng police' },
+  { id: 'zh-ba1n',  text: '巴', label: 'bā bus' },
+  { id: 'zh-shi4n', text: '士', label: 'shì soldier' },
+  { id: 'zh-jiu4',  text: '救', label: 'jiù rescue' },
+  { id: 'zh-hu4',   text: '护', label: 'hù protect' },
+  { id: 'zh-xiao1', text: '消', label: 'xiāo extinguish' },
+  { id: 'zh-fang2', text: '防', label: 'fáng prevent' },
+  { id: 'zh-chu1',  text: '出', label: 'chū go out' },
+  { id: 'zh-zu1',   text: '租', label: 'zū rent' },
+  { id: 'zh-qi4',   text: '汽', label: 'qì steam' },
 ]
 
 // Compound nouns
@@ -344,6 +358,12 @@ const ZH_COMPOUND_NOUNS: ZhEntry[] = [
   { id: 'zh-tiandi',  text: '天地', label: 'tiāndì heaven and earth' },
   { id: 'zh-huohua',  text: '火花', label: 'huǒhuā spark' },
   { id: 'zh-mingxing',text: '明星', label: 'míngxīng celebrity' },
+  { id: 'zh-xiaoche', text: '校车', label: 'xiàochē school bus' },
+  { id: 'zh-jingche', text: '警车', label: 'jǐngchē police car' },
+  { id: 'zh-bashi-bus', text: '巴士', label: 'bāshì bus' },
+  { id: 'zh-jiuhuche',    text: '救护车', label: 'jiùhùchē ambulance' },
+  { id: 'zh-xiaofangche', text: '消防车', label: 'xiāofángchē fire truck' },
+  { id: 'zh-chuzuche',    text: '出租车', label: 'chūzūchē taxi' },
 ]
 
 // ---------------------------------------------------------------------------

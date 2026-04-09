@@ -64,7 +64,7 @@ export const zhNounsCurriculum: CurriculumPhase[] = [
     phase: 4,
     name: '组合名词',  // Compound Nouns
     gameMode: 'compound',
-    newPhonemeIds: ['zh-bao3', 'zh-xue2', 'zh-xiao4', 'zh-ji1n', 'zh-shi4'],
+    newPhonemeIds: ['zh-bao3', 'zh-xue2', 'zh-xiao4', 'zh-ji1n', 'zh-shi4', 'zh-jing3', 'zh-ba1n', 'zh-shi4n', 'zh-jiu4', 'zh-hu4', 'zh-xiao1', 'zh-fang2', 'zh-chu1', 'zh-zu1', 'zh-qi4'],
     words: [
       { id: 'zh-nanhai',  text: '男孩', phonemeIds: ['zh-nan2', 'zh-hai2'],  meaning: 'boy',        emoji: '👦' },
       { id: 'zh-nvhai',   text: '女孩', phonemeIds: ['zh-nv3', 'zh-hai2'],   meaning: 'girl',       emoji: '👧' },
@@ -73,6 +73,13 @@ export const zhNounsCurriculum: CurriculumPhase[] = [
       { id: 'zh-feiji',   text: '飞机', phonemeIds: ['zh-fei1', 'zh-ji1n'],  meaning: 'airplane',   emoji: '✈️', image: '/images/zh-transparent/objects/plane.png' },
       { id: 'zh-dianshi', text: '电视', phonemeIds: ['zh-dian4', 'zh-shi4'], meaning: 'television', emoji: '📺', image: '/images/zh-transparent/objects/television.png' },
       { id: 'zh-huoche',  text: '火车', phonemeIds: ['zh-huo3', 'zh-che1'],  meaning: 'train',      emoji: '🚂' },
+      { id: 'zh-xiaoche', text: '校车', phonemeIds: ['zh-xiao4', 'zh-che1'], meaning: 'school bus', emoji: '🚌', image: '/images/zh-transparent/objects/schoolbus.png' },
+      { id: 'zh-jingche', text: '警车', phonemeIds: ['zh-jing3', 'zh-che1'], meaning: 'police car', emoji: '🚔', image: '/images/zh-transparent/objects/policecar.png' },
+      { id: 'zh-bashi-bus',   text: '巴士', phonemeIds: ['zh-ba1n', 'zh-shi4n'], meaning: 'bus',        emoji: '🚌', image: '/images/zh-transparent/objects/bus.png' },
+      // 3-character compound words
+      { id: 'zh-jiuhuche',  text: '救护车', phonemeIds: ['zh-jiu4', 'zh-hu4', 'zh-che1'],   meaning: 'ambulance',   emoji: '🚑', image: '/images/zh-transparent/objects/ambulance.png' },
+      { id: 'zh-xiaofangche', text: '消防车', phonemeIds: ['zh-xiao1', 'zh-fang2', 'zh-che1'], meaning: 'fire truck', emoji: '🚒', image: '/images/zh-transparent/objects/firetruck.png' },
+      { id: 'zh-chuzuche', text: '出租车', phonemeIds: ['zh-chu1', 'zh-zu1', 'zh-che1'],    meaning: 'taxi',        emoji: '🚕' },
       { id: 'zh-daxue',   text: '大学', phonemeIds: ['zh-da4', 'zh-xue2'],   meaning: 'university', emoji: '🎓' },
       { id: 'zh-tiandi',  text: '天地', phonemeIds: ['zh-tian1', 'zh-di4'],  meaning: 'heaven & earth', emoji: '🌏' },
       { id: 'zh-huohua',  text: '火花', phonemeIds: ['zh-huo3', 'zh-hua1'],  meaning: 'spark',      emoji: '✨' },

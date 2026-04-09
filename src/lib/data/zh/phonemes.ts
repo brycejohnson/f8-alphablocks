@@ -97,6 +97,16 @@ export const zhNouns: Phoneme[] = [
   { id: 'zh-shi4',  symbol: '视', ipa: 'shì',  colour: '#607D8B', audioFile: 'zh-shi4.m4a',  meaning: 'vision',    emoji: '👁️' },
   { id: 'zh-hua1',  symbol: '花', ipa: 'huā',  colour: '#E91E63', audioFile: 'zh-hua1.m4a',  meaning: 'flower',    emoji: '🌸' },
   { id: 'zh-xing1', symbol: '星', ipa: 'xīng', colour: '#FFD54F', audioFile: 'zh-xing1.m4a', meaning: 'star',      emoji: '⭐' },
+  { id: 'zh-jing3', symbol: '警', ipa: 'jǐng', colour: '#1A237E', audioFile: 'zh-jing3.m4a', meaning: 'police',    emoji: '👮' },
+  { id: 'zh-ba1n',  symbol: '巴', ipa: 'bā',   colour: '#4CAF50', audioFile: 'zh-ba1n.m4a',  meaning: 'bus',       emoji: '🚌' },
+  { id: 'zh-shi4n', symbol: '士', ipa: 'shì',  colour: '#607D8B', audioFile: 'zh-shi4n.m4a', meaning: 'soldier',   emoji: '💂' },
+  { id: 'zh-jiu4',  symbol: '救', ipa: 'jiù',  colour: '#D32F2F', audioFile: 'zh-jiu4.m4a',  meaning: 'rescue',    emoji: '🆘' },
+  { id: 'zh-hu4',   symbol: '护', ipa: 'hù',   colour: '#C62828', audioFile: 'zh-hu4.m4a',   meaning: 'protect',   emoji: '🛡️' },
+  { id: 'zh-xiao1', symbol: '消', ipa: 'xiāo', colour: '#E65100', audioFile: 'zh-xiao1.m4a', meaning: 'extinguish',emoji: '🧯' },
+  { id: 'zh-fang2', symbol: '防', ipa: 'fáng', colour: '#BF360C', audioFile: 'zh-fang2.m4a', meaning: 'prevent',   emoji: '🔥' },
+  { id: 'zh-chu1',  symbol: '出', ipa: 'chū',  colour: '#0277BD', audioFile: 'zh-chu1.m4a',  meaning: 'go out',    emoji: '🚪' },
+  { id: 'zh-zu1',   symbol: '租', ipa: 'zū',   colour: '#F9A825', audioFile: 'zh-zu1.m4a',   meaning: 'rent',      emoji: '🚕' },
+  { id: 'zh-qi4',   symbol: '汽', ipa: 'qì',   colour: '#78909C', audioFile: 'zh-qi4.m4a',   meaning: 'steam',     emoji: '💨' },
 ]
 
 export const zhAllPhonemes = [...zhCharacters, ...zhNumbers, ...zhAnimals, ...zhColours, ...zhNouns]

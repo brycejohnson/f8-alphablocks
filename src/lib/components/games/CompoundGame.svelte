@@ -98,7 +98,7 @@
     </div>
 
     <!-- Character blocks — tap in sequence to combine -->
-    <div class="blocks" class:joined={game.wordComplete}>
+    <div class="blocks" class:joined={game.wordComplete} class:three-plus={phonemes.length >= 3}>
       {#each phonemes as phoneme, i}
         <div class="block-with-emoji">
           <div class="block-emoji" class:visible={revealedEmojis.has(i)}>
@@ -257,6 +257,30 @@
     font-size: 2rem;
     font-weight: 900;
     color: rgba(255,255,255,0.4);
+  }
+
+  .blocks.three-plus {
+    gap: 6px;
+  }
+
+  .blocks.three-plus .char-block {
+    width: clamp(60px, 16vw, 100px);
+    height: clamp(70px, 18vw, 110px);
+    border-radius: 16px;
+    border-width: 4px;
+  }
+
+  .blocks.three-plus .char {
+    font-size: clamp(1.6rem, 6vw, 2.5rem);
+  }
+
+  .blocks.three-plus .plus {
+    font-size: 1.4rem;
+  }
+
+  .blocks.three-plus .block-image {
+    width: 45px;
+    height: 45px;
   }
 
   .char-block {

@@ -87,6 +87,11 @@ export const zhNumbersCurriculum: CurriculumPhase[] = [
       { id: 'zh-qishi',  text: '七十', phonemeIds: ['zh-qi1', 'zh-shi2'],  meaning: 'seventy',   digits: [7, 0] },
       { id: 'zh-bashi',  text: '八十', phonemeIds: ['zh-ba1', 'zh-shi2'],  meaning: 'eighty',    digits: [8, 0] },
       { id: 'zh-jiushi', text: '九十', phonemeIds: ['zh-jiu3', 'zh-shi2'], meaning: 'ninety',    digits: [9, 0] },
+      // 3-character compound numbers
+      { id: 'zh-ershiyi',  text: '二十一', phonemeIds: ['zh-er4', 'zh-shi2', 'zh-yi1'],  meaning: 'twenty-one',   digits: [2, 1] },
+      { id: 'zh-sanshiwu', text: '三十五', phonemeIds: ['zh-san1', 'zh-shi2', 'zh-wu3'], meaning: 'thirty-five',  digits: [3, 5] },
+      { id: 'zh-wushiba',  text: '五十八', phonemeIds: ['zh-wu3', 'zh-shi2', 'zh-ba1'],  meaning: 'fifty-eight',  digits: [5, 8] },
+      { id: 'zh-jiushijiu',text: '九十九', phonemeIds: ['zh-jiu3', 'zh-shi2', 'zh-jiu3'],meaning: 'ninety-nine',  digits: [9, 9] },
     ],
   },
   {
