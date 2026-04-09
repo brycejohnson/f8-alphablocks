@@ -69,7 +69,7 @@ export const zhNounsCurriculum: CurriculumPhase[] = [
       { id: 'zh-nanhai',  text: '男孩', phonemeIds: ['zh-nan2', 'zh-hai2'],  meaning: 'boy',        emoji: '👦' },
       { id: 'zh-nvhai',   text: '女孩', phonemeIds: ['zh-nv3', 'zh-hai2'],   meaning: 'girl',       emoji: '👧' },
       { id: 'zh-baobao',  text: '宝宝', phonemeIds: ['zh-bao3', 'zh-bao3'],  meaning: 'baby',       emoji: '👶' },
-      { id: 'zh-xuexiao', text: '学校', phonemeIds: ['zh-xue2', 'zh-xiao4'], meaning: 'school',     emoji: '🏫' },
+      { id: 'zh-xuexiao', text: '学校', phonemeIds: ['zh-xue2', 'zh-xiao4'], meaning: 'school',     emoji: '🏫', image: '/images/zh-transparent/objects/school.png' },
       { id: 'zh-feiji',   text: '飞机', phonemeIds: ['zh-fei1', 'zh-ji1n'],  meaning: 'airplane',   emoji: '✈️', image: '/images/zh-transparent/objects/plane.png' },
       { id: 'zh-dianshi', text: '电视', phonemeIds: ['zh-dian4', 'zh-shi4'], meaning: 'television', emoji: '📺', image: '/images/zh-transparent/objects/television.png' },
       { id: 'zh-huoche',  text: '火车', phonemeIds: ['zh-huo3', 'zh-che1'],  meaning: 'train',      emoji: '🚂' },
