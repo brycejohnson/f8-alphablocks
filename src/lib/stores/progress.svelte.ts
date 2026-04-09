@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'alphablocks_progress_v1'
+const STORAGE_KEY = 'volcanofrog_progress_v1'
 
 interface ProgressData {
   unlockedPhase: Record<string, number>

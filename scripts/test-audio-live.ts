@@ -9,14 +9,14 @@
  *
  * Usage:
  *   npx ts-node --project tsconfig.scripts.json scripts/test-audio-live.ts
- *   BASE_URL=https://your-deployment.pages.dev/alphablocks npx ts-node --project tsconfig.scripts.json scripts/test-audio-live.ts
+ *   BASE_URL=https://your-deployment.pages.dev/volcanofrog npx ts-node --project tsconfig.scripts.json scripts/test-audio-live.ts
  */
 
 import * as https from 'https'
 import * as http from 'http'
 import { URL } from 'url'
 
-const BASE_URL = process.env.BASE_URL ?? 'https://aq-website.pages.dev/alphablocks'
+const BASE_URL = process.env.BASE_URL ?? 'https://aq-website.pages.dev/volcanofrog'
 const CACHE_BUST = 'v=6'
 
 // All phoneme IDs that have generated audio files (matches generate-audio.ts EN_PHONEMES)

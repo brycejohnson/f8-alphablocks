@@ -1,5 +1,5 @@
 /**
- * Deploy f8-alphablocks to Cloudflare Pages
+ * Deploy volcanofrog to Cloudflare Pages
  * Same pattern as aq-website/deploy.mjs
  *
  * Usage:
@@ -24,7 +24,7 @@ const envWithPath = {
 }
 
 const action = process.argv[2] || 'install'
-const projectName = 'f8-alphablocks'
+const projectName = 'volcanofrog'
 const accountId = '3436927bbff054905cd261f5bdd1a773'
 
 let output = ''

@@ -12,8 +12,8 @@ const config = {
       precompress: false
     }),
     paths: {
-      // Empty base for native app builds (Capacitor), '/alphablocks' for web deploy
-      base: process.env.NATIVE_BUILD ? '' : '/alphablocks'
+      // Empty base for native app builds (Capacitor), '/volcanofrog' for web deploy
+      base: process.env.NATIVE_BUILD ? '' : '/volcanofrog'
     }
   }
 }

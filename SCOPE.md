@@ -1,8 +1,8 @@
-# f8-Alphablocks — Technical Scope
+# Volcanofrog — Technical Scope
 
 ## Concept
 
-**f8-Alphablocks** is a children's phonetics game inspired by the BBC's *Alphablocks* series. Animated letter characters teach phonics interactively — children tap letters to hear their sounds, build words, and progress through games that reinforce sound-symbol relationships.
+**Volcanofrog** is a children's phonetics game inspired by the BBC's *Alphablocks* series. Animated letter characters teach phonics interactively — children tap letters to hear their sounds, build words, and progress through games that reinforce sound-symbol relationships.
 
 **Languages:** English (primary), Mandarin Chinese (secondary)
 
@@ -231,7 +231,7 @@ utterance.lang = 'zh-CN'
 
 **1. The fundamental React problem for games**
 
-React's job is to watch state, diff a virtual DOM tree, and sync changes to the real DOM. For a game, it's dead weight. The Alphablocks render loop runs entirely inside PixiJS:
+React's job is to watch state, diff a virtual DOM tree, and sync changes to the real DOM. For a game, it's dead weight. The Volcanofrog render loop runs entirely inside PixiJS:
 
 ```
 PixiJS ticker fires (60fps)
@@ -341,12 +341,12 @@ No official `@pixi/svelte` package. With React you get `@pixi/react` first-party
 
 Scaffold command:
 ```bash
-npm create svelte@latest f8-alphablocks
+npm create svelte@latest volcanofrog
 # select: SvelteKit, TypeScript, no additional options
 npm install pixi.js gsap
 ```
 
-**Note on Moneylasso:** Moneylasso uses React 19 + `@pixi/react`. For Alphablocks we deliberately step up to Svelte 5 — the game-heavy workload makes the VDOM overhead matter more, and Svelte's Runes are a cleaner fit for language switching than Zustand + React hooks.
+**Note on Moneylasso:** Moneylasso uses React 19 + `@pixi/react`. For Volcanofrog we deliberately step up to Svelte 5 — the game-heavy workload makes the VDOM overhead matter more, and Svelte's Runes are a cleaner fit for language switching than Zustand + React hooks.
 
 ### Game Renderer — PixiJS v8 + @pixi/react
 - **PixiJS v8** — 2D WebGL/WebGPU renderer, hardware-accelerated
@@ -1112,7 +1112,7 @@ The word list is expected to grow from isolated phonemes and CVC words into full
 | Sentences added | ~5,000+ | ~200 MB | SW install pre-cache takes minutes — browser kills it |
 | Multi-language sentences | ~20,000+ | ~800 MB | Pages paid plan: 100K file limit; iOS Safari SW cache quota: ~50 MB |
 
-The iOS Safari 50 MB SW cache quota is the most important ceiling. Each cross-origin audio response also carries a 7 MB opaque-response overhead in the SW Cache API regardless of actual file size — so keeping audio on the same origin (`/alphablocks/audio/`) is non-negotiable.
+The iOS Safari 50 MB SW cache quota is the most important ceiling. Each cross-origin audio response also carries a 7 MB opaque-response overhead in the SW Cache API regardless of actual file size — so keeping audio on the same origin (`/volcanofrog/audio/`) is non-negotiable.
 
 ---
 
@@ -1140,14 +1140,14 @@ Audio ships inside the Pages deployment. The Service Worker pre-warms the cache 
 #### 2. Cloudflare R2 + phase-aware SW caching
 **(Recommended next step — target: 1,000+ files)**
 
-Audio moves out of the Pages deployment into Cloudflare R2 (object storage), served via a Cloudflare Worker routed at `/alphablocks/audio/*`. The SW caches only the current phase and the next phase (~50–80 files) rather than the entire library.
+Audio moves out of the Pages deployment into Cloudflare R2 (object storage), served via a Cloudflare Worker routed at `/volcanofrog/audio/*`. The SW caches only the current phase and the next phase (~50–80 files) rather than the entire library.
 
 **R2 pricing:**
 - Storage: $0.015/GB/month (400 MB ≈ $6/month)
 - Reads: 10 million/month free, then $0.36/million
 - Egress: free (unlike AWS S3 or GCS — critical advantage)
 
-**Why route R2 through a Worker:** R2 served from a different origin (`r2.yourdomain.com`) would be cross-origin, triggering the 7 MB SW opaque-response penalty per file. A Worker at `/alphablocks/audio/*` keeps it same-origin — no overhead.
+**Why route R2 through a Worker:** R2 served from a different origin (`r2.yourdomain.com`) would be cross-origin, triggering the 7 MB SW opaque-response penalty per file. A Worker at `/volcanofrog/audio/*` keeps it same-origin — no overhead.
 
 **Phase-aware caching pattern:** When the user completes Phase 1, background-download Phase 2 audio. The user never waits; the next phase is ready before they reach it. `progress.svelte.ts` already tracks which phase the user is on.
 
@@ -1155,7 +1155,7 @@ Audio moves out of the Pages deployment into Cloudflare R2 (object storage), ser
 ```
 Generate audio → wrangler r2 object put (once, not every deploy)
 SvelteKit build → wrangler pages deploy (no audio in bundle)
-Worker rewrites /alphablocks/audio/* → R2 reads
+Worker rewrites /volcanofrog/audio/* → R2 reads
 ```
 
 **Verdict:** The right architecture for sentences. Sets up the infrastructure without over-engineering now.
@@ -1181,7 +1181,7 @@ A Cloudflare Worker intercepts requests for audio that hasn't been pre-generated
 - Three languages = 1.2 million characters — still within the Neural2 free tier
 - After generation: zero per-play cost — R2 serves the cached file indefinitely
 
-**Verdict:** Essential when sentence mode is added. Not needed today, but the audio route architecture (`/alphablocks/audio/*` via Worker) should be in place before then.
+**Verdict:** Essential when sentence mode is added. Not needed today, but the audio route architecture (`/volcanofrog/audio/*` via Worker) should be in place before then.
 
 ---
 
@@ -1238,11 +1238,11 @@ The one Safari trap: if audio is cross-origin and the SW returns an opaque respo
 
 **Now — current state (~130 files)**
 - Static files in Pages + SW install-time pre-cache
-- Audio served at `/alphablocks/audio/*` (same origin — preserve this)
+- Audio served at `/volcanofrog/audio/*` (same origin — preserve this)
 - Web Speech API fallback for any missing files
 
 **Next — sentence groundwork (~1,000 files)**
-1. Move audio to **Cloudflare R2**, proxied via a Worker at `/alphablocks/audio/*`
+1. Move audio to **Cloudflare R2**, proxied via a Worker at `/volcanofrog/audio/*`
 2. Switch SW from install-time pre-cache to **phase-aware pre-cache** (current + next phase, ~50–80 files)
 3. Add **speculative prefetch** in `GameCanvas.svelte`: when a word starts playing, background-fetch the next word's audio
 4. Keep `CACHE_VERSION` in the SW; migrate to Workbox when the catalogue becomes large enough to justify automatic manifest generation

@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: 'Volcano Frog',
   webDir: 'build',
   server: {
-    // App runs at root in native shell, not under /alphablocks/
+    // App runs at root in native shell, not under /volcanofrog/
     url: undefined,
   },
 };

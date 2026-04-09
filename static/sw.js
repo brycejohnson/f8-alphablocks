@@ -1,5 +1,5 @@
 /**
- * Alphablocks Service Worker — phase-aware, lazy-cache audio
+ * Volcanofrog Service Worker — phase-aware, lazy-cache audio
  *
  * Strategy:
  * - No install-time bulk pre-cache (avoids 50MB iOS quota, avoids blocking)
@@ -9,7 +9,7 @@
  */
 
 const CACHE_VERSION = 'v6'
-const CACHE_NAME = `alphablocks-audio-${CACHE_VERSION}`
+const CACHE_NAME = `volcanofrog-audio-${CACHE_VERSION}`
 
 // ── Install: activate immediately, no pre-caching ─────────────────────────────
 self.addEventListener('install', () => {
@@ -22,7 +22,7 @@ self.addEventListener('activate', (event) => {
     caches.keys().then(keys =>
       Promise.all(
         keys
-          .filter(k => k.startsWith('alphablocks-audio-') && k !== CACHE_NAME)
+          .filter(k => k.startsWith('volcanofrog-audio-') && k !== CACHE_NAME)
           .map(k => caches.delete(k))
       )
     ).then(() => self.clients.claim())

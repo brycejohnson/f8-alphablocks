@@ -1,7 +1,7 @@
 /**
  * Batch audio generation script — Google Cloud TTS Neural2
  *
- * Generates all phoneme + word audio files for f8-alphablocks.
+ * Generates all phoneme + word audio files for volcanofrog.
  * IDs match exactly what the curriculum/phonemePlayer expects.
  * Skips files that already exist — safe to re-run.
  *
@@ -575,7 +575,7 @@ async function main() {
   const args = process.argv.slice(2)
   const lang = args.find(a => a.startsWith('--lang='))?.split('=')[1]
 
-  console.log('f8-alphablocks — Google Cloud TTS batch generator')
+  console.log('volcanofrog — Google Cloud TTS batch generator')
   console.log(`Output: ${OUTPUT_EN}, ${OUTPUT_ZH}`)
 
   if (!lang || lang === 'en') await generateEnglish()

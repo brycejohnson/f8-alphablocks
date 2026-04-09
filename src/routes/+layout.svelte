@@ -7,7 +7,7 @@
 
   onMount(() => {
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/alphablocks/sw.js', { scope: '/alphablocks/' })
+      navigator.serviceWorker.register('/volcanofrog/sw.js', { scope: '/volcanofrog/' })
     }
   })
 </script>

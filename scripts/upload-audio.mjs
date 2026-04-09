@@ -29,7 +29,7 @@ const accountId = '3436927bbff054905cd261f5bdd1a773'
 
 const cfEnv = { ...envWithPath, CLOUDFLARE_API_TOKEN: token, CLOUDFLARE_ACCOUNT_ID: accountId }
 
-const BUCKET = 'f8-alphablocks-audio'
+const BUCKET = 'volcanofrog-audio'
 const AUDIO_DIR = resolve(projectDir, 'static', 'audio')
 
 function run(cmd) {

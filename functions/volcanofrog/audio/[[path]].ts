@@ -1,6 +1,6 @@
 /**
  * Cloudflare Pages Function — Audio proxy
- * Route: /alphablocks/audio/:lang/:id.m4a
+ * Route: /volcanofrog/audio/:lang/:id.m4a
  *
  * 1. Try R2 first (cache-first, near-zero latency, free egress)
  * 2. If missing, call Google TTS, store result in R2, return audio

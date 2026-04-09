@@ -1,5 +1,5 @@
 #!/bin/bash
-# Upload audio files to Cloudflare R2 (alphablocks-audio bucket)
+# Upload audio files to Cloudflare R2 (volcanofrog-audio bucket)
 # Run this when audio files change — not needed on every deploy.
 # Requires CLOUDFLARE_API_TOKEN in cloudflare.env or environment.
 
@@ -18,7 +18,7 @@ if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
   exit 1
 fi
 
-BUCKET="alphablocks-audio"
+BUCKET="volcanofrog-audio"
 AUDIO_DIR="$ROOT_DIR/static/audio"
 
 echo "Uploading EN audio..."

@@ -2,7 +2,7 @@
   import type { Snippet } from 'svelte'
 
   const PASS_HASH = '9e7f3375709b613eac449f47489c7749d7fd986874dc5d1a69cd28b6ddd4ad93'
-  const STORAGE_KEY = 'alphablocks_auth'
+  const STORAGE_KEY = 'volcanofrog_auth'
 
   let { children }: { children: Snippet } = $props()
 
