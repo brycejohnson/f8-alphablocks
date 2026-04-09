@@ -121,6 +121,11 @@ export const zhNouns: Phoneme[] = [
   { id: 'zh-feng1', symbol: '风', ipa: 'fēng', colour: '#90A4AE', audioFile: 'zh-feng1.m4a', meaning: 'wind',      emoji: '' },
   { id: 'zh-xuan2', symbol: '漩', ipa: 'xuán', colour: '#0277BD', audioFile: 'zh-xuan2.m4a', meaning: 'swirl',     emoji: '' },
   { id: 'zh-wo1',   symbol: '涡', ipa: 'wō',   colour: '#01579B', audioFile: 'zh-wo1.m4a',   meaning: 'vortex',    emoji: '' },
+  { id: 'zh-zu2',   symbol: '足', ipa: 'zú',   colour: '#4CAF50', audioFile: 'zh-zu2.m4a',   meaning: 'foot',      emoji: '', image: '/images/zh-transparent/objects/soccerball.png' },
+  { id: 'zh-qiu2',  symbol: '球', ipa: 'qiú',  colour: '#FF9800', audioFile: 'zh-qiu2.m4a',  meaning: 'ball',      emoji: '' },
+  { id: 'zh-tai4',  symbol: '太', ipa: 'tài',  colour: '#F9A825', audioFile: 'zh-tai4.m4a',  meaning: 'great',     emoji: '' },
+  { id: 'zh-yang2n',symbol: '阳', ipa: 'yáng', colour: '#FF6F00', audioFile: 'zh-yang2n.m4a',meaning: 'sun',       emoji: '', image: '/images/zh-transparent/objects/sun.png' },
+  { id: 'zh-xi4',   symbol: '系', ipa: 'xì',   colour: '#5C6BC0', audioFile: 'zh-xi4.m4a',   meaning: 'system',    emoji: '' },
 ]
 
 export const zhAllPhonemes = [...zhCharacters, ...zhNumbers, ...zhAnimals, ...zhColours, ...zhNouns]

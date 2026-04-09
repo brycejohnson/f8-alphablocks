@@ -363,6 +363,11 @@ const ZH_NOUNS: ZhEntry[] = [
   { id: 'zh-feng1', text: '风', label: 'fēng wind' },
   { id: 'zh-xuan2', text: '漩', label: 'xuán swirl' },
   { id: 'zh-wo1',   text: '涡', label: 'wō vortex' },
+  { id: 'zh-zu2',   text: '足', label: 'zú foot' },
+  { id: 'zh-qiu2',  text: '球', label: 'qiú ball' },
+  { id: 'zh-tai4',  text: '太', label: 'tài great' },
+  { id: 'zh-yang2n',text: '阳', label: 'yáng sun' },
+  { id: 'zh-xi4',   text: '系', label: 'xì system' },
 ]
 
 // Compound nouns
@@ -386,6 +391,8 @@ const ZH_COMPOUND_NOUNS: ZhEntry[] = [
   { id: 'zh-jichengche',  text: '计程车', label: 'jìchéngchē taxi' },
   { id: 'zh-longjuanfeng', text: '龙卷风', label: 'lóngjuǎnfēng tornado' },
   { id: 'zh-xuanwo',      text: '漩涡',   label: 'xuánwō whirlpool' },
+  { id: 'zh-zuqiu',       text: '足球',   label: 'zúqiú soccer ball' },
+  { id: 'zh-taiyangxi',   text: '太阳系', label: 'tàiyángxì solar system' },
 ]
 
 // ---------------------------------------------------------------------------

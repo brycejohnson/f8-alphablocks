@@ -64,7 +64,7 @@ export const zhNounsCurriculum: CurriculumPhase[] = [
     phase: 4,
     name: '组合名词',  // Compound Nouns
     gameMode: 'compound',
-    newPhonemeIds: ['zh-bao3', 'zh-xue2', 'zh-xiao4', 'zh-ji1n', 'zh-shi4', 'zh-jing3', 'zh-ba1n', 'zh-shi4n', 'zh-jiu4', 'zh-hu4', 'zh-xiao1', 'zh-fang2', 'zh-ji4', 'zh-cheng2', 'zh-qi4', 'zh-juan3', 'zh-feng1', 'zh-xuan2', 'zh-wo1'],
+    newPhonemeIds: ['zh-bao3', 'zh-xue2', 'zh-xiao4', 'zh-ji1n', 'zh-shi4', 'zh-jing3', 'zh-ba1n', 'zh-shi4n', 'zh-jiu4', 'zh-hu4', 'zh-xiao1', 'zh-fang2', 'zh-ji4', 'zh-cheng2', 'zh-qi4', 'zh-juan3', 'zh-feng1', 'zh-xuan2', 'zh-wo1', 'zh-zu2', 'zh-qiu2', 'zh-tai4', 'zh-yang2n', 'zh-xi4'],
     words: [
       { id: 'zh-nanhai',  text: '男孩', phonemeIds: ['zh-nan2', 'zh-hai2'],  meaning: 'boy',        emoji: '👦', image: '/images/zh-transparent/objects/boy.png' },
       { id: 'zh-nvhai',   text: '女孩', phonemeIds: ['zh-nv3', 'zh-hai2'],   meaning: 'girl',       emoji: '👧', image: '/images/zh-transparent/objects/girl.png' },
@@ -82,6 +82,8 @@ export const zhNounsCurriculum: CurriculumPhase[] = [
       { id: 'zh-jichengche', text: '计程车', phonemeIds: ['zh-ji4', 'zh-cheng2', 'zh-che1'],  meaning: 'taxi',        emoji: '🚕', image: '/images/zh-transparent/objects/taxi.png' },
       { id: 'zh-longjuanfeng', text: '龙卷风', phonemeIds: ['zh-long2', 'zh-juan3', 'zh-feng1'], meaning: 'tornado',   emoji: '🌪️', image: '/images/zh-transparent/objects/tornado.png' },
       { id: 'zh-xuanwo',  text: '漩涡', phonemeIds: ['zh-xuan2', 'zh-wo1'],  meaning: 'whirlpool', emoji: '🌀', image: '/images/zh-transparent/objects/whirlpool.png' },
+      { id: 'zh-zuqiu',  text: '足球', phonemeIds: ['zh-zu2', 'zh-qiu2'],  meaning: 'soccer ball', emoji: '⚽', image: '/images/zh-transparent/objects/soccerball.png' },
+      { id: 'zh-taiyangxi', text: '太阳系', phonemeIds: ['zh-tai4', 'zh-yang2n', 'zh-xi4'], meaning: 'solar system', emoji: '🪐', image: '/images/zh-transparent/objects/solarsystem.png' },
     ],
   },
   {
