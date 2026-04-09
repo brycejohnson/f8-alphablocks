@@ -295,9 +295,55 @@ const ZH_COMPOUND_NUMBERS: ZhEntry[] = [
   { id: 'zh-shiyi',  text: '十一', label: 'shíyī eleven' },
   { id: 'zh-shier',  text: '十二', label: 'shíèr twelve' },
   { id: 'zh-shisan', text: '十三', label: 'shísān thirteen' },
+  { id: 'zh-shisi',  text: '十四', label: 'shísì fourteen' },
   { id: 'zh-shiwu',  text: '十五', label: 'shíwǔ fifteen' },
+  { id: 'zh-shiliu', text: '十六', label: 'shíliù sixteen' },
+  { id: 'zh-shiqi',  text: '十七', label: 'shíqī seventeen' },
+  { id: 'zh-shiba',  text: '十八', label: 'shíbā eighteen' },
+  { id: 'zh-shijiu', text: '十九', label: 'shíjiǔ nineteen' },
   { id: 'zh-ershi',  text: '二十', label: 'èrshí twenty' },
+  { id: 'zh-sanshi', text: '三十', label: 'sānshí thirty' },
+  { id: 'zh-sishi',  text: '四十', label: 'sìshí forty' },
+  { id: 'zh-wushi',  text: '五十', label: 'wǔshí fifty' },
+  { id: 'zh-liushi', text: '六十', label: 'liùshí sixty' },
+  { id: 'zh-qishi',  text: '七十', label: 'qīshí seventy' },
+  { id: 'zh-bashi',  text: '八十', label: 'bāshí eighty' },
   { id: 'zh-jiushi', text: '九十', label: 'jiǔshí ninety' },
+]
+
+// Nouns: People, Places, Things
+const ZH_NOUNS: ZhEntry[] = [
+  { id: 'zh-nan2',  text: '男', label: 'nán male' },
+  { id: 'zh-nv3',   text: '女', label: 'nǚ female' },
+  { id: 'zh-hai2',  text: '孩', label: 'hái child' },
+  { id: 'zh-bao3',  text: '宝', label: 'bǎo treasure' },
+  { id: 'zh-jia1',  text: '家', label: 'jiā home' },
+  { id: 'zh-xue2',  text: '学', label: 'xué study' },
+  { id: 'zh-xiao4', text: '校', label: 'xiào school' },
+  { id: 'zh-tian1', text: '天', label: 'tiān sky' },
+  { id: 'zh-di4',   text: '地', label: 'dì ground' },
+  { id: 'zh-che1',  text: '车', label: 'chē car' },
+  { id: 'zh-fei1',  text: '飞', label: 'fēi fly' },
+  { id: 'zh-ji1n',  text: '机', label: 'jī machine' },
+  { id: 'zh-dian4', text: '电', label: 'diàn electric' },
+  { id: 'zh-shi4',  text: '视', label: 'shì vision' },
+  { id: 'zh-hua1',  text: '花', label: 'huā flower' },
+  { id: 'zh-xing1', text: '星', label: 'xīng star' },
+]
+
+// Compound nouns
+const ZH_COMPOUND_NOUNS: ZhEntry[] = [
+  { id: 'zh-nanhai',  text: '男孩', label: 'nánhái boy' },
+  { id: 'zh-nvhai',   text: '女孩', label: 'nǚhái girl' },
+  { id: 'zh-baobao',  text: '宝宝', label: 'bǎobao baby' },
+  { id: 'zh-xuexiao', text: '学校', label: 'xuéxiào school' },
+  { id: 'zh-feiji',   text: '飞机', label: 'fēijī airplane' },
+  { id: 'zh-dianshi', text: '电视', label: 'diànshì television' },
+  { id: 'zh-huoche',  text: '火车', label: 'huǒchē train' },
+  { id: 'zh-daxue',   text: '大学', label: 'dàxué university' },
+  { id: 'zh-tiandi',  text: '天地', label: 'tiāndì heaven and earth' },
+  { id: 'zh-huohua',  text: '火花', label: 'huǒhuā spark' },
+  { id: 'zh-mingxing',text: '明星', label: 'míngxīng celebrity' },
 ]
 
 // ---------------------------------------------------------------------------
@@ -470,6 +516,26 @@ async function generateMandarin() {
 
   console.log('\n── Mandarin compound colours ──')
   for (const w of ZH_COMPOUND_COLOURS) {
+    await generateFile({
+      outputPath: path.join(OUTPUT_ZH, `${w.id}.m4a`),
+      text: w.text,
+      languageCode: 'cmn-CN',
+      voiceName: 'cmn-CN-Chirp3-HD-Aoede',
+    })
+  }
+
+  console.log('\n── Mandarin nouns ──')
+  for (const p of ZH_NOUNS) {
+    await generateFile({
+      outputPath: path.join(OUTPUT_ZH, `${p.id}.m4a`),
+      text: p.text,
+      languageCode: 'cmn-CN',
+      voiceName: 'cmn-CN-Chirp3-HD-Aoede',
+    })
+  }
+
+  console.log('\n── Mandarin compound nouns ──')
+  for (const w of ZH_COMPOUND_NOUNS) {
     await generateFile({
       outputPath: path.join(OUTPUT_ZH, `${w.id}.m4a`),
       text: w.text,

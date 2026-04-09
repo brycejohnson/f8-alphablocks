@@ -4,6 +4,7 @@
   import { zhNumbersCurriculum } from '$lib/data/curriculum/zh-numbers'
   import { zhAnimalsCurriculum } from '$lib/data/curriculum/zh-animals'
   import { zhColoursCurriculum } from '$lib/data/curriculum/zh-colours'
+  import { zhNounsCurriculum } from '$lib/data/curriculum/zh-nouns'
   import { selectPhase } from '$lib/stores/game.svelte'
   import { ensureAudioContext } from '$lib/audio/phonemePlayer'
   import { base } from '$app/paths'
@@ -14,6 +15,7 @@
     { id: 'zh-numbers',    name: '数字 Numbers',    icon: '🔢', phases: zhNumbersCurriculum,    image: '/images/zh-transparent/numbers/1.png' },
     { id: 'zh-animals',    name: '动物 Animals',    icon: '🐻', phases: zhAnimalsCurriculum,    image: '/images/zh-transparent/animals/tiger.png' },
     { id: 'zh-colours',    name: '颜色 Colours',    icon: '🎨', phases: zhColoursCurriculum,    image: '/images/zh-transparent/objects/colors.png' },
+    { id: 'zh-nouns',      name: '名词 Nouns',      icon: '🏠', phases: zhNounsCurriculum,     image: '/images/zh-transparent/objects/house.png' },
   ]
 
   const modeIcons: Record<string, string> = {

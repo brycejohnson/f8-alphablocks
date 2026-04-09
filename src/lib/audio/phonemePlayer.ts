@@ -34,19 +34,19 @@ export function ensureAudioContext(): void {
   if (!ctx) {
     ctx = new AudioContextClass()
     dbg(`ensureAC: CREATED ctx, state=${ctx.state}, sampleRate=${ctx.sampleRate}`)
-  } else if (ctx.state === 'suspended') {
-    dbg('ensureAC: resuming suspended ctx')
-    ctx.resume()
   } else {
-    dbg(`ensureAC: ctx already ${ctx.state}`)
+    // Always resume on every tap — iOS can suspend context at any time
+    // resume() is a no-op if already running, so safe to call always
+    ctx.resume()
+    dbg(`ensureAC: resume called, state=${ctx.state}`)
   }
 }
 
 // Ensure context is running before any playback — awaits resume if needed.
 // Used by playPhoneme which may be called outside a gesture (e.g. after a delay).
 async function ensureRunning(): Promise<AudioContext | null> {
-  if (!ctx) {
-    // No context yet — can't create one outside a gesture on iOS.
+  if (!ctx || (ctx as any).state === 'closed') {
+    // No context or closed — can't create one outside a gesture on iOS.
     // Try anyway (works on desktop, Android).
     if (!AudioContextClass) return null
     ctx = new AudioContextClass()
@@ -108,6 +108,10 @@ async function getOrDecode(id: string, language: string): Promise<AudioBuffer | 
 // Play a phoneme. Call after ensureAudioContext() has been called in the tap handler.
 // Returns true if audio played, false on any failure (caller may use speakFallback).
 export async function playPhoneme(id: string, language?: 'en' | 'zh'): Promise<boolean> {
+  // Always try to resume context before playing — iOS suspends it aggressively
+  if (ctx && ctx.state === 'suspended') {
+    try { await ctx.resume() } catch { /* silent */ }
+  }
   dbg(`playPhoneme: ${id}, raw=${rawCache.has(id)}, buf=${bufferCache.has(id)}`)
   const buffer = await getOrDecode(id, language ?? '')
   if (!buffer) { dbg(`playPhoneme: NO BUFFER for ${id}`); return false }

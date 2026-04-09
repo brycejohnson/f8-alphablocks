@@ -18,7 +18,7 @@ export const zhCharacters: Phoneme[] = [
   { id: 'zh-shui3', symbol: '水', ipa: 'shuǐ',  colour: '#1565C0', audioFile: 'zh-shui3.m4a', meaning: 'water',    emoji: '💧', image: '/images/zh-transparent/objects/water.png' },
   { id: 'zh-da4',   symbol: '大', ipa: 'dà',    colour: '#B71C1C', audioFile: 'zh-da4.m4a',   meaning: 'big',      emoji: '' },
   { id: 'zh-xiao3', symbol: '小', ipa: 'xiǎo',  colour: '#42A5F5', audioFile: 'zh-xiao3.m4a', meaning: 'small',    emoji: '' },
-  { id: 'zh-ren2',  symbol: '人', ipa: 'rén',   colour: '#6D4C41', audioFile: 'zh-ren2.m4a',  meaning: 'person',   emoji: '🧑', image: '/images/zh-transparent/objects/adult.png' },
+  { id: 'zh-ren2',  symbol: '人', ipa: 'rén',   colour: '#6D4C41', audioFile: 'zh-ren2.m4a',  meaning: 'person',   emoji: '🧑', image: '/images/zh-transparent/objects/boy.png' },
   { id: 'zh-ri4',   symbol: '日', ipa: 'rì',    colour: '#F9A825', audioFile: 'zh-ri4.m4a',   meaning: 'sun',      emoji: '☀️', image: '/images/zh-transparent/objects/sun.png' },
   { id: 'zh-yue4',  symbol: '月', ipa: 'yuè',   colour: '#78909C', audioFile: 'zh-yue4.m4a',  meaning: 'moon',     emoji: '🌙', image: '/images/zh-transparent/objects/moon.png' },
   { id: 'zh-mu4',   symbol: '木', ipa: 'mù',    colour: '#558B2F', audioFile: 'zh-mu4.m4a',   meaning: 'tree',     emoji: '🌳', image: '/images/zh-transparent/objects/tree.png' },
@@ -76,5 +76,28 @@ export const zhColours: Phoneme[] = [
   { id: 'zh-jin1',  symbol: '金', ipa: 'jīn',   colour: '#FFB300', audioFile: 'zh-jin1.m4a',  meaning: 'gold',   emoji: '🥇', image: '/images/zh-transparent/colours/gold.png' },
 ]
 
-export const zhAllPhonemes = [...zhCharacters, ...zhNumbers, ...zhAnimals, ...zhColours]
+// Nouns: People, Places, Things
+export const zhNouns: Phoneme[] = [
+  // People
+  { id: 'zh-nan2',  symbol: '男', ipa: 'nán',  colour: '#1565C0', audioFile: 'zh-nan2.m4a',  meaning: 'male',      emoji: '👦', image: '/images/zh-transparent/objects/boy.png' },
+  { id: 'zh-nv3',   symbol: '女', ipa: 'nǚ',   colour: '#E91E63', audioFile: 'zh-nv3.m4a',   meaning: 'female',    emoji: '👧', image: '/images/zh-transparent/objects/girl.png' },
+  { id: 'zh-hai2',  symbol: '孩', ipa: 'hái',  colour: '#FF8F00', audioFile: 'zh-hai2.m4a',  meaning: 'child',     emoji: '🧒' },
+  { id: 'zh-bao3',  symbol: '宝', ipa: 'bǎo',  colour: '#FFD54F', audioFile: 'zh-bao3.m4a',  meaning: 'treasure',  emoji: '💎' },
+  // Places
+  { id: 'zh-jia1',  symbol: '家', ipa: 'jiā',  colour: '#795548', audioFile: 'zh-jia1.m4a',  meaning: 'home',      emoji: '🏠', image: '/images/zh-transparent/objects/house.png' },
+  { id: 'zh-xue2',  symbol: '学', ipa: 'xué',  colour: '#4CAF50', audioFile: 'zh-xue2.m4a',  meaning: 'study',     emoji: '📚' },
+  { id: 'zh-xiao4', symbol: '校', ipa: 'xiào', colour: '#2E7D32', audioFile: 'zh-xiao4.m4a', meaning: 'school',    emoji: '🏫' },
+  { id: 'zh-tian1', symbol: '天', ipa: 'tiān', colour: '#42A5F5', audioFile: 'zh-tian1.m4a', meaning: 'sky/day',   emoji: '🌤️' },
+  { id: 'zh-di4',   symbol: '地', ipa: 'dì',   colour: '#6D4C41', audioFile: 'zh-di4.m4a',   meaning: 'ground',    emoji: '🌍' },
+  // Things
+  { id: 'zh-che1',  symbol: '车', ipa: 'chē',  colour: '#F44336', audioFile: 'zh-che1.m4a',  meaning: 'car',       emoji: '🚗' },
+  { id: 'zh-fei1',  symbol: '飞', ipa: 'fēi',  colour: '#0288D1', audioFile: 'zh-fei1.m4a',  meaning: 'fly',       emoji: '✈️' },
+  { id: 'zh-ji1n',  symbol: '机', ipa: 'jī',   colour: '#78909C', audioFile: 'zh-ji1n.m4a',  meaning: 'machine',   emoji: '⚙️' },
+  { id: 'zh-dian4', symbol: '电', ipa: 'diàn', colour: '#FFC107', audioFile: 'zh-dian4.m4a', meaning: 'electric',  emoji: '⚡' },
+  { id: 'zh-shi4',  symbol: '视', ipa: 'shì',  colour: '#607D8B', audioFile: 'zh-shi4.m4a',  meaning: 'vision',    emoji: '👁️' },
+  { id: 'zh-hua1',  symbol: '花', ipa: 'huā',  colour: '#E91E63', audioFile: 'zh-hua1.m4a',  meaning: 'flower',    emoji: '🌸' },
+  { id: 'zh-xing1', symbol: '星', ipa: 'xīng', colour: '#FFD54F', audioFile: 'zh-xing1.m4a', meaning: 'star',      emoji: '⭐' },
+]
+
+export const zhAllPhonemes = [...zhCharacters, ...zhNumbers, ...zhAnimals, ...zhColours, ...zhNouns]
 export const zhPhonemeMap = new Map(zhAllPhonemes.map(p => [p.id, p]))
