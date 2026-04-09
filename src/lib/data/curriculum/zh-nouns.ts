@@ -81,9 +81,7 @@ export const zhNounsCurriculum: CurriculumPhase[] = [
       { id: 'zh-xiaofangche', text: '消防车', phonemeIds: ['zh-xiao1', 'zh-fang2', 'zh-che1'], meaning: 'fire truck', emoji: '🚒', image: '/images/zh-transparent/objects/firetruck.png' },
       { id: 'zh-chuzuche', text: '出租车', phonemeIds: ['zh-chu1', 'zh-zu1', 'zh-che1'],    meaning: 'taxi',        emoji: '🚕' },
       { id: 'zh-daxue',   text: '大学', phonemeIds: ['zh-da4', 'zh-xue2'],   meaning: 'university', emoji: '🎓' },
-      { id: 'zh-tiandi',  text: '天地', phonemeIds: ['zh-tian1', 'zh-di4'],  meaning: 'heaven & earth', emoji: '🌏' },
       { id: 'zh-huohua',  text: '火花', phonemeIds: ['zh-huo3', 'zh-hua1'],  meaning: 'spark',      emoji: '✨' },
-      { id: 'zh-mingxing',text: '明星', phonemeIds: ['zh-ri4', 'zh-xing1'],  meaning: 'star/celebrity', emoji: '🌟' },
     ],
   },
   {
