@@ -1,33 +1,60 @@
 <script lang="ts">
+  import { onMount } from 'svelte'
   import type { Snippet } from 'svelte'
-
-  const PASS_HASH = '9e7f3375709b613eac449f47489c7749d7fd986874dc5d1a69cd28b6ddd4ad93'
-  const STORAGE_KEY = 'volcanofrog_auth'
+  import { base } from '$app/paths'
 
   let { children }: { children: Snippet } = $props()
 
-  let authed = $state(typeof sessionStorage !== 'undefined' && sessionStorage.getItem(STORAGE_KEY) === 'true')
+  let authed = $state(false)
+  let loading = $state(true)
   let input = $state('')
   let error = $state(false)
   let checking = $state(false)
 
-  async function sha256(message: string): Promise<string> {
-    const msgBuffer = new TextEncoder().encode(message)
-    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer)
-    const hashArray = Array.from(new Uint8Array(hashBuffer))
-    return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
-  }
+  const isDev = import.meta.env.DEV
+
+  onMount(async () => {
+    // Skip auth gate in dev mode (no Cloudflare Functions available)
+    if (isDev) {
+      authed = true
+      loading = false
+      return
+    }
+
+    // Check if we have a valid session cookie (server-side)
+    try {
+      const res = await fetch(`${base}/auth/check`, { credentials: 'same-origin' })
+      const data = await res.json()
+      if (data.ok) {
+        authed = true
+      }
+    } catch {
+      // Server unavailable — stay on gate
+    }
+    loading = false
+  })
 
   async function handleSubmit(e: SubmitEvent) {
     e.preventDefault()
     checking = true
     error = false
 
-    const hash = await sha256(input)
-    if (hash === PASS_HASH) {
-      sessionStorage.setItem(STORAGE_KEY, 'true')
-      setTimeout(() => { authed = true }, 300)
-    } else {
+    try {
+      const res = await fetch(`${base}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+        body: JSON.stringify({ code: input }),
+      })
+      const data = await res.json()
+
+      if (data.ok) {
+        setTimeout(() => { authed = true }, 300)
+      } else {
+        error = true
+        input = ''
+      }
+    } catch {
       error = true
       input = ''
     }
@@ -35,12 +62,19 @@
   }
 </script>
 
-{#if authed}
+{#if loading}
+  <div class="backdrop">
+    <div class="card">
+      <div class="logo">Volcano Frog</div>
+      <p class="subtitle">Loading...</p>
+    </div>
+  </div>
+{:else if authed}
   {@render children()}
 {:else}
   <div class="backdrop">
     <form class="card" onsubmit={handleSubmit}>
-      <div class="logo">Alphablocks</div>
+      <div class="logo">Volcano Frog</div>
       <p class="subtitle">Enter access code to continue</p>
       <input
         type="password"

@@ -27,5 +27,5 @@ html, body {
   font-style: normal;
   font-weight: 700 900;
   font-display: swap;
-  src: url('/fonts/Nunito-Bold.woff2') format('woff2');
+  src: url('./fonts/Nunito-Bold.woff2') format('woff2');
 }

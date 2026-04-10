@@ -5,10 +5,10 @@
  * - No install-time bulk pre-cache (avoids 50MB iOS quota, avoids blocking)
  * - Cache-first for any /audio/ request
  * - Audio is cached lazily as it's played; speculative prefetch in app
- * - Old caches deleted on activate
+ * - Old caches deleted on activate; all clients reloaded on version bump
  */
 
-const CACHE_VERSION = 'v6'
+const CACHE_VERSION = 'v8'
 const CACHE_NAME = `volcanofrog-audio-${CACHE_VERSION}`
 
 // ── Install: activate immediately, no pre-caching ─────────────────────────────
@@ -16,16 +16,23 @@ self.addEventListener('install', () => {
   self.skipWaiting()
 })
 
-// ── Activate: delete old caches, claim all clients ───────────────────────────
+// ── Activate: delete ALL old caches, claim clients, reload them ──────────────
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then(keys =>
       Promise.all(
         keys
-          .filter(k => k.startsWith('volcanofrog-audio-') && k !== CACHE_NAME)
+          .filter(k => k !== CACHE_NAME)
           .map(k => caches.delete(k))
       )
-    ).then(() => self.clients.claim())
+    )
+    .then(() => self.clients.claim())
+    .then(() => self.clients.matchAll({ type: 'window' }))
+    .then(clients => {
+      for (const client of clients) {
+        client.postMessage({ type: 'SW_UPDATED' })
+      }
+    })
   )
 })
 

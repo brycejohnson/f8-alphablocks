@@ -70,9 +70,32 @@ async function synthesiseWithTts(
   return bytes.buffer
 }
 
+const ALLOWED_ORIGINS = [
+  'https://alphaquantium.com',
+  'https://volcanofrog.com',
+  'https://www.volcanofrog.com',
+]
+
+function corsOrigin(request: Request): string {
+  const origin = request.headers.get('Origin') ?? ''
+  // Allow *.pages.dev preview URLs and localhost for dev
+  if (ALLOWED_ORIGINS.includes(origin)
+    || origin.endsWith('.pages.dev')
+    || origin.startsWith('http://localhost')) {
+    return origin
+  }
+  return ALLOWED_ORIGINS[0]
+}
+
 export const onRequest: PagesFunction<Env> = async ({ request, env, params }) => {
   // params.path is an array e.g. ['en', 'en-a.m4a']
   const pathParts = (params.path as string[])
+
+  // Path traversal protection
+  if (pathParts.some(p => p.includes('..') || p.includes('\0'))) {
+    return new Response('Not found', { status: 404 })
+  }
+
   const r2Key = 'audio/' + pathParts.join('/')
 
   // 1. R2 lookup
@@ -84,7 +107,7 @@ export const onRequest: PagesFunction<Env> = async ({ request, env, params }) =>
       headers: {
         'Content-Type': ct,
         'Cache-Control': 'public, max-age=31536000, immutable',
-        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': corsOrigin(request),
       },
     })
   }
@@ -112,7 +135,7 @@ export const onRequest: PagesFunction<Env> = async ({ request, env, params }) =>
     headers: {
       'Content-Type': 'audio/mp4',
       'Cache-Control': 'public, max-age=31536000, immutable',
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': corsOrigin(request),
     },
   })
 }

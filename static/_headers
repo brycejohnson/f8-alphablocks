@@ -1,0 +1,21 @@
+# ── Security headers (all pages) ──────────────────────────────────────────────
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+# ── Cache: HTML + SW must always revalidate ───────────────────────────────────
+/volcanofrog/
+  Cache-Control: no-cache, no-store, must-revalidate
+/volcanofrog/index.html
+  Cache-Control: no-cache, no-store, must-revalidate
+/volcanofrog/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+/
+  Cache-Control: no-cache, no-store, must-revalidate
+/index.html
+  Cache-Control: no-cache, no-store, must-revalidate
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
