@@ -101,7 +101,13 @@
     {:else if waitingForTap}
       <button class="frog-prompt" onclick={handleTapToContinue}>
         <img src="{base}/images/zh-transparent/objects/volcanofrog.png" alt="Next" class="frog-icon" />
-        <span class="frog-label">Next <span class="arrow">▶</span></span>
+        <span class="frog-label">
+          <span class="label-stack">
+            <span>Next</span>
+            <span class="label-zh">下一个</span>
+          </span>
+          <span class="arrow">▶</span>
+        </span>
       </button>
     {:else}
       <p class="hint">&nbsp;</p>
@@ -239,6 +245,19 @@
     align-items: center;
     gap: 6px;
     line-height: 1;
+  }
+
+  .label-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.1;
+  }
+
+  .label-zh {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.6);
+    font-weight: 600;
   }
 
   .arrow {

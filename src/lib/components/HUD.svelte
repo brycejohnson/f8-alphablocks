@@ -8,7 +8,13 @@
 <div class="hud">
   <div class="hud-left">
     {#if showBack}
-      <button class="back-btn" onclick={backToPhases}>← 返回</button>
+      <button class="back-btn" onclick={backToPhases}>
+        <span class="back-arrow">◀</span>
+        <span class="back-text">
+          <span>Back</span>
+          <span class="back-zh">返回</span>
+        </span>
+      </button>
     {/if}
     <div class="score">⭐ {game.score}</div>
   </div>
@@ -47,6 +53,9 @@
 
   .back-btn {
     pointer-events: all;
+    display: flex;
+    align-items: center;
+    gap: 6px;
     background: rgba(255,255,255,0.15);
     border: 2px solid rgba(255,255,255,0.4);
     border-radius: 20px;
@@ -58,6 +67,24 @@
     backdrop-filter: blur(4px);
     transition: background 0.2s;
     -webkit-tap-highlight-color: transparent;
+  }
+
+  .back-arrow {
+    color: #4CAF50;
+    font-size: 1.1rem;
+  }
+
+  .back-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.1;
+  }
+
+  .back-zh {
+    font-size: 0.55rem;
+    color: rgba(255,255,255,0.6);
+    font-weight: 600;
   }
 
   .back-btn:hover {
