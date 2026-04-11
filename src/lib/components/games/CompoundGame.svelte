@@ -138,11 +138,22 @@
       {/each}
     </div>
 
-    {#if !game.wordComplete}
-      <p class="instruction">Tap each character in order!</p>
-    {:else if waitingForTap}
-      <p class="instruction tap-continue">Tap to continue</p>
-    {/if}
+    <div class="hint-area">
+      {#if !game.wordComplete}
+        <p class="instruction">Tap each character in order!</p>
+      {:else if waitingForTap}
+        <button class="frog-prompt" onclick={handleTapToContinue}>
+          <img src="{base}/images/zh-transparent/objects/volcanofrog.png" alt="Next" class="frog-icon" />
+          <span class="frog-label">
+            <span class="label-stack">
+              <span>Next</span>
+              <span class="label-zh">下一个</span>
+            </span>
+            <span class="arrow">▶</span>
+          </span>
+        </button>
+      {/if}
+    </div>
   {:else}
     <p class="prompt">Loading…</p>
   {/if}
@@ -349,13 +360,73 @@
     z-index: 2;
   }
 
-  .tap-continue {
-    animation: fade-pulse 1.5s ease-in-out infinite;
+  .hint-area {
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  @keyframes fade-pulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
+  .frog-prompt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.12);
+    border: 2px solid rgba(255,255,255,0.25);
+    border-radius: 24px;
+    padding: 8px 24px 8px 8px;
+    cursor: pointer;
+    animation: frog-bounce 1s ease-in-out infinite;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.2s;
+  }
+
+  .frog-prompt:hover {
+    background: rgba(255,255,255,0.2);
+  }
+
+  .frog-prompt:active {
+    transform: scale(0.95);
+  }
+
+  .frog-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+
+  .frog-label {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1;
+  }
+
+  .label-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.1;
+  }
+
+  .label-zh {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.6);
+    font-weight: 600;
+  }
+
+  .arrow {
+    color: #4CAF50;
+    font-size: 1.4rem;
+  }
+
+  @keyframes frog-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
   }
 
   .prompt {
