@@ -1,5 +1,5 @@
 {
   "version": 1,
-  "include": ["/volcanofrog/audio/*", "/volcanofrog/auth/*"],
-  "exclude": []
+  "include": ["/volcanofrog/*"],
+  "exclude": ["/volcanofrog/_app/*"]
 }

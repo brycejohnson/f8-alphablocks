@@ -25,7 +25,7 @@
     ensureAudioContext()
 
     // "Get ready!" pause
-    await delay(1500)
+    await delay(700)
     if (!game.activeWord) return // word changed during pause
 
     // Reveal the character

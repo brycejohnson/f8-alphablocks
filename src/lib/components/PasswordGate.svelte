@@ -11,17 +11,21 @@
   let error = $state(false)
   let checking = $state(false)
 
-  const isDev = import.meta.env.DEV
+  const isDev = false // import.meta.env.DEV
+
+  const zhBlocks = [
+    { char: '火', colour: '#E53935' },
+    { char: '山', colour: '#2E7D32' },
+    { char: '蛙', colour: '#1565C0' },
+  ]
 
   onMount(async () => {
-    // Skip auth gate in dev mode (no Cloudflare Functions available)
     if (isDev) {
       authed = true
       loading = false
       return
     }
 
-    // Check if we have a valid session cookie (server-side)
     try {
       const res = await fetch(`${base}/auth/check`, { credentials: 'same-origin' })
       const data = await res.json()
@@ -65,7 +69,7 @@
 {#if loading}
   <div class="backdrop">
     <div class="card">
-      <div class="logo">Volcano Frog</div>
+      <img src="{base}/images/zh-transparent/objects/vf-title.png" alt="Volcano Frog" class="title-img" />
       <p class="subtitle">Loading...</p>
     </div>
   </div>
@@ -74,7 +78,11 @@
 {:else}
   <div class="backdrop">
     <form class="card" onsubmit={handleSubmit}>
-      <div class="logo">Volcano Frog</div>
+      <div class="hero">
+        <img src="{base}/images/zh-transparent/objects/frog-felt.jpg" alt="Volcano Frog mascot" class="frog-img" />
+        <img src="{base}/images/zh-transparent/objects/vf-title.png" alt="Volcano Frog" class="title-img" />
+      </div>
+
       <p class="subtitle">Enter access code to continue</p>
       <input
         type="password"
@@ -89,6 +97,12 @@
       <button type="submit" disabled={checking || !input}>
         {checking ? 'Checking...' : 'Enter'}
       </button>
+
+      <div class="zh-blocks">
+        {#each zhBlocks as block}
+          <span class="zh-block" style="border-color: {block.colour}; color: {block.colour}">{block.char}</span>
+        {/each}
+      </div>
     </form>
   </div>
 {/if}
@@ -102,6 +116,7 @@
     align-items: center;
     justify-content: center;
     z-index: 9999;
+    overflow-y: auto;
   }
 
   .card {
@@ -114,11 +129,30 @@
     width: 90%;
   }
 
-  .logo {
-    font-size: 28px;
-    font-weight: 700;
-    color: #f1c40f;
-    letter-spacing: -0.5px;
+  .hero {
+    position: relative;
+    width: clamp(260px, 85vw, 340px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .frog-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+
+  .title-img {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 42%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.7));
   }
 
   .subtitle {
@@ -166,5 +200,24 @@
   button:disabled {
     opacity: 0.5;
     cursor: default;
+  }
+
+  .zh-blocks {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .zh-block {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: 900;
+    border: 3px solid;
+    border-radius: 12px;
+    background: #fff;
   }
 </style>
