@@ -11,7 +11,7 @@
   let error = $state(false)
   let checking = $state(false)
 
-  const isDev = false // import.meta.env.DEV
+  const isDev = import.meta.env.DEV
 
   const zhBlocks = [
     { char: '火', colour: '#E53935' },
@@ -103,6 +103,7 @@
           <span class="zh-block" style="border-color: {block.colour}; color: {block.colour}">{block.char}</span>
         {/each}
       </div>
+      <p class="tagline">Mandarin Learning Game</p>
     </form>
   </div>
 {/if}
@@ -206,6 +207,14 @@
     display: flex;
     gap: 10px;
     margin-top: 8px;
+  }
+
+  .tagline {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    margin: 0;
+    letter-spacing: 0.05em;
   }
 
   .zh-block {

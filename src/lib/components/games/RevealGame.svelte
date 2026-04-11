@@ -99,7 +99,10 @@
     {#if !revealed}
       <p class="hint">Get ready!</p>
     {:else if waitingForTap}
-      <p class="hint">Tap to continue</p>
+      <button class="frog-prompt" onclick={handleTapToContinue}>
+        <img src="{base}/images/zh-transparent/objects/volcanofrog.png" alt="Next" class="frog-icon" />
+        <span class="frog-label">Next <span class="arrow">▶</span></span>
+      </button>
     {:else}
       <p class="hint">&nbsp;</p>
     {/if}
@@ -197,6 +200,55 @@
   @keyframes pulse-hint {
     0%, 100% { opacity: 0.5; }
     50% { opacity: 1; }
+  }
+
+  .frog-prompt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.12);
+    border: 2px solid rgba(255,255,255,0.25);
+    border-radius: 24px;
+    padding: 8px 24px 8px 8px;
+    cursor: pointer;
+    animation: frog-bounce 1s ease-in-out infinite;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.2s;
+  }
+
+  .frog-prompt:hover {
+    background: rgba(255,255,255,0.2);
+  }
+
+  .frog-prompt:active {
+    transform: scale(0.95);
+  }
+
+  .frog-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+
+  .frog-label {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1;
+  }
+
+  .arrow {
+    color: #4CAF50;
+    font-size: 1.4rem;
+  }
+
+  @keyframes frog-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
   }
 
   .prompt {
