@@ -4,4 +4,4 @@ pages_build_output_dir = "build"
 
 [[r2_buckets]]
 binding = "AUDIO_BUCKET"
-bucket_name = "alphablocks-audio"
+bucket_name = "volcanofrog-audio"

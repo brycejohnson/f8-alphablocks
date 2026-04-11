@@ -70,6 +70,22 @@ async function synthesiseWithTts(
   return bytes.buffer
 }
 
+// Rate limiter for TTS: 10 TTS calls per IP per minute
+const ttsAttempts = new Map<string, { count: number; resetAt: number }>()
+const TTS_MAX = 10
+const TTS_WINDOW = 60_000
+
+function isTtsRateLimited(ip: string): boolean {
+  const now = Date.now()
+  const entry = ttsAttempts.get(ip)
+  if (!entry || now > entry.resetAt) {
+    ttsAttempts.set(ip, { count: 1, resetAt: now + TTS_WINDOW })
+    return false
+  }
+  entry.count++
+  return entry.count > TTS_MAX
+}
+
 const ALLOWED_ORIGINS = [
   'https://alphaquantium.com',
   'https://volcanofrog.com',
@@ -112,9 +128,14 @@ export const onRequest: PagesFunction<Env> = async ({ request, env, params }) =>
     })
   }
 
-  // 2. TTS fallback
+  // 2. TTS fallback — rate limited to prevent abuse
   if (!env.GOOGLE_TTS_KEY) {
     return new Response('Not found', { status: 404 })
+  }
+
+  const ip = request.headers.get('CF-Connecting-IP') ?? 'unknown'
+  if (isTtsRateLimited(ip)) {
+    return new Response('Rate limited', { status: 429, headers: { 'Retry-After': '60' } })
   }
 
   const lang = pathParts[0] // 'en' or 'zh'

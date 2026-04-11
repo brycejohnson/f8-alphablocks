@@ -2,6 +2,7 @@
  * Server-side login endpoint
  * POST /volcanofrog/auth/login  { code: string }
  * Returns httpOnly secure cookie on success, 401 on failure.
+ * Rate limited: 5 attempts per IP per minute.
  */
 
 interface Env {
@@ -10,6 +11,24 @@ interface Env {
 
 // SHA-256 hash of the access code (same as was in client code)
 const DEFAULT_HASH = '9e7f3375709b613eac449f47489c7749d7fd986874dc5d1a69cd28b6ddd4ad93'
+
+// In-memory rate limiter (resets on cold start, good enough for edge)
+const attempts = new Map<string, { count: number; resetAt: number }>()
+const MAX_ATTEMPTS = 5
+const WINDOW_MS = 60_000
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now()
+  const entry = attempts.get(ip)
+
+  if (!entry || now > entry.resetAt) {
+    attempts.set(ip, { count: 1, resetAt: now + WINDOW_MS })
+    return false
+  }
+
+  entry.count++
+  return entry.count > MAX_ATTEMPTS
+}
 
 async function sha256(message: string): Promise<string> {
   const msgBuffer = new TextEncoder().encode(message)
@@ -40,6 +59,15 @@ export const onRequest: PagesFunction<Env> = async ({ request }) => {
     return new Response('Method not allowed', { status: 405 })
   }
 
+  const ip = request.headers.get('CF-Connecting-IP') ?? request.headers.get('X-Forwarded-For') ?? 'unknown'
+
+  if (isRateLimited(ip)) {
+    return new Response(JSON.stringify({ ok: false, error: 'Too many attempts. Try again in a minute.' }), {
+      status: 429,
+      headers: { 'Content-Type': 'application/json', 'Retry-After': '60' },
+    })
+  }
+
   let body: { code?: string }
   try {
     body = await request.json()
@@ -47,7 +75,7 @@ export const onRequest: PagesFunction<Env> = async ({ request }) => {
     return new Response('Bad request', { status: 400 })
   }
 
-  if (!body.code || typeof body.code !== 'string') {
+  if (!body.code || typeof body.code !== 'string' || body.code.length > 100) {
     return new Response(JSON.stringify({ ok: false }), {
       status: 401,
       headers: { 'Content-Type': 'application/json' },
