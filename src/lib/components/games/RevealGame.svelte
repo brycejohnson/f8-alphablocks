@@ -96,22 +96,24 @@
       {/if}
     </button>
 
-    {#if !revealed}
-      <p class="hint">Get ready!</p>
-    {:else if waitingForTap}
-      <button class="frog-prompt" onclick={handleTapToContinue}>
-        <img src="{base}/images/zh-transparent/objects/volcanofrog.png" alt="Next" class="frog-icon" />
-        <span class="frog-label">
-          <span class="label-stack">
-            <span>Next</span>
-            <span class="label-zh">下一个</span>
+    <div class="hint-area">
+      {#if !revealed}
+        <p class="hint">Get ready!</p>
+      {:else if waitingForTap}
+        <button class="frog-prompt" onclick={handleTapToContinue}>
+          <img src="{base}/images/zh-transparent/objects/volcanofrog.png" alt="Next" class="frog-icon" />
+          <span class="frog-label">
+            <span class="label-stack">
+              <span>Next</span>
+              <span class="label-zh">下一个</span>
+            </span>
+            <span class="arrow">▶</span>
           </span>
-          <span class="arrow">▶</span>
-        </span>
-      </button>
-    {:else}
-      <p class="hint">&nbsp;</p>
-    {/if}
+        </button>
+      {:else}
+        <p class="hint">&nbsp;</p>
+      {/if}
+    </div>
   {:else}
     <p class="prompt"></p>
   {/if}
@@ -194,6 +196,13 @@
     font-weight: 600;
     color: rgba(0,0,0,0.4);
     pointer-events: none;
+  }
+
+  .hint-area {
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .hint {
