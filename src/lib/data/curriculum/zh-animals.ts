@@ -74,7 +74,7 @@ export const zhAnimalsCurriculum: CurriculumPhase[] = [
       { id: 'zh-xiaomao',  text: '小猫', phonemeIds: ['zh-xiao3', 'zh-mao1'],   meaning: 'kitten',         emoji: '🐱', image: '/images/zh-transparent/animals/kitten.png' },
       { id: 'zh-xiaoniao', text: '小鸟', phonemeIds: ['zh-xiao3', 'zh-niao3'],  meaning: 'little bird',    emoji: '🐤', image: '/images/zh-transparent/animals/smallbird.png' },
       { id: 'zh-shuiniu',  text: '水牛', phonemeIds: ['zh-shui3', 'zh-niu2'],   meaning: 'water buffalo',  emoji: '🐃', image: '/images/zh-transparent/animals/waterbuffalo.png' },
-      { id: 'zh-huolong',  text: '火龙', phonemeIds: ['zh-huo3', 'zh-long2'],   meaning: 'fire dragon',    emoji: '🐲', image: '/images/zh-transparent/animals/dragon.png' },
+      { id: 'zh-huolong',  text: '火龙', phonemeIds: ['zh-huo3', 'zh-long2'],   meaning: 'fire dragon',    emoji: '🐲', image: '/images/zh-transparent/animals/reddragon.png' },
       { id: 'zh-daxiang',  text: '大象', phonemeIds: ['zh-da4', 'zh-xiang4'],   meaning: 'elephant',       emoji: '🐘', image: '/images/zh-transparent/animals/elephant.png' },
       { id: 'zh-xiongmao', text: '熊猫', phonemeIds: ['zh-xiong2', 'zh-mao1'],  meaning: 'panda',          emoji: '🐼', image: '/images/zh-transparent/animals/panda.png' },
       { id: 'zh-xiaotu',    text: '小兔', phonemeIds: ['zh-xiao3', 'zh-tu4'],   meaning: 'bunny',          emoji: '🐇', image: '/images/zh-transparent/animals/rabbit.png' },
